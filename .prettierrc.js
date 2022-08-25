@@ -2,7 +2,7 @@
  * @Author: Hhvcg
  * @Date: 2022-08-25 19:43:53
  * @LastEditors: -_-
- * @Description: 
+ * @Description: commit时自动执行规则
  */
 module.exports = {
     tabWidth: 4,
