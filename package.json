@@ -1,66 +1,48 @@
 {
-    "name": "react-admin",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "animate.css": "^3.7.2",
-        "antd": "^3.23.5",
-        "axios": "^0.19.0",
-        "braft-editor": "^2.3.8",
-        "echarts": "^4.4.0",
-        "nprogress": "^0.2.0",
-        "react": "^16.10.1",
-        "react-dom": "^16.10.1",
-        "react-loadable": "^5.5.0",
-        "react-redux": "^7.1.1",
-        "react-router-dom": "^5.1.1",
-        "redux": "^4.0.4",
-        "screenfull": "^5.0.0",
-        "react-scripts": "^3.2.0"
-    },
-    "scripts": {
-        "start": "react-app-rewired start",
-        "build": "react-app-rewired build",
-        "test": "react-app-rewired test",
-        "eject": "react-scripts eject"
-    },
-    "eslintConfig": {
-        "extends": "react-app"
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-            "node_modules/.bin/prettier --write",
-            "git add"
-        ],
-        "src/**/*.{css,scss,less,json,html,md,markdown}": [
-            "node_modules/.bin/prettier --write",
-            "git add"
-        ]
-    },
-    "devDependencies": {
-        "babel-plugin-import": "^1.12.2",
-        "customize-cra": "^0.8.0",
-        "husky": "^3.0.9",
-        "lint-staged": "^9.4.2",
-        "node-sass": "^4.13.0",
-        "prettier": "^1.18.2",
-        "react-app-rewired": "^2.1.4"
-    }
+  "name": "project_react",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.js",
+  "homepage": "",
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "dev": "concurrently \"cross-env BROWSER=none cnpm start\" \"wait-on http://localhost:3001 && electron .\"",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "electron": "^25.2.0",
+    "electron-is-dev": "^2.0.0",
+    "wait-on": "^7.0.1"
+  }
 }
