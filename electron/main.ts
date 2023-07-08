@@ -2,9 +2,6 @@ import { app, BrowserWindow, ipcMain } from 'electron'
 import {CATEGORIES} from '../src/utils/const'
 import { predealVideoName } from '../src/utils'
 const fs = require('fs')
-import { Blob } from 'blob-polyfill'
-const targetCatePath = 'E:\\RESP\\cate_2\\杰伦全款'
-
 let mainWindow: BrowserWindow | null
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string
@@ -37,43 +34,47 @@ function createWindow () {
     mainWindow = null
   })
 }
-
-async function registerListeners () {
-  /**
-   * This comes from bridge integration, check bridge.ts
-   */
-  ipcMain.on('message', (event, message) => {
-    if (message.type === 'getAllVideosInCate') {
-      fs.readdir(message.path, (err, data) => {
-        if (err) {
-            throw err
-        } else {
-            let videosList = data.map((item, index) => {
-              return {
-                id: index,
-                name: predealVideoName(item),
-                path: message.path + '\\' + item
-              }
-            })
-            // data.forEach((item, index) => {
-            //     let obj = {
-            //         id: index,
-            //         name: item,
-            //         path: message.path + '\\' + item,
-            //     }
-            //     videosList.push(obj)
-            // })
-            event.sender.send('getAllVideosInCate_back', videosList)
-        }
-    })
-    } else  {
+const handleGetAllCates = (event: any, message: any) => {
+  fs.readdir(message.data.path, (err: Error, data: any) => {
+    if (err) {
+        throw err
+    } else {
+        let videosList = data.map((item, index) => {
+          return {
+            id: index,
+            name: predealVideoName(item),
+            path: message.data.path + '\\' + item
+          }
+        })
+        event.sender.send('getAllVideosInCate_back', videosList)
+    }
+  })
+}
+const handleGetVideo = (event: any, message: any) => {
       const path = message.data.path
-      fs.readFile(path, (err, data) => {
+      console.log('path>>', path)
+      fs.readFile(path, (err: Error, data: any) => {
         event.sender.send('getVideoContent_back', {
           name: predealVideoName(message.data.path),
           file: data
         })
       })
+}
+async function registerListeners () {
+  /**
+   * This comes from bridge integration, check bridge.ts
+   */
+  ipcMain.on('message', (event: any, message: any) => {
+    console.log('main-get>>', message)
+    switch(message.type) {
+      case 'getAllVideosInCate':
+        handleGetAllCates(event, message)
+        break;
+      case 'getVideoContent':
+        handleGetVideo(event, message)
+        break;
+      default:
+        break;
     }
   })
 }

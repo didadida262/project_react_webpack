@@ -4,6 +4,10 @@ import { Button } from '../Button'
 import React from 'react'
 import { predealVideoName } from '../../utils';
 
+interface IPCInfo {
+  type: string;
+  data: object;
+}
 export class CategoriesComponent extends React.Component {
   state = {
     videoList: [],
@@ -15,27 +19,27 @@ export class CategoriesComponent extends React.Component {
     }
   }
   getAllVideosInCate = () => {
-    window.Main.sendMessage(
-        {
-            type: 'getAllVideosInCate',
-            path: 'E:\\RESP\\cate_2\\杰伦全款'
-        });
+    const params =         {
+      type: 'getAllVideosInCate',
+      data: {
+        path: 'E:\\RESP\\cate_2\\杰伦全款'
+      }
+  } 
+    window.Main.sendMessage(params as any);
     window.Main.on('getAllVideosInCate_back', (data: any) => {
-        console.log('接收到数据>>>', data)
         this.setState({
           videoList: data
         })
     })
   }
   handleSayHello = (e: any, data: any) => {
-    console.log('click>>>>data>>>', data)
-    window.Main.sendMessage({
-        type: 'getVideoContent',
-        data: data
-    } );
+    const params = {
+      type: 'getVideoContent',
+      data: data
+  } 
+    window.Main.sendMessage(params as any);
   }
   componentDidMount(): void {
-    console.log('didMounted')
     this.getAllVideosInCate()
   }
 
