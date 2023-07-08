@@ -1,6 +1,4 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
-import { predealVideoName } from '../src/utils'
-
 import { handleGetAllCates, handleGetVideo } from '../src/utils/videoApi'
 
 const fs = require('fs')
@@ -59,7 +57,6 @@ async function registerListeners () {
 app.on('ready', createWindow)
   .whenReady()
   .then(registerListeners)
-  .catch(e => console.error(e))
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

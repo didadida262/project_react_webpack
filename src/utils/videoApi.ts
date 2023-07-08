@@ -7,7 +7,7 @@ export const handleGetAllCates = (event: any, message: any) => {
       if (err) {
           throw err
       } else {
-          let videosList = data.map((item, index) => {
+          let videosList = data.map((item: string, index: number) => {
             return {
               id: index,
               name: predealVideoName(item),
