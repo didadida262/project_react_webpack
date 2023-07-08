@@ -44,9 +44,17 @@ export class VideoComponent extends React.Component {
   handleNextVideo = (type: string) => {
     this.props.nextVideo(type)
   }
+  setListener = () => {
+    const videoDom = document.getElementById('player')
+    videoDom?.addEventListener('ended', () => {
+      console.log('播放结束...')
+      this.handleNextVideo('next')
+    })
+
+  }
 
   componentDidMount(): void {
-
+    this.setListener()
   }
   render(): React.ReactNode {
     return (
@@ -56,8 +64,8 @@ export class VideoComponent extends React.Component {
               <span> { this.props.currentVideoInfo.name && this.props.currentVideoInfo.name.slice(0,-9) }</span>
           </div>
           <video
+            id='player'
             style={this.state.styleVideo}
-            id='test'
             controls
             autoPlay
             src={this.props.currentVideoInfo.url}

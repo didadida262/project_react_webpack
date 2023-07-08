@@ -55,7 +55,6 @@ export class App extends React.Component {
     let target = -1
     switch(type) {
       case 'last':
-
         if (currenVideoIndex === 0) {
           target = this.state.videoList.length - 1
         } else {
@@ -102,7 +101,8 @@ export class App extends React.Component {
           videoList = { this.state.videoList }/>
         <VideoComponent
           currentVideoInfo = { this.state.currentVideoInfo }
-          nextVideo={this.nextVideo}/>
+          nextVideo={this.nextVideo}
+          />
       </div>
     )
   }
