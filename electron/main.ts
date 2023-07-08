@@ -48,15 +48,21 @@ async function registerListeners () {
         if (err) {
             throw err
         } else {
-            let videosList = []
-            data.forEach((item, index) => {
-                let obj = {
-                    id: index,
-                    name: item,
-                    path: message.path + '\\' + item,
-                }
-                videosList.push(obj)
+            let videosList = data.map((item, index) => {
+              return {
+                id: index,
+                name: predealVideoName(item),
+                path: message.path + '\\' + item
+              }
             })
+            // data.forEach((item, index) => {
+            //     let obj = {
+            //         id: index,
+            //         name: item,
+            //         path: message.path + '\\' + item,
+            //     }
+            //     videosList.push(obj)
+            // })
             event.sender.send('getAllVideosInCate_back', videosList)
         }
     })
