@@ -8,6 +8,10 @@ export const predealVideoName = (name: String) => {
     }
 }
 
+export const getVideoID = (name:string) => {
+    return Number(name.split('.')[0])
+}
+
 export interface IPCInfo {
     type: string;
     data: object;

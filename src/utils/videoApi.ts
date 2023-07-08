@@ -1,4 +1,4 @@
-import { predealVideoName } from './index'
+import { getVideoID } from './index'
 
 const fs = require('fs')
 
@@ -9,10 +9,12 @@ export const handleGetAllCates = (event: any, message: any) => {
       } else {
           let videosList = data.map((item: string, index: number) => {
             return {
-              id: index,
-              name: predealVideoName(item),
+              id: getVideoID(item),
+              name: item,
               path: message.data.path + '\\' + item
             }
+          }).sort((a, b) => {
+            return a.id-b.id
           })
           event.sender.send('getAllVideosInCate_back', videosList)
       }
@@ -25,7 +27,7 @@ export const handleGetVideo = (event: any, message: any) => {
     console.log('path>>', path)
     fs.readFile(path, (err: Error, data: any) => {
       event.sender.send('getVideoContent_back', {
-        name: predealVideoName(message.data.path),
+        name: message.data.path,
         file: data
       })
     })

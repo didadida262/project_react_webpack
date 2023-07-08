@@ -25,6 +25,7 @@ export class CategoriesComponent extends React.Component {
   } 
     window.Main.sendMessage(params as IPCInfo);
     window.Main.on('getAllVideosInCate_back', (data: any) => {
+      console.log(data)
         this.setState({
           videoList: data
         })
@@ -46,7 +47,7 @@ export class CategoriesComponent extends React.Component {
       <div style={this.state.style}>
           { this.state.videoList.map((video, index) => {
               return (
-                  <Button key={ index } onClick={ (e) => this.handleSayHello(e, video) }>{ predealVideoName(video.path).length > 10? predealVideoName(video.path).slice(-20): predealVideoName(video.path)}</Button>
+                  <Button key={ index } onClick={ (e) => this.handleSayHello(e, video) }>{ video.name}</Button>
               )
           })}
       </div>
