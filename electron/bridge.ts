@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
-
+import { IPCInfo } from '../src/utils'
 export const api = {
   /**
    * Here you can expose functions to the renderer process
@@ -9,7 +9,7 @@ export const api = {
    * The function below can accessed using `window.Main.sendMessage`
    */
 
-  sendMessage: (message: string) => {
+  sendMessage: (message: IPCInfo) => {
     ipcRenderer.send('message', message)
   },
 

@@ -3,11 +3,9 @@ import { useState } from 'react';
 import { Button } from '../Button'
 import React from 'react'
 import { predealVideoName } from '../../utils';
+import { IPCInfo } from '../../utils';
 
-interface IPCInfo {
-  type: string;
-  data: object;
-}
+
 export class CategoriesComponent extends React.Component {
   state = {
     videoList: [],
@@ -25,7 +23,7 @@ export class CategoriesComponent extends React.Component {
         path: 'E:\\RESP\\cate_2\\杰伦全款'
       }
   } 
-    window.Main.sendMessage(params as any);
+    window.Main.sendMessage(params as IPCInfo);
     window.Main.on('getAllVideosInCate_back', (data: any) => {
         this.setState({
           videoList: data
@@ -37,7 +35,7 @@ export class CategoriesComponent extends React.Component {
       type: 'getVideoContent',
       data: data
   } 
-    window.Main.sendMessage(params as any);
+    window.Main.sendMessage(params as IPCInfo);
   }
   componentDidMount(): void {
     this.getAllVideosInCate()

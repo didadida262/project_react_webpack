@@ -19,7 +19,6 @@
  */
 
 
-
 const { getFiles } = require('./weapons')
 const respPath = 'E:\\RESP'
 

@@ -7,3 +7,8 @@ export const predealVideoName = (name: String) => {
         return name
     }
 }
+
+export interface IPCInfo {
+    type: string;
+    data: object;
+  }
