@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain  } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
 const fs = require('fs')
+const { CATEGORIES, hideRights } = require('./src/utils/const.js')
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -43,16 +44,22 @@ const createWindow = () => {
   // })
 const targetCatePath = 'E:\\RESP\\cate_2\\【浪客剑心】“对不起 我的夫君”.mp4'
 
+  ipcMain.on('getCategories', (event, msg) => {
+    console.log('main-接受>>', msg)
+    event.sender.send('getCategories_back', CATEGORIES)
+  })
+
   ipcMain.on('getVideo', (event, msg) => {
     console.log('主进程接收到数据>>', msg)
     fs.readFile(msg.path, (err, data) => {
       if (err) {
         throw err
       }
-
       event.sender.send('msgMain', data)
     })
   })
+
+
   app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
   })

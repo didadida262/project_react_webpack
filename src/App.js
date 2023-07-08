@@ -18,13 +18,20 @@ let RightDiv = styled.div.attrs({
   min-height: 90vh;
   padding: 0 10px;
 `
-
+const style = {
+  color: 'red'
+}
+const cates = ['mul', 'mu2', 'mu3']
+const handleClickBtn = (e) => {
+  console.log('e>>', e.target)
+}
 
 function App() {
   return (
     <div className="App container-fluid">
       <div className='row'>
-        <LeftDiv> 左侧
+        <LeftDiv onClick={ handleClickBtn}>
+            { cates.map((cate, index) => <button style={style} className='style2'  key={ index}>{ cate }</button>)}
         </LeftDiv>
         <RightDiv>
           <div
@@ -33,10 +40,7 @@ function App() {
             <video
               id="videoContainer"
               controls
-              controlslist="nodownload"
               src=""
-              width={'100%'}
-              height={'100%'}
               >
             </video>
           </div>

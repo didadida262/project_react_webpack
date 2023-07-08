@@ -3,6 +3,17 @@ const { ipcRenderer} = require('electron')
 const targetCatePath = 'E:\\RESP\\cate_2\\【浪客剑心】“对不起 我的夫君”.mp4'
 
 window.addEventListener('DOMContentLoaded', () => {
+    // getVideo()
+    getCategories()
+  })
+
+const getCategories = () => {
+    ipcRenderer.send('getCategories')
+    ipcRenderer.on('getCategories_back', (ev, data) => {
+        console.log('data>>>',data)
+    })
+}
+const getVideo = () =>  {
     ipcRenderer.send('getVideo', {
         path: targetCatePath
     })
@@ -14,5 +25,4 @@ window.addEventListener('DOMContentLoaded', () => {
         video.src = url
         video.play()
     })
-  })
-
+}
