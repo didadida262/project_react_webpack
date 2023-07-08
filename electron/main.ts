@@ -1,5 +1,6 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
 import {CATEGORIES} from '../src/utils/const'
+import { predealVideoName } from '../src/utils'
 const fs = require('fs')
 import { Blob } from 'blob-polyfill'
 const targetCatePath = 'E:\\RESP\\cate_2\\杰伦全款'
@@ -42,8 +43,8 @@ async function registerListeners () {
    * This comes from bridge integration, check bridge.ts
    */
   ipcMain.on('message', (event, message) => {
-    if (message === 'getAllCates') {
-      fs.readdir(targetCatePath, (err, data) => {
+    if (message.type === 'getAllVideosInCate') {
+      fs.readdir(message.path, (err, data) => {
         if (err) {
             throw err
         } else {
@@ -52,23 +53,20 @@ async function registerListeners () {
                 let obj = {
                     id: index,
                     name: item,
-                    path: targetCatePath + '\\' + item,
+                    path: message.path + '\\' + item,
                 }
                 videosList.push(obj)
             })
-            event.sender.send('getAllCates_back', videosList)
+            event.sender.send('getAllVideosInCate_back', videosList)
         }
     })
     } else  {
-      console.log('main--jieshou>>', message)
       const path = message.data.path
       fs.readFile(path, (err, data) => {
-        event.sender.send('getVideoContent_back', data)
-        
-        // const uniBuffer = Uint8Array.from(data)
-        // const blob = new Blob([uniBuffer], { type: 'mp4' })
-        // console.log('main--fanhui>>', blob)
-        // event.sender.send('getVideoContent_back', blob)
+        event.sender.send('getVideoContent_back', {
+          name: predealVideoName(message.data.path),
+          file: data
+        })
       })
     }
   })

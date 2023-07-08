@@ -1,26 +1,22 @@
 import styled from 'styled-components'
 
 export const Container = styled.button`
+  width: 100%;
   height: 42px;
   padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: left;
-  background: #8257e6;
+  background: rgb(51,51,51);
   border-radius: 8px;
   border: 0;
-
   color: #FFF;
   font-size: 16px;
-
   cursor: pointer;
-
   &:hover {
     filter: brightness(0.9);
+    border: 1px solid black;
   }
 
-  &:active {
-    filter: brightness(0.7);
-  }
-  margin-bottom: 5px
+  margin-bottom: 5px;
 `

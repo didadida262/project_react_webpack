@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '../Button'
+import { predealVideoName } from '../../utils';
 
 export function CategoriesComponent() {
     const style = {
@@ -10,11 +11,16 @@ export function CategoriesComponent() {
         padding: '5px'
       }
     const [ cates, setCates] = useState([])
-    const getAllCates = () => {
-        window.Main.sendMessage('getAllCates');
-        window.Main.on('getAllCates_back', (data) => {
+    const [ videoList, setVideoList] = useState([])
+    const getAllVideosInCate = () => {
+        window.Main.sendMessage(
+            {
+                type: 'getAllVideosInCate',
+                path: 'E:\\RESP\\cate_2\\杰伦全款'
+            });
+        window.Main.on('getAllVideosInCate_back', (data: any) => {
             console.log('接收到数据>>>', data)
-            setCates(data)
+            setVideoList(data)
         })
     }
   function handleSayHello(e, data) {
@@ -28,11 +34,11 @@ export function CategoriesComponent() {
     <>
         <div style={style}>
             <Button onClick={ () => {
-                getAllCates()
+                getAllVideosInCate()
             } }>启动</Button>
-            { cates.map((cate, index) => {
+            { videoList.map((video, index) => {
                 return (
-                    <Button key={ index } onClick={ (e) => handleSayHello(e, cate) }>{ cate.path.length > 10? cate.path.slice(80): cate.apth }</Button>
+                    <Button key={ index } onClick={ (e) => handleSayHello(e, video) }>{ predealVideoName(video.path).length > 10? predealVideoName(video.path).slice(-20): predealVideoName(video.path)}</Button>
                 )
             })}
         </div>
