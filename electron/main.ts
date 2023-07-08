@@ -1,6 +1,8 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
-import {CATEGORIES} from '../src/utils/const'
 import { predealVideoName } from '../src/utils'
+
+import { handleGetAllCates, handleGetVideo } from '../src/utils/videoApi'
+
 const fs = require('fs')
 let mainWindow: BrowserWindow | null
 
@@ -34,32 +36,7 @@ function createWindow () {
     mainWindow = null
   })
 }
-const handleGetAllCates = (event: any, message: any) => {
-  fs.readdir(message.data.path, (err: Error, data: any) => {
-    if (err) {
-        throw err
-    } else {
-        let videosList = data.map((item, index) => {
-          return {
-            id: index,
-            name: predealVideoName(item),
-            path: message.data.path + '\\' + item
-          }
-        })
-        event.sender.send('getAllVideosInCate_back', videosList)
-    }
-  })
-}
-const handleGetVideo = (event: any, message: any) => {
-      const path = message.data.path
-      console.log('path>>', path)
-      fs.readFile(path, (err: Error, data: any) => {
-        event.sender.send('getVideoContent_back', {
-          name: predealVideoName(message.data.path),
-          file: data
-        })
-      })
-}
+
 async function registerListeners () {
   /**
    * This comes from bridge integration, check bridge.ts
