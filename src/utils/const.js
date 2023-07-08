@@ -24,7 +24,7 @@ const { getFiles } = require('./weapons')
 const respPath = 'E:\\RESP'
 
 // 视频目录
-const CATEGORIES_A = getFiles(respPath).map((cate) => {
+export const CATEGORIES_A = getFiles(respPath).map((cate) => {
     return {
         key: cate,
         path: respPath + '\\' + cate
@@ -39,7 +39,7 @@ const CATEGORIES_music = getFiles(respPath + '\\cate_3').map((cate) => {
     }
 })
 
-const CATEGORIES = [...CATEGORIES_A]
+export const CATEGORIES = [...CATEGORIES_A]
 
 
 // 高等权限
@@ -57,9 +57,9 @@ const hideRights = [ 'cate_3', 'cate_p', 'cate_g',]
 //     },
 
 // }
-module.exports = {
-    CATEGORIES,
-    respPath,
-    CATEGORIES_music,
-    hideRights
-}
+// module.exports = {
+//     CATEGORIES,
+//     respPath,
+//     CATEGORIES_music,
+//     hideRights
+// }

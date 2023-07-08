@@ -12,4 +12,19 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     color: #E1E1E6;
   }
+  .App {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .left {
+    border: 1px solid red;
+    width: 200px;
+    height: 100vh;
+  }
+  .right {
+    border: 1px solid green;
+    width: calc(100% - 210px);
+    height: 100vh;
+  }
 `

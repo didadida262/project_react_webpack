@@ -1,12 +1,16 @@
 import { GlobalStyle } from './styles/GlobalStyle'
-
-import { Greetings } from './components/Greetings'
+import { CategoriesComponent } from './components/Video/CategoriesComponent'
+import { VideoComponent } from './components/Video/VideoComponent'
 
 export function App() {
+
+
   return (
-    <>
+    <div className='App'>
+      
       <GlobalStyle />
-      <Greetings />
-    </>
+      <CategoriesComponent/>
+      <VideoComponent/>
+    </div>
   )
 }

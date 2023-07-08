@@ -1,4 +1,8 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
+import {CATEGORIES} from '../src/utils/const'
+const fs = require('fs')
+import { Blob } from 'blob-polyfill'
+const targetCatePath = 'E:\\RESP\\cate_2\\杰伦全款'
 
 let mainWindow: BrowserWindow | null
 
@@ -23,6 +27,9 @@ function createWindow () {
     }
   })
 
+  // mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
+  // const url = isDev? 'http://localhost:3001': 'myurl'
+  // mainWindow.loadURL('http://192.168.1.103:3001')
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
 
   mainWindow.on('closed', () => {
@@ -34,8 +41,36 @@ async function registerListeners () {
   /**
    * This comes from bridge integration, check bridge.ts
    */
-  ipcMain.on('message', (_, message) => {
-    console.log(message)
+  ipcMain.on('message', (event, message) => {
+    if (message === 'getAllCates') {
+      fs.readdir(targetCatePath, (err, data) => {
+        if (err) {
+            throw err
+        } else {
+            let videosList = []
+            data.forEach((item, index) => {
+                let obj = {
+                    id: index,
+                    name: item,
+                    path: targetCatePath + '\\' + item,
+                }
+                videosList.push(obj)
+            })
+            event.sender.send('getAllCates_back', videosList)
+        }
+    })
+    } else  {
+      console.log('main--jieshou>>', message)
+      const path = message.data.path
+      fs.readFile(path, (err, data) => {
+        event.sender.send('getVideoContent_back', data)
+        
+        // const uniBuffer = Uint8Array.from(data)
+        // const blob = new Blob([uniBuffer], { type: 'mp4' })
+        // console.log('main--fanhui>>', blob)
+        // event.sender.send('getVideoContent_back', blob)
+      })
+    }
   })
 }
 
