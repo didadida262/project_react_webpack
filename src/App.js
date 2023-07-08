@@ -15,7 +15,7 @@ let RightDiv = styled.div.attrs({
 
 })`
   background-color: #c9d87c;
-  min-height: 100vh;
+  min-height: 90vh;
   padding: 0 10px;
 `
 
@@ -26,7 +26,27 @@ function App() {
       <div className='row'>
         <LeftDiv> 左侧
         </LeftDiv>
-        <RightDiv>右侧</RightDiv>
+        <RightDiv>
+          <div
+            className='videocontainer-st'
+            >
+            <video
+              id="videoContainer"
+              controls
+              controlslist="nodownload"
+              src=""
+              width={'100%'}
+              height={'100%'}
+              >
+            </video>
+          </div>
+          <div
+            className='videoInfo-st'
+          >
+            videoInfo
+          </div>
+
+        </RightDiv>
       </div>
     </div>
   );
