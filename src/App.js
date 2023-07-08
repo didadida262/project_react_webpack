@@ -18,20 +18,46 @@ let RightDiv = styled.div.attrs({
   min-height: 90vh;
   padding: 0 10px;
 `
-const style = {
-  color: 'red'
-}
-const cates = ['mul', 'mu2', 'mu3']
+const cates = [
+  {
+    id: 1,
+    path: 'cate1'
+  },
+  {
+    id: 2,
+    path: 'cate2'
+  },
+  {
+    id: 3,
+    path: 'cate3'
+  },
+]
 const handleClickBtn = (e) => {
-  console.log('e>>', e.target)
+  console.log('e>>', e)
+}
+
+class BtnComponent extends React.Component {
+  handleClickCurrentCate = () => {
+    console.log(this.props.data)
+  }
+  render() {
+    return (
+      <button
+        className='style2' 
+        onClick={ this.handleClickCurrentCate }
+        >{ this.props.data.path }</button>
+    )
+  }
 }
 
 function App() {
   return (
     <div className="App container-fluid">
       <div className='row'>
-        <LeftDiv onClick={ handleClickBtn}>
-            { cates.map((cate, index) => <button style={style} className='style2'  key={ index}>{ cate }</button>)}
+        <LeftDiv>
+            { cates.map((cate, index) => 
+            <BtnComponent data={ cate }/>
+            )}
         </LeftDiv>
         <RightDiv>
           <div
