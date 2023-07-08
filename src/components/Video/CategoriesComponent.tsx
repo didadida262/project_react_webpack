@@ -36,14 +36,12 @@ export class CategoriesComponent extends React.Component {
   }
   componentDidMount(): void {
     console.log('didMounted')
+    this.getAllVideosInCate()
   }
 
   render(): React.ReactNode {
     return  (
       <div style={this.state.style}>
-          <Button onClick={ () => {
-              this.getAllVideosInCate()
-          } }>启动</Button>
           { this.state.videoList.map((video, index) => {
               return (
                   <Button key={ index } onClick={ (e) => this.handleSayHello(e, video) }>{ predealVideoName(video.path).length > 10? predealVideoName(video.path).slice(-20): predealVideoName(video.path)}</Button>
