@@ -14,7 +14,7 @@ export const handleGetAllCates = (event: any, message: any) => {
               path: message.data.path + '\\' + item
             }
           }).sort((a, b) => {
-            return a.id-b.id
+            return a.id - b.id
           })
           event.sender.send('getAllVideosInCate_back', videosList)
       }

@@ -15,4 +15,16 @@ export const getVideoID = (name:string) => {
 export interface IPCInfo {
     type: string;
     data: object;
-  }
+}
+
+export interface VideoItem {
+    url: string;
+    path: string;
+    name: string;
+    id: number;
+}
+
+export const getRandomNum = (len: number) => {
+    return Math.floor(Math.random() * len);
+
+}

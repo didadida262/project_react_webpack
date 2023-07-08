@@ -41,36 +41,32 @@ export class VideoComponent extends React.Component {
           
         }
   }
+  handleNextVideo = (type: string) => {
+    this.props.nextVideo(type)
+  }
 
   componentDidMount(): void {
-        window.Main.on('getVideoContent_back', (data: any) => {
-      console.log('监听到了?', data)
-      const blob = new Blob([data.file], { type: 'mp4' })
-      const url = URL.createObjectURL(blob)
-      this.setState({
-        videoUrl: url,
-        videoName: data.name
-      })
-    })
+
   }
   render(): React.ReactNode {
     return (
       <>
         <div style={this.state.style}>
           <div style={this.state.styleVideoInfo}>
-              <span> { this.state.videoName.slice(0,-9) }</span>
+              <span> { this.props.currentVideoInfo.name && this.props.currentVideoInfo.name.slice(0,-9) }</span>
           </div>
           <video
             style={this.state.styleVideo}
             id='test'
             controls
             autoPlay
-            src={this.state.videoUrl}
+            src={this.props.currentVideoInfo.url}
           >
           </video>
           <div style={this.state.styleVideoOperation}>
-            <Button onClick={ this.props.nextVideo}>随机播放</Button>
-            <Button onClick={ this.props.nextVideo}>下一首</Button>
+            {/* <Button onClick={ this.props.nextVideo}>随机播放</Button> */}
+            <Button onClick={ (e) => { this.handleNextVideo('last') }}>Last</Button>
+            <Button onClick={ (e) => { this.handleNextVideo('next') }}>Next</Button>
           </div>
         </div>
       </>
