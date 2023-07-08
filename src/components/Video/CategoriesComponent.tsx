@@ -3,6 +3,12 @@ import { useState } from 'react';
 import { Button } from '../Button'
 
 export function CategoriesComponent() {
+    const style = {
+        width: '250px',
+        height: '100vh',
+        overflow: 'scroll',
+        padding: '5px'
+      }
     const [ cates, setCates] = useState([])
     const getAllCates = () => {
         window.Main.sendMessage('getAllCates');
@@ -18,13 +24,12 @@ export function CategoriesComponent() {
         data: data
     } );
   }
-
   return (
     <>
-        <div className="left">
+        <div style={style}>
             <Button onClick={ () => {
                 getAllCates()
-            } }>初始化</Button>
+            } }>启动</Button>
             { cates.map((cate, index) => {
                 return (
                     <Button key={ index } onClick={ (e) => handleSayHello(e, cate) }>{ cate.path.length > 10? cate.path.slice(80): cate.apth }</Button>
