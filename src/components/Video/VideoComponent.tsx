@@ -1,6 +1,8 @@
 
 import React from 'react'
 import { useState } from 'react';
+import { Button } from '../Button'
+
 export class VideoComponent extends React.Component {
   state = {
     videoUrl: '',
@@ -15,14 +17,31 @@ export class VideoComponent extends React.Component {
       styleVideoInfo: {
           width: '100%',
           height: '80px',
-          border: '1px solid black'
+          display: 'flex',
+          justifyContent: 'left',
+          alignItems: 'center',
+          border: '1px solid black',
+          borderRadius: '5px',
+          padding: '10px'
+        },
+        styleVideoOperation: {
+          width: '100%',
+          height: '80px',
+          display: 'flex',
+          justifyContent: 'left',
+          alignItems: 'center',
+          border: '1px solid black',
+          borderRadius: '5px',
+          padding: '10px'
         },
         styleVideo: {
           width: '100%',
-          height: 'calc(100% - 100px)',
+          height: 'calc(100% - 165px)',
           border: '1px solid black'
+          
         }
   }
+
   componentDidMount(): void {
         window.Main.on('getVideoContent_back', (data: any) => {
       console.log('监听到了?', data)
@@ -38,6 +57,9 @@ export class VideoComponent extends React.Component {
     return (
       <>
         <div style={this.state.style}>
+          <div style={this.state.styleVideoInfo}>
+              <span> { this.state.videoName.slice(0,-9) }</span>
+          </div>
           <video
             style={this.state.styleVideo}
             id='test'
@@ -45,10 +67,11 @@ export class VideoComponent extends React.Component {
             autoPlay
             src={this.state.videoUrl}
           >
-        </video>
-        <div style={this.state.styleVideoInfo}>
-          <span> { this.state.videoName }</span>
-        </div>
+          </video>
+          <div style={this.state.styleVideoOperation}>
+            <Button onClick={ this.props.nextVideo}>随机播放</Button>
+            <Button onClick={ this.props.nextVideo}>下一首</Button>
+          </div>
         </div>
       </>
     )

@@ -47,7 +47,7 @@ export class CategoriesComponent extends React.Component {
       <div style={this.state.style}>
           { this.state.videoList.map((video, index) => {
               return (
-                  <Button key={ index } onClick={ (e) => this.handleSayHello(e, video) }>{ video.name}</Button>
+                  <Button key={ index } onClick={ (e) => this.handleSayHello(e, video) }>{ video.name.slice(0,-9)}</Button>
               )
           })}
       </div>

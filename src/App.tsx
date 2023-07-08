@@ -4,12 +4,15 @@ import { CategoriesComponent } from './components/Video/CategoriesComponent'
 import { VideoComponent } from './components/Video/VideoComponent'
 
 export class App extends React.Component {
+  nextVideo = () => {
+    console.log('>>>>>>>')
+  }
   render() {
     return (
       <div className='App'>
         <GlobalStyle />
         <CategoriesComponent />
-        <VideoComponent />
+        <VideoComponent nextVideo={this.nextVideo}/>
       </div>
     )
   }
