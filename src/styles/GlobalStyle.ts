@@ -43,4 +43,11 @@ export const GlobalStyle = createGlobalStyle`
   .scrollbarShow::-webkit-scrollbar {
     display: block
   }
+  .cate-st {
+    width: '250px',
+    height: '100vh',
+    overflow: 'scroll',
+    padding: '5px'
+  }
+
 `

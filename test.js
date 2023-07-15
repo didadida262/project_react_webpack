@@ -4,7 +4,6 @@
 const fs = require('fs')
 const path = require('path')
 
-const res = []
 // function getDirectories(basePath) {
 //     fs.readdir(basePath, { withFileTypes: true }, (err, data) => {
 //         const validDir = data.filter((item) => !item.isFile())
@@ -24,14 +23,45 @@ const res = []
 // getDirectories('E:\\RESP');
 
 
-// 扫描文件夹一代
+// 扫描文件夹一代： 目录下所有文件夹
+// const getPathValidDirs = (basePath) => {
+//     const validFiles = fs.readdirSync(basePath).filter((item) => item.indexOf('.') === -1).map((dir) => {
+//         return {
+//             name: dir,
+//             path: path.join(basePath, dir)
+//         }
+//     })
+//     return validFiles
+// }
+// console.log(getPathValidDirs('E:\\RESP'))
+
+const temp = []
+
+// 二代：扫描出所有含有视频获音频的文件夹
 const getPathValidDirs = (basePath) => {
     const validFiles = fs.readdirSync(basePath).filter((item) => item.indexOf('.') === -1).map((dir) => {
         return {
             name: dir,
-            path: path.join(basePath, dir)
+            path: path.join(basePath, dir),
+            isTarget: true
         }
     })
-    return validFiles
+    for (const dir of validFiles) {
+        const child = getPathValidDirs(dir.path)
+        if (child.length) {
+            dir.isTarget = false
+            for (const item of child) {
+                temp.push(item)
+            }
+        }
+    }
+    // while (temp.length) {
+    //     validFiles.push(temp.pop())
+    // }
+    // console.log('validFiles>>', validFiles)
+    return validFiles.filter((dir) => dir)
 }
-console.log(getPathValidDirs('E:\\RESP'))
+const first = getPathValidDirs('E:\\RESP')
+const c = temp.filter((item) => item.isTarget)
+const res = [...first, ...c]
+console.log('res?>', res)

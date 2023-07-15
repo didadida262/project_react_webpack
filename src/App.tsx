@@ -1,18 +1,21 @@
 import React from 'react'
 import { GlobalStyle } from './styles/GlobalStyle'
 import { CategoriesComponent } from './components/Video/CategoriesComponent'
+import { HeaderComponent } from './components/Video/HeaderComponent'
 import { VideoComponent } from './components/Video/VideoComponent'
 import { IPCInfo,VideoItem, getRandomNum } from './utils/index'
 export class App extends React.Component {
   state = {
     currentVideoInfo: {} as VideoItem,
-    videoList: []
+    videoList: [],
+    categoriesList: [] as any
   }
   getVideo = (data: VideoItem) => {
     const params = {
       type: 'getVideoContent',
       data: data
   } 
+
     window.Main.sendMessage(params as IPCInfo);
     window.Main.on('getVideoContent_back', (data: any) => {
       const blob = new Blob([data.file], { type: 'mp4' })
@@ -36,13 +39,18 @@ export class App extends React.Component {
       window.Main.sendMessage(params as IPCInfo);
       window.Main.on('getAllCates_back', (data: any) => {
         console.log('all--cates', data)
+        this.setState(
+          {
+            categoriesList: data
+          }
+        )
       })
   }
-  getAllVideosInCate = () => {
+  getAllVideosInCate = (data) => {
     const params = {
       type: 'getAllVideosInCate',
       data: {
-        path: 'E:\\RESP\\cate_2\\others'
+        path: data.path
       }
   } 
     window.Main.sendMessage(params as IPCInfo);
@@ -109,10 +117,16 @@ export class App extends React.Component {
     return (
       <div className='App'>
         <GlobalStyle />
-        <CategoriesComponent
-          handleClickVideoItem = { this.getVideo}
-          currentVideoInfo = { this.state.currentVideoInfo }
-          videoList = { this.state.videoList }/>
+        <div className='cate-st'>
+          <HeaderComponent
+            handleClickCateItem = { this.getAllVideosInCate}
+            categoriesList = { this.state.categoriesList }
+            videoList = { this.state.videoList }/>
+          <CategoriesComponent
+            handleClickVideoItem = { this.getVideo}
+            currentVideoInfo = { this.state.currentVideoInfo }
+            videoList = { this.state.videoList }/>
+        </div>
         <VideoComponent
           currentVideoInfo = { this.state.currentVideoInfo }
           nextVideo={this.nextVideo}
