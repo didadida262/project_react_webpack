@@ -25,11 +25,24 @@ export class App extends React.Component {
       })
   })
   }
+    // getAlll dirs--->cates 
+    getAllCates = () => {
+      const params = {
+        type: 'getAllCates',
+        data: {
+          path: 'E:\\RESP'
+        }
+      } 
+      window.Main.sendMessage(params as IPCInfo);
+      window.Main.on('getAllCates_back', (data: any) => {
+        console.log('all--cates', data)
+      })
+  }
   getAllVideosInCate = () => {
-    const params =         {
+    const params = {
       type: 'getAllVideosInCate',
       data: {
-        path: 'E:\\RESP\\cate_2\\杰伦全款'
+        path: 'E:\\RESP\\cate_2\\others'
       }
   } 
     window.Main.sendMessage(params as IPCInfo);
@@ -89,7 +102,8 @@ export class App extends React.Component {
   }
   async componentDidMount(): void {
     console.log('appp----')
-    this.getAllVideosInCate()
+    this.getAllCates()
+    // this.getAllVideosInCate()
   }
   render() {
     return (

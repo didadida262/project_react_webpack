@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
-import { handleGetAllCates, handleGetVideo } from '../src/utils/videoApi'
+import { handleGetAllCates, handleGetAllItems, handleGetVideo } from '../src/utils/videoApi'
 
 const fs = require('fs')
 let mainWindow: BrowserWindow | null
@@ -42,8 +42,11 @@ async function registerListeners () {
   ipcMain.on('message', (event: any, message: any) => {
     console.log('main-get>>', message)
     switch(message.type) {
-      case 'getAllVideosInCate':
+      case 'getAllCates':
         handleGetAllCates(event, message)
+        break;
+      case 'getAllVideosInCate':
+        handleGetAllItems(event, message)
         break;
       case 'getVideoContent':
         handleGetVideo(event, message)

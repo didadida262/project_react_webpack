@@ -55,13 +55,6 @@ const add = (num1, num2) => {
     conut = num1 + num2
 }
 
-// 返回media目录下的文件
-const getAllSongs = () => {
-    const mediaPath = path.join(__dirname, 'media')
-    let res = null
-    res = fs.readdirSync(mediaPathir).filter((item) => item.includes('.mp3'))
-    return res
-}
 
 
 /**
