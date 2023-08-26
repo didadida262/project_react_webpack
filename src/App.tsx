@@ -1,12 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import CanvasComponent from './CanvasComponent'
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       paperjs
-
+      <CanvasComponent></CanvasComponent>
     </div>
   );
 }
