@@ -21,6 +21,9 @@ export class CategoriesComponent extends Component<CategoriesComponentProps, Cat
       height: 'calc(100vh - 200px)',
       overflow: 'scroll',
       padding: '5px',
+    },
+    hightlightStyle: {
+      backgroundColor: 'green'
     }
   }
 
@@ -32,10 +35,15 @@ export class CategoriesComponent extends Component<CategoriesComponentProps, Cat
 
   render(): React.ReactNode {
     return  (
-      <div style={this.state.style}>
+      <div style = { this.state.style }>
           { this.props.videoList.map((video: VideoItem, index: number) => {
               return (
-                  <ItemComponent key={ index } onClick={ (e) => this.handleClickVideo(e, video) }>{ video.name.length > 7?video.name.slice(0,15) + '...': video.name}</ItemComponent>
+                  <ItemComponent
+                   style = { this.props.currentVideoInfo.name === video.name?this.state.hightlightStyle: {}}
+                   key={ index } 
+                   onClick={ (e) => this.handleClickVideo(e, video) }
+                  >
+                    { video.name.length > 15?video.name.slice(0,15) + '...': video.name}</ItemComponent>
               )
           })}
       </div>
