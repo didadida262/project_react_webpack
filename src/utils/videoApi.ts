@@ -1,5 +1,4 @@
-import { getVideoID } from './index'
-const  { scanAllDirs } = require('./weapons.ts') 
+import { getVideoID } from './weapons'
 const fs = require('fs')
 const path = require('path')
 export const handleGetAllItems = (event: any, message: any) => {

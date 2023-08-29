@@ -1,16 +1,3 @@
-export const predealVideoName = (name: String) => {
-    // let result = name.match(/[(]P(.*)\-/)
-    let result = name.match(/[(]P(.*)/)
-    if (result && result[1]) {
-        return result[1]
-    } else {
-        return name
-    }
-}
-
-export const getVideoID = (name:string) => {
-    return Number(name.split('.')[0])
-}
 
 export interface IPCInfo {
     type: string;
@@ -29,7 +16,4 @@ export interface CateItem {
     name: string;
 }
 
-export const getRandomNum = (len: number) => {
-    return Math.floor(Math.random() * len);
 
-}

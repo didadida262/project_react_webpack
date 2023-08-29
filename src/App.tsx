@@ -3,7 +3,8 @@ import { GlobalStyle } from './styles/GlobalStyle'
 import { CategoriesComponent } from './components/Video/CategoriesComponent'
 import { HeaderComponent } from './components/Video/HeaderComponent'
 import { VideoComponent } from './components/Video/VideoComponent'
-import { IPCInfo, VideoItem, getRandomNum, CateItem } from './utils/index'
+import { IPCInfo, VideoItem, CateItem } from './utils/index'
+import { getRandomNum } from './utils/weapons'
 
 interface AppProps {
   handleClickCateItem: any,

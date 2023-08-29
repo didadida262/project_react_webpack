@@ -2,10 +2,8 @@
 import { Component  } from 'react';
 import { ItemComponent } from '../ItemComponent'
 import React from 'react'
-import { predealVideoName } from '../../utils';
 import { IPCInfo } from '../../utils';
-// import { IPCInfo, VideoItem, getRandomNum } from './utils/index'
-import { VideoItem, getRandomNum } from '../../utils/index'
+import { VideoItem } from '../../utils/index'
 
 interface CategoriesComponentProps {
   handleClickVideoItem: any,

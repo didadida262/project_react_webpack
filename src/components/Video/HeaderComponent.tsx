@@ -3,7 +3,8 @@ import { Component  } from 'react';
 
 import { ItemComponent } from '../ItemComponent'
 import React from 'react'
-import { VideoItem, predealVideoName, IPCInfo, CateItem } from '../../utils';
+import { VideoItem, IPCInfo, CateItem } from '../../utils';
+import  { predealVideoName }  from '../../utils/weapons'
 import PropTypes from 'prop-types'
 
 interface HeaderComponentProps {
