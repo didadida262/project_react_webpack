@@ -3,12 +3,13 @@ import { Component  } from 'react';
 
 import { Button } from '../Button'
 import React from 'react'
-import { predealVideoName, IPCInfo, CateItem } from '../../utils';
+import { VideoItem, predealVideoName, IPCInfo, CateItem } from '../../utils';
 import PropTypes from 'prop-types'
 
 interface HeaderComponentProps {
   handleClickCateItem: any,
-  categoriesList: Array<CateItem>
+  categoriesList: Array<CateItem>,
+  videoList: Array<VideoItem>
 }
 interface HeaderComponentState {
   style: object

@@ -1,15 +1,34 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { GlobalStyle } from './styles/GlobalStyle'
 import { CategoriesComponent } from './components/Video/CategoriesComponent'
 import { HeaderComponent } from './components/Video/HeaderComponent'
 import { VideoComponent } from './components/Video/VideoComponent'
-import { IPCInfo, VideoItem, getRandomNum } from './utils/index'
-export class App extends React.Component {
-  state = {
-    currentVideoInfo: {} as VideoItem,
-    videoList: [],
-    categoriesList: [] as any
+import { IPCInfo, VideoItem, getRandomNum, CateItem } from './utils/index'
+
+interface AppProps {
+  handleClickCateItem: any,
+  categoriesList: Array<CateItem>
+}
+interface AppState {
+  currentVideoInfo: VideoItem,
+  videoList: Array<VideoItem>,
+  categoriesList: Array<CateItem>
+}
+export class App extends Component<AppProps, AppState> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      currentVideoInfo: {
+        url: '',
+        path: '',
+        name: '',
+        id: 0
+      },
+      videoList: [],
+      categoriesList: []
+    }
   }
+
   getVideo = (data: VideoItem) => {
     const params = {
       type: 'getVideoContent',
@@ -46,7 +65,7 @@ export class App extends React.Component {
         )
       })
   }
-  getAllVideosInCate = (data) => {
+  getAllVideosInCate = (data: CateItem) => {
     const params = {
       type: 'getAllVideosInCate',
       data: {

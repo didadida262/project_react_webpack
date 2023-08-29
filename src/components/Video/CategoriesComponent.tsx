@@ -9,7 +9,8 @@ import { VideoItem, getRandomNum } from '../../utils/index'
 
 interface CategoriesComponentProps {
   handleClickVideoItem: any,
-  videoList: Array<VideoItem>
+  videoList: Array<VideoItem>,
+  currentVideoInfo: VideoItem
 }
 interface CategoriesComponentState {
 }
