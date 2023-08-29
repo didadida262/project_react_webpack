@@ -24,7 +24,7 @@ export class VideoComponent extends Component<VideoComponentProps, VideoComponen
       videoUrl: '',
       videoName: '',
       style: {
-          width: 'calc(100% - 260px)',
+          width: 'calc(100% - 400px)',
           height: '100vh',
           display: 'flex',
           flexDirection: 'column',
@@ -79,7 +79,7 @@ export class VideoComponent extends Component<VideoComponentProps, VideoComponen
       <>
         <div style={this.state.style}>
           <div style={this.state.styleVideoInfo}>
-              <span> { this.props.currentVideoInfo.name && this.props.currentVideoInfo.name.slice(0,-9) }</span>
+              <span> { this.props.currentVideoInfo.name && this.props.currentVideoInfo.name }</span>
           </div>
           <video
             id='player'

@@ -1,6 +1,6 @@
 
 import { Component  } from 'react';
-import { Button } from '../Button'
+import { ItemComponent } from '../ItemComponent'
 import React from 'react'
 import { predealVideoName } from '../../utils';
 import { IPCInfo } from '../../utils';
@@ -17,7 +17,7 @@ interface CategoriesComponentState {
 export class CategoriesComponent extends Component<CategoriesComponentProps, CategoriesComponentState> {
   state = {
     style: {
-      width: '250px',
+      width: '400px',
       height: 'calc(100vh - 200px)',
       overflow: 'scroll',
       padding: '5px',
@@ -35,7 +35,7 @@ export class CategoriesComponent extends Component<CategoriesComponentProps, Cat
       <div style={this.state.style}>
           { this.props.videoList.map((video: VideoItem, index: number) => {
               return (
-                  <Button key={ index } onClick={ (e) => this.handleClickVideo(e, video) }>{ video.name.length > 7?video.name.slice(0,7) + '...': video.name}</Button>
+                  <ItemComponent key={ index } onClick={ (e) => this.handleClickVideo(e, video) }>{ video.name.length > 7?video.name.slice(0,15) + '...': video.name}</ItemComponent>
               )
           })}
       </div>

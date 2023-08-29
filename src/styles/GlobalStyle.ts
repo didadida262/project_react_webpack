@@ -44,10 +44,11 @@ export const GlobalStyle = createGlobalStyle`
     display: block
   }
   .cate-st {
-    width: '250px',
+    width: '400px',
     height: '100vh',
     overflow: 'scroll',
     padding: '5px'
+    border: '1px solid red'
   }
 
 `

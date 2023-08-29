@@ -1,7 +1,7 @@
 
 import { Component  } from 'react';
 
-import { Button } from '../Button'
+import { ItemComponent } from '../ItemComponent'
 import React from 'react'
 import { VideoItem, predealVideoName, IPCInfo, CateItem } from '../../utils';
 import PropTypes from 'prop-types'
@@ -19,7 +19,7 @@ export class HeaderComponent extends Component<HeaderComponentProps, HeaderCompo
     super(props);
     this.state = {
       style: {
-        width: '250px',
+        width: '400px',
         height: '200px',
         padding: '5px',
         overflow: 'scroll'
@@ -40,7 +40,7 @@ export class HeaderComponent extends Component<HeaderComponentProps, HeaderCompo
       <div style={this.state.style}>
           { this.props.categoriesList.map((cate: CateItem, index: number) => {
               return (
-                  <Button key={ index } onClick={ (e) => this.handleClickCate(e, cate) }>{ cate.name}</Button>
+                  <ItemComponent key={ index } onClick={ (e) => this.handleClickCate(e, cate) }>{ cate.name}</ItemComponent>
               )
           })}
       </div>
