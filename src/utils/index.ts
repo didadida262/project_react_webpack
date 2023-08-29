@@ -24,6 +24,11 @@ export interface VideoItem {
     id: number;
 }
 
+export interface CateItem {
+    path: string;
+    name: string;
+}
+
 export const getRandomNum = (len: number) => {
     return Math.floor(Math.random() * len);
 

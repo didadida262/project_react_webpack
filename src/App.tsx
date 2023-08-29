@@ -3,7 +3,7 @@ import { GlobalStyle } from './styles/GlobalStyle'
 import { CategoriesComponent } from './components/Video/CategoriesComponent'
 import { HeaderComponent } from './components/Video/HeaderComponent'
 import { VideoComponent } from './components/Video/VideoComponent'
-import { IPCInfo,VideoItem, getRandomNum } from './utils/index'
+import { IPCInfo, VideoItem, getRandomNum } from './utils/index'
 export class App extends React.Component {
   state = {
     currentVideoInfo: {} as VideoItem,
@@ -29,7 +29,7 @@ export class App extends React.Component {
   })
   }
     // getAlll dirs--->cates 
-    getAllCates = () => {
+  getAllCates = () => {
       const params = {
         type: 'getAllCates',
         data: {
@@ -108,7 +108,7 @@ export class App extends React.Component {
 
 
   }
-  async componentDidMount(): void {
+  async componentDidMount(): Promise<void> {
     console.log('appp----')
     this.getAllCates()
     // this.getAllVideosInCate()
@@ -123,13 +123,13 @@ export class App extends React.Component {
             categoriesList = { this.state.categoriesList }
             videoList = { this.state.videoList }/>
           <CategoriesComponent
-            handleClickVideoItem = { this.getVideo}
+            handleClickVideoItem = { this.getVideo }
             currentVideoInfo = { this.state.currentVideoInfo }
             videoList = { this.state.videoList }/>
         </div>
         <VideoComponent
           currentVideoInfo = { this.state.currentVideoInfo }
-          nextVideo={this.nextVideo}
+          nextVideo={ this.nextVideo }
           />
       </div>
     )

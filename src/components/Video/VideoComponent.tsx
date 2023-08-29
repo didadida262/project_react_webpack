@@ -1,19 +1,35 @@
 
-import React from 'react'
+import React, { Component } from 'react'
 import { useState } from 'react';
 import { Button } from '../Button'
+import { predealVideoName, IPCInfo, VideoItem } from '../../utils';
 
-export class VideoComponent extends React.Component {
-  state = {
-    videoUrl: '',
-    videoName: '',
-    style: {
-        width: 'calc(100% - 260px)',
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      },
+
+interface VideoComponentProps {
+  nextVideo: any,
+  currentVideoInfo: VideoItem
+}
+interface VideoComponentState {
+  videoUrl: string,
+  videoName: string,
+  style: object,
+  styleVideoInfo: object,
+  styleVideoOperation: object,
+  styleVideo: object
+}
+export class VideoComponent extends Component<VideoComponentProps, VideoComponentState> {
+  constructor(props: any) {
+    super(props)
+    this.state = {
+      videoUrl: '',
+      videoName: '',
+      style: {
+          width: 'calc(100% - 260px)',
+          height: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+        },
       styleVideoInfo: {
           width: '100%',
           height: '80px',
@@ -40,7 +56,9 @@ export class VideoComponent extends React.Component {
           border: '1px solid black'
           
         }
+    }
   }
+
   handleNextVideo = (type: string) => {
     this.props.nextVideo(type)
   }

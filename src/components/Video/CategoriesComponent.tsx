@@ -1,12 +1,19 @@
 
-import { useState } from 'react';
+import { Component  } from 'react';
 import { Button } from '../Button'
 import React from 'react'
 import { predealVideoName } from '../../utils';
 import { IPCInfo } from '../../utils';
+// import { IPCInfo, VideoItem, getRandomNum } from './utils/index'
+import { VideoItem, getRandomNum } from '../../utils/index'
 
-
-export class CategoriesComponent extends React.Component {
+interface CategoriesComponentProps {
+  handleClickVideoItem: any,
+  videoList: Array<VideoItem>
+}
+interface CategoriesComponentState {
+}
+export class CategoriesComponent extends Component<CategoriesComponentProps, CategoriesComponentState> {
   state = {
     style: {
       width: '250px',
@@ -16,7 +23,7 @@ export class CategoriesComponent extends React.Component {
     }
   }
 
-  handleClickVideo = (e, data) => {
+  handleClickVideo = (e: any, data: VideoItem) => {
     this.props.handleClickVideoItem(data)
   }
   componentDidMount(): void {
@@ -25,7 +32,7 @@ export class CategoriesComponent extends React.Component {
   render(): React.ReactNode {
     return  (
       <div style={this.state.style}>
-          { this.props.videoList.map((video, index) => {
+          { this.props.videoList.map((video: VideoItem, index: number) => {
               return (
                   <Button key={ index } onClick={ (e) => this.handleClickVideo(e, video) }>{ video.name.length > 7?video.name.slice(0,7) + '...': video.name}</Button>
               )

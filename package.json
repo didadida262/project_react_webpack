@@ -18,6 +18,7 @@
     "blob-polyfill": "^7.0.20220408",
     "crypto": "^1.0.1",
     "jsonwebtoken": "^9.0.1",
+    "prop-types": "^15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-hot-loader": "4.13.0",
