@@ -33,19 +33,19 @@ export class App extends Component<AppProps, AppState> {
     const params = {
       type: 'getVideoContent',
       data: data
-  } 
-
+    } 
     window.Main.sendMessage(params as IPCInfo);
     window.Main.on('getVideoContent_back', (data: any) => {
-      const blob = new Blob([data.file], { type: 'mp4' })
-      const url = URL.createObjectURL(blob)
-      this.setState({
-        currentVideoInfo: {
-          ...this.state.currentVideoInfo,
-          url: url
-        }
-      })
-  })
+        const blob = new Blob([data.file], { type: 'mp4' })
+        const url = URL.createObjectURL(blob)
+        this.setState({
+          currentVideoInfo: {
+            ...data,
+            url: url
+          }
+        })
+        console.log('current_video>>>', this.state.currentVideoInfo)
+    })
   }
     // getAlll dirs--->cates 
   getAllCates = () => {
