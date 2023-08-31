@@ -30,19 +30,18 @@ export class App extends Component<AppProps, AppState> {
     }
   }
 
-  getVideo = (data: VideoItem) => {
+  getVideo = (videoInfo: VideoItem) => {
     const params = {
       type: 'getVideoContent',
-      data: data
+      data: videoInfo
     } 
     window.Main.sendMessage(params as IPCInfo);
     window.Main.on('getVideoContent_back', (data: any) => {
-      console.log('video_data>>>', data)
         const blob = new Blob([data.file], { type: 'mp4' })
         const url = URL.createObjectURL(blob)
         this.setState({
           currentVideoInfo: {
-            ...data,
+            ...videoInfo,
             url: url
           }
         })
@@ -78,18 +77,13 @@ export class App extends Component<AppProps, AppState> {
           videoList: data
         })
         if (!this.state.currentVideoInfo.url) {
-          const randomItem: VideoItem = this.state.videoList[getRandomNum(this.state.videoList.length)]
-          this.setState({
-            currentVideoInfo: {
-              ...randomItem,
-            }
-          })
+          const radndomIndex = getRandomNum(this.state.videoList.length)
+          const randomItem: VideoItem = this.state.videoList[radndomIndex]
           this.getVideo(randomItem)
         }
     })
   }
-  nextVideo = (type: string) => {
-    console.log('type>>', type)
+  switchVideo = (type: string) => {
     const currenVideoIndex = this.state.videoList.findIndex((item) => item.id === this.state.currentVideoInfo.id)
     let target = -1
     switch(type) {
@@ -99,25 +93,14 @@ export class App extends Component<AppProps, AppState> {
         } else {
           target = currenVideoIndex - 1
         }
-        this.setState({
-          currentVideoInfo: {
-            ...this.state.videoList[target],
-          }
-        })
         this.getVideo(this.state.videoList[target])
         break
       case 'next':
-
         if (currenVideoIndex === this.state.videoList.length - 1) {
           target = 0
         } else {
           target = currenVideoIndex + 1
         }
-        this.setState({
-          currentVideoInfo: {
-            ...this.state.videoList[target],
-          }
-        })
         this.getVideo(this.state.videoList[target])
         break;
       default:
@@ -127,7 +110,6 @@ export class App extends Component<AppProps, AppState> {
 
   }
   async componentDidMount(): Promise<void> {
-    console.log('appp----')
     this.getAllCates()
     // this.getAllVideosInCate()
   }
@@ -147,7 +129,7 @@ export class App extends Component<AppProps, AppState> {
         </div>
         <VideoComponent
           currentVideoInfo = { this.state.currentVideoInfo }
-          nextVideo={ this.nextVideo }
+          nextVideo={ this.switchVideo }
           />
       </div>
     )
