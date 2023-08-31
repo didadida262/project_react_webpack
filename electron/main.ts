@@ -1,5 +1,5 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
-import { handleGetAllCates, handleGetAllItems, handleGetVideo } from '../src/utils/videoApi'
+import { handleGetAllCates, handleGetAllItems, handleGetVideo, getVideoContentVersionTwo } from '../src/utils/videoApi'
 
 const fs = require('fs')
 let mainWindow: BrowserWindow | null
@@ -50,6 +50,7 @@ async function registerListeners () {
         break;
       case 'getVideoContent':
         handleGetVideo(event, message)
+        // getVideoContentVersionTwo(event, message)
         break;
       default:
         break;

@@ -37,6 +37,7 @@ export class App extends Component<AppProps, AppState> {
     } 
     window.Main.sendMessage(params as IPCInfo);
     window.Main.on('getVideoContent_back', (data: any) => {
+      console.log('video_data>>>', data)
         const blob = new Blob([data.file], { type: 'mp4' })
         const url = URL.createObjectURL(blob)
         this.setState({
@@ -45,7 +46,6 @@ export class App extends Component<AppProps, AppState> {
             url: url
           }
         })
-        console.log('current_video>>>', this.state.currentVideoInfo)
     })
   }
     // getAlll dirs--->cates 
@@ -58,7 +58,6 @@ export class App extends Component<AppProps, AppState> {
       } 
       window.Main.sendMessage(params as IPCInfo);
       window.Main.on('getAllCates_back', (data: any) => {
-        console.log('all--cates', data)
         this.setState(
           {
             categoriesList: data
@@ -75,7 +74,6 @@ export class App extends Component<AppProps, AppState> {
   } 
     window.Main.sendMessage(params as IPCInfo);
     window.Main.on('getAllVideosInCate_back', (data: any) => {
-      console.log('获得数据>>>', data)
         this.setState({
           videoList: data
         })

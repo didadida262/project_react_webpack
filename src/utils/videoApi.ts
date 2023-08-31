@@ -40,3 +40,27 @@ export const handleGetVideo = (event: any, message: any) => {
       })
     })
 }
+
+export const getVideoContentVersionTwo = (event: any, message: any) => {
+  const path = message.data.path
+  console.log('path>>', path)
+  fs.readFileSync(path, (err: Error, data: any) => {
+    event.sender.send('getVideoContent_back', {
+      name: message.data.name,
+      file: data
+    })
+  })
+}
+
+// export const getVideoContentVersionTwo = (event: any, message: any) => {
+//   //建立流对象，读文件
+//   const path = message.data.path
+//   const stream = fs.createReadStream(path)
+//   //错误处理
+//   // stream.on('error', function() {
+//   //     event.writeHead(500, { "content-type": contentType });
+//   //     response.end("<h1>500 Server Error</h1>");
+//   // }); 
+//   //读取文件
+//   stream.pipe(event.sender);
+// }
