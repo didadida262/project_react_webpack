@@ -38,7 +38,8 @@ export class VideoComponent extends Component<VideoComponentProps, VideoComponen
           alignItems: 'center',
           border: '1px solid black',
           borderRadius: '5px',
-          padding: '10px'
+          padding: '10px',
+          fontWeight: 'bold'
         },
         styleVideoOperation: {
           width: '100%',
@@ -77,9 +78,9 @@ export class VideoComponent extends Component<VideoComponentProps, VideoComponen
   render(): React.ReactNode {
     return (
       <>
-        <div style={this.state.style}>
-          <div style={this.state.styleVideoInfo}>
-              <span> { this.props.currentVideoInfo.name && this.props.currentVideoInfo.name }</span>
+        <div style={ this.state.style }>
+          <div style={ this.state.styleVideoInfo }>
+              <span> { this.props.currentVideoInfo.id + '. ' + this.props.currentVideoInfo.name }</span>
           </div>
           <video
             id='player'

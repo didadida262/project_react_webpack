@@ -12,6 +12,7 @@ interface AppProps {
 }
 interface AppState {
   currentVideoInfo: VideoItem,
+  currentCateInfo: CateItem,
   videoList: Array<VideoItem>,
   categoriesList: Array<CateItem>
 }
@@ -19,6 +20,10 @@ export class App extends Component<AppProps, AppState> {
   constructor(props: any) {
     super(props)
     this.state = {
+      currentCateInfo: {
+        path: '',
+        name: ''
+      },
       currentVideoInfo: {
         url: '',
         path: '',
@@ -65,6 +70,11 @@ export class App extends Component<AppProps, AppState> {
       })
   }
   getAllVideosInCate = (data: CateItem) => {
+    this.setState({
+      currentCateInfo: {
+        ...data
+      }
+    })
     const params = {
       type: 'getAllVideosInCate',
       data: {
@@ -121,6 +131,7 @@ export class App extends Component<AppProps, AppState> {
           <HeaderComponent
             handleClickCateItem = { this.getAllVideosInCate}
             categoriesList = { this.state.categoriesList }
+            currentCateInfo = { this.state.currentCateInfo }
             videoList = { this.state.videoList }/>
           <CategoriesComponent
             handleClickVideoItem = { this.getVideo }

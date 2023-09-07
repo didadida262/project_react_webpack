@@ -28,6 +28,9 @@ export class CategoriesComponent extends Component<CategoriesComponentProps, Cat
   handleClickVideo = (e: any, data: VideoItem) => {
     this.props.handleClickVideoItem(data)
   }
+  getName = (videoInfo: VideoItem) => {
+    return videoInfo.name.length > 15? videoInfo.name.slice(0,15) + '...': videoInfo.name
+  }
   componentDidMount(): void {
   }
 
@@ -37,11 +40,11 @@ export class CategoriesComponent extends Component<CategoriesComponentProps, Cat
           { this.props.videoList.map((video: VideoItem, index: number) => {
               return (
                   <ItemComponent
-                   style = { this.props.currentVideoInfo.name === video.name?this.state.hightlightStyle: {}}
+                   style = { this.props.currentVideoInfo.name === video.name? this.state.hightlightStyle: {}}
                    key={ index } 
                    onClick={ (e) => this.handleClickVideo(e, video) }
                   >
-                    { video.name.length > 15?video.name.slice(0,15) + '...': video.name}</ItemComponent>
+                    { video.id + '. ' + this.getName(video)}</ItemComponent>
               )
           })}
       </div>
