@@ -34,6 +34,7 @@ export const handleGetVideo = (event: any, message: any) => {
     const path = message.data.path
     console.log('path>>', path)
     fs.readFile(path, (err: Error, data: any) => {
+      console.log('读取文件内容>>>', data)
       event.sender.send('getVideoContent_back', {
         name: message.data.name,
         file: data
