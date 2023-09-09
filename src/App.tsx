@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { GlobalStyle } from './styles/GlobalStyle'
 import { CategoriesComponent } from './components/Video/CategoriesComponent'
 import { HeaderComponent } from './components/Video/HeaderComponent'
+import { SearchComponent } from './components/Video/SearchComponent'
 import { VideoComponent } from './components/Video/VideoComponent'
 import { IPCInfo, VideoItem, CateItem } from './utils/index'
 import { getRandomNum } from './utils/weapons'
@@ -129,6 +130,11 @@ export class App extends Component<AppProps, AppState> {
         <GlobalStyle />
         <div className='cate-st'>
           <HeaderComponent
+            handleClickCateItem = { this.getAllVideosInCate}
+            categoriesList = { this.state.categoriesList }
+            currentCateInfo = { this.state.currentCateInfo }
+            videoList = { this.state.videoList }/>
+          <SearchComponent
             handleClickCateItem = { this.getAllVideosInCate}
             categoriesList = { this.state.categoriesList }
             currentCateInfo = { this.state.currentCateInfo }

@@ -16,7 +16,7 @@ export class CategoriesComponent extends Component<CategoriesComponentProps, Cat
   state = {
     style: {
       width: '400px',
-      height: 'calc(100vh - 200px)',
+      height: 'calc(100vh - 500px)',
       overflow: 'scroll',
       padding: '5px',
     },

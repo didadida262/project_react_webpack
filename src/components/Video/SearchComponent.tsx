@@ -1,23 +1,24 @@
 
 import { Component  } from 'react';
 
+import { InputComponent } from '../InputComponent'
 import { ItemComponent } from '../ItemComponent'
 import React from 'react'
 import { VideoItem, IPCInfo, CateItem } from '../../utils';
 import  { predealVideoName }  from '../../utils/weapons'
 import PropTypes from 'prop-types'
 
-interface HeaderComponentProps {
+interface SearchComponentProps {
   handleClickCateItem: any,
   categoriesList: Array<CateItem>,
   videoList: Array<VideoItem>,
   currentCateInfo: CateItem
 }
-interface HeaderComponentState {
+interface SearchComponentState {
   hightlightStyle: object,
   style: object
 }
-export class HeaderComponent extends Component<HeaderComponentProps, HeaderComponentState> {
+export class SearchComponent extends Component<SearchComponentProps, SearchComponentState> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -26,9 +27,11 @@ export class HeaderComponent extends Component<HeaderComponentProps, HeaderCompo
       },
       style: {
         width: '400px',
-        height: '400px',
+        height: '100px',
         padding: '5px',
-        overflow: 'scroll'
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
       }
     }
   }
@@ -44,13 +47,16 @@ export class HeaderComponent extends Component<HeaderComponentProps, HeaderCompo
   render(): React.ReactNode {
     return  (
       <div style={this.state.style}>
-          { this.props.categoriesList.map((cate: CateItem, index: number) => {
-              return (
-                  <ItemComponent
-                   style = { this.props.currentCateInfo.name === cate.name? this.state.hightlightStyle: {}}
-                   key={ index } onClick={ (e) => this.handleClickCate(e, cate) }>{ cate.name}</ItemComponent>
-              )
-          })}
+        <div style={{ width: '100px' }}>
+          <ItemComponent
+            >搜索
+          </ItemComponent>
+        </div>
+        <div style={{ width: '70%' }}>
+          {/* <InputComponent
+            >内容
+          </InputComponent> */}
+        </div>
       </div>
     )
   }
