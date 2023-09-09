@@ -1,67 +1,69 @@
-// const { scanDirItems } = require("./src/utils/FileApi.js")
-// // const { respPath } = require("./src/utils/const")
 
-const fs = require('fs')
-const path = require('path')
+const obj = {
+    a: 100,
+    b: {
+        x: 1000
+    },
+    c: [1,2,3,4]
+}
 
-// function getDirectories(basePath) {
-//     fs.readdir(basePath, { withFileTypes: true }, (err, data) => {
-//         const validDir = data.filter((item) => !item.isFile())
-//         console.log('validDir>>', validDir)
-//         for (const dir of validDir) {
-//             const item = {
-//                 name: dir.name,
-//                 path: path.join(basePath, dir.name)
-//             }
-//             res.push(item)
-//         }
-//         console.log('res>>', res)
-//     } )
-//   }
-  
-
-// getDirectories('E:\\RESP');
-
-
-// 扫描文件夹一代： 目录下所有文件夹
-// const getPathValidDirs = (basePath) => {
-//     const validFiles = fs.readdirSync(basePath).filter((item) => item.indexOf('.') === -1).map((dir) => {
-//         return {
-//             name: dir,
-//             path: path.join(basePath, dir)
-//         }
-//     })
-//     return validFiles
+// 浅拷贝
+// 方1
+// const obj2 = {
+//     ...obj
 // }
-// console.log(getPathValidDirs('E:\\RESP'))
 
-const temp = []
+// obj2.b.x = 10
+// console.log(obj)
+// { a: 100, b: { x: 10 }, c: [ 1, 2, 3, 4 ] }
 
-// 二代：扫描出所有含有视频获音频的文件夹
-const getPathValidDirs = (basePath) => {
-    const validFiles = fs.readdirSync(basePath).filter((item) => item.indexOf('.') === -1).map((dir) => {
-        return {
-            name: dir,
-            path: path.join(basePath, dir),
-            isTarget: true
-        }
-    })
-    for (const dir of validFiles) {
-        const child = getPathValidDirs(dir.path)
-        if (child.length) {
-            dir.isTarget = false
-            for (const item of child) {
-                temp.push(item)
-            }
+// 方2
+
+const clone = (obj) => {
+    const res = {}
+    for (let key in obj) {
+        if (!obj.hasOwnProperty(key)) continue
+        res[key] = obj[key]
+    }
+    return res
+}
+
+// const res = clone(obj)
+// res.b.x = 5555555555
+// console.log('obj', obj)
+// obj { a: 100, b: { x: 5555555555 }, c: [ 1, 2, 3, 4 ] }
+
+
+// 深拷贝
+const deepClone = (obj) => {
+    const res = {}
+    for (let key in obj) {
+        if (!obj.hasOwnProperty(key)) continue
+        // 还有Date、正则等特殊类型
+        if (Array.isArray(obj[key])) {
+            res[key] = obj[key].map((item) => {
+                if (typeof item === 'object') {
+                    return deepClone(item)
+                } else {
+                    return item
+                }
+            })
+        } else if (typeof obj[key] === 'object') {
+            res[key] = deepClone(obj[key])
+        } else {
+            res[key] = obj[key]
         }
     }
-    // while (temp.length) {
-    //     validFiles.push(temp.pop())
-    // }
-    // console.log('validFiles>>', validFiles)
-    return validFiles.filter((dir) => dir)
+    return res
 }
-const first = getPathValidDirs('E:\\RESP')
-const c = temp.filter((item) => item.isTarget)
-const res = [...first, ...c]
-console.log('res?>', res)
+
+const res = deepClone(obj)
+res.c[0] = 222222222222222222
+console.log('res',res)
+console.log(obj)
+// res {
+//     a: 100,
+//     b: { x: 222222222222222200 },
+//     c: { '0': 1, '1': 2, '2': 3, '3': 4 }
+//   }
+//   { a: 100, b: { x: 1000 }, c: [ 1, 2, 3, 4 ] }
