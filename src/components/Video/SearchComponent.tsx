@@ -7,21 +7,26 @@ import React from 'react'
 import { VideoItem, IPCInfo, CateItem } from '../../utils';
 import  { predealVideoName }  from '../../utils/weapons'
 import PropTypes from 'prop-types'
-
+// import  { Input } from 'element-react'
+import {Button, Input, Divider, Breadcrumb  } from 'antd' //引入按钮组件
+import { ZoomInOutlined } from '@ant-design/icons';
 interface SearchComponentProps {
   handleClickCateItem: any,
   categoriesList: Array<CateItem>,
   videoList: Array<VideoItem>,
-  currentCateInfo: CateItem
+  currentCateInfo: CateItem,
+  filterVideoList: any
 }
 interface SearchComponentState {
   hightlightStyle: object,
-  style: object
+  style: object,
+  searchItem: string
 }
 export class SearchComponent extends Component<SearchComponentProps, SearchComponentState> {
   constructor(props: any) {
     super(props);
     this.state = {
+      searchItem: 'asdasd',
       hightlightStyle: {
         backgroundColor: 'red'
       },
@@ -36,9 +41,15 @@ export class SearchComponent extends Component<SearchComponentProps, SearchCompo
     }
   }
 
-
   handleClickCate = (e: any, data: CateItem) => {
     this.props.handleClickCateItem(data)
+  }
+  handleSearch = (event: any) => {
+    const target = event.target.value
+    console.log('target>>>', target)
+    this.props.filterVideoList(target)
+    // 将事件传出去
+    
   }
 
   componentDidMount(): void {
@@ -48,14 +59,13 @@ export class SearchComponent extends Component<SearchComponentProps, SearchCompo
     return  (
       <div style={this.state.style}>
         <div style={{ width: '100px' }}>
-          <ItemComponent
+          <Button
+            onClick={() => this.search}
             >搜索
-          </ItemComponent>
+          </Button>
         </div>
         <div style={{ width: '70%' }}>
-          {/* <InputComponent
-            >内容
-          </InputComponent> */}
+        <Input onChange={ this.handleSearch } prefix={<ZoomInOutlined />}/>
         </div>
       </div>
     )

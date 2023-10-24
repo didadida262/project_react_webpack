@@ -6,7 +6,7 @@ import { SearchComponent } from './components/Video/SearchComponent'
 import { VideoComponent } from './components/Video/VideoComponent'
 import { IPCInfo, VideoItem, CateItem } from './utils/index'
 import { getRandomNum } from './utils/weapons'
-
+// import 'element-theme-default'
 interface AppProps {
   handleClickCateItem: any,
   categoriesList: Array<CateItem>
@@ -14,6 +14,7 @@ interface AppProps {
 interface AppState {
   currentVideoInfo: VideoItem,
   currentCateInfo: CateItem,
+  showVideoList: Array<VideoItem>,
   videoList: Array<VideoItem>,
   categoriesList: Array<CateItem>
 }
@@ -32,6 +33,7 @@ export class App extends Component<AppProps, AppState> {
         id: 0
       },
       videoList: [],
+      showVideoList: [],
       categoriesList: []
     }
   }
@@ -85,7 +87,8 @@ export class App extends Component<AppProps, AppState> {
     window.Main.sendMessage(params as IPCInfo);
     window.Main.on('getAllVideosInCate_back', (data: any) => {
         this.setState({
-          videoList: data
+          videoList: data,
+          showVideoList: data,
         })
         if (!this.state.currentVideoInfo.url) {
           const radndomIndex = getRandomNum(this.state.videoList.length)
@@ -117,8 +120,16 @@ export class App extends Component<AppProps, AppState> {
       default:
         break
     }
-
-
+  }
+  filterVideoList = (data: string) => {
+    console.log('父组件收到>>>', data)
+    console.log('videoList>>>', this.state.videoList)
+    const res = this.state.videoList.filter((video) => video.name.includes(data))
+    this.setState({
+      showVideoList: res
+    })
+    
+    
   }
   async componentDidMount(): Promise<void> {
     this.getAllCates()
@@ -138,11 +149,12 @@ export class App extends Component<AppProps, AppState> {
             handleClickCateItem = { this.getAllVideosInCate}
             categoriesList = { this.state.categoriesList }
             currentCateInfo = { this.state.currentCateInfo }
-            videoList = { this.state.videoList }/>
+            videoList = { this.state.videoList }
+            filterVideoList= { this.filterVideoList}/>
           <CategoriesComponent
             handleClickVideoItem = { this.getVideo }
             currentVideoInfo = { this.state.currentVideoInfo }
-            videoList = { this.state.videoList }/>
+            videoList = { this.state.showVideoList }/>
         </div>
         <VideoComponent
           currentVideoInfo = { this.state.currentVideoInfo }
