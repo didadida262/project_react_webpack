@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       {/* <CanvasComponent></CanvasComponent> */}
-      Big turntable
+      {/* Big turntable */}
       <BigTurntable></BigTurntable>
       
     </div>
