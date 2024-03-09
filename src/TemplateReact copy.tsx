@@ -5,7 +5,7 @@ interface IProps {
 }
 export default function TemplateReact(props: IProps) {
   const { uids } = props
-  return <div>
+  return (<div>
     <span>template!!</span>
-  </div>
+  </div>) 
 }

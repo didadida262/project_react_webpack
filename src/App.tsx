@@ -1,7 +1,7 @@
 import React from 'react';
 import CanvasComponent from './CanvasComponent'
 import BigTurntable from './BigTurntable'
-import TemplateReact from './TemplateReact';
+import ComputerComponent from './ComputerComponent';
 import './App.css';
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       {/* <CanvasComponent></CanvasComponent> */}
       {/* Big turntable */}
       {/* <BigTurntable></BigTurntable> */}
-      <TemplateReact uids={[124,132,139]}></TemplateReact>
+      <ComputerComponent uids={[124,132,139]}></ComputerComponent>
       
     </div>
   );
