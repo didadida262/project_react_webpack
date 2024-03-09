@@ -12,7 +12,6 @@ function App() {
       {/* Big turntable */}
       {/* <BigTurntable></BigTurntable> */}
       <ComputerComponent uids={[124,132,139]}></ComputerComponent>
-      
     </div>
   );
 }
