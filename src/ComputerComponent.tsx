@@ -3,6 +3,7 @@ import './style.css'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrement, increment } from './store/moudles/counterStoreA';
+import { fetchData } from './store/moudles/counterStoreB';
 
 interface IProps {
   uids: Array<number>
@@ -11,19 +12,15 @@ interface IProps {
 export default function ComputerComponent(props: IProps) {
   const [show, setshow] = useState(true)
   const { count } = useSelector((state: any) => state.counter)
+  const { channelList } = useSelector((state: any) => state.channel)
   const dispatch = useDispatch()
-  console.log('count>>>',count)
   
   const handleClick = () => {
     setshow(!show)
   }
   useEffect(() => {
-    const getInfo = async () => {
-      const response = await axios.get('/api/v1/dataSource');
-      console.log('data:', response)
-    }
-    getInfo()
-  }, [])
+      dispatch(fetchData() as any)
+  }, [dispatch])
   return (<div>
     { show && <div className='test'>我是div</div>}
     <button onClick={handleClick}>toggle</button>
@@ -31,7 +28,10 @@ export default function ComputerComponent(props: IProps) {
     <button onClick={() => {dispatch(decrement(10))}}>-</button>
     {count}
     <button onClick={() => {dispatch(increment(10))}}>+</button>
-
+    {/* <button onClick={() => {fetchData(dispatch)}}>异步修改数据</button> */}
+    <ul>
+      {channelList.map((item) => <li key={item.id}>{item.name}</li>)}
+    </ul>
     </div>
   </div>) 
 }

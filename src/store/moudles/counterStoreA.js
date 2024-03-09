@@ -1,4 +1,7 @@
+
+// 同步请求
 import { createSlice } from "@reduxjs/toolkit";
+import axios from 'axios';
 
 const counterStore = createSlice({
     name: 'counter',
@@ -18,5 +21,13 @@ const counterStore = createSlice({
 const { increment, decrement } = counterStore.actions
 const reducer = counterStore.reducer
 
-export { increment, decrement}
+const fetchData = (dispatch) => {
+    return async () => {
+      const response = await axios.get('/api/v1/dataSource');
+      console.log('res>>>', response)
+      dispatch(decrement(1000))
+    }
+}
+
+export { increment, decrement, fetchData}
 export default reducer
