@@ -20,7 +20,7 @@ export default function ComputerComponent(props: IProps) {
   }
   useEffect(() => {
       dispatch(fetchData() as any)
-  }, [dispatch])
+  }, [])
   return (<div>
     { show && <div className='test'>我是div</div>}
     <button onClick={handleClick}>toggle</button>
