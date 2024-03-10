@@ -1,9 +1,8 @@
-import { Link, useNavigate, useSearchParams, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './index.scss'
 import { Card, Button, Checkbox, Form, Input, type FormProps, message  } from 'antd';
-import api from '../../axios'
 import { fetchToken } from '../../store/mouduls/user';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 type FieldType = {
   username?: string;
@@ -24,7 +23,6 @@ const LoginComponent = () => {
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
-  const { token } = useSelector((state: any) => state.user)
     return (
         <div className='login flex-cc'>
           <Card title="Login" bordered={true} style={{ width: 500 }}>
