@@ -1,5 +1,5 @@
 import axios from 'axios';
- 
+import { getToken } from '../utils/token';
 // 创建axios实例
 const instance = axios.create({
   baseURL: 'http://localhost:3001', // 基础URL
@@ -11,7 +11,8 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     // 可以在这里添加例如token等请求头
-    // config.headers['Authorization'] = 'Your Token';
+    const token = getToken() 
+    config.headers['Authorization'] = token;
     return config;
   },
   error => {

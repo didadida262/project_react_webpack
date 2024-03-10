@@ -4,7 +4,7 @@ import api from '../../axios'
 const userStore = createSlice({
     name: 'user',
     initialState: {
-        token: ''
+        token: localStorage.getItem('token') || ''
     },
     reducers: {
         setToken (state, action) {
@@ -18,11 +18,9 @@ const  { setToken } = userStore.actions
 
 const fetchToken = (data) => {
     return async (dispatch) => {
-      console.log('1>>>>>>>>>>>')
       const res = await api.post('/signIn', data) as any
       dispatch(setToken(res.token))
-      console.log('1>>>>2>>>>>>>')
-
+      localStorage.setItem('token', res.token)
     }
 }
 
