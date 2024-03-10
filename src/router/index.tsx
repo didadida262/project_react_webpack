@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 import LoginComponent from '../pages/Login'
 import ContentComponent from '../pages/Content'
 import LayoutComponent from '../pages/Layout'
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/login/:id',
+    path: '/login',
     element: <LoginComponent/>
   },
   {

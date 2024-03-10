@@ -21,13 +21,5 @@ const counterStore = createSlice({
 const { increment, decrement } = counterStore.actions
 const reducer = counterStore.reducer
 
-const fetchData = (dispatch) => {
-    return async () => {
-      const response = await axios.get('/api/v1/dataSource');
-      console.log('res>>>', response)
-      dispatch(decrement(1000))
-    }
-}
-
-export { increment, decrement, fetchData}
+export { increment, decrement}
 export default reducer

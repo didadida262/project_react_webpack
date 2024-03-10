@@ -24,7 +24,6 @@ const fetchData = () => {
       const data = response.data.result
       console.log('data>>>', data)
       dispatch(setChannelList(data.users))
-
     }
 }
 

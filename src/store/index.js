@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from './moudles/counterStoreA'
-import channelReducer from './moudles/counterStoreB'
+import counterReducer from './mouduls/counterStoreA'
+import channelReducer from './mouduls/counterStoreB'
 
 const store = configureStore({
     reducer: {

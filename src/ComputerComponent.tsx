@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from 'react'
 import './style.css'
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, increment } from './store/moudles/counterStoreA';
-import { fetchData } from './store/moudles/counterStoreB';
+import { decrement, increment } from './store/mouduls/counterStoreA';
+import { fetchData } from './store/mouduls/counterStoreB';
 
 interface IProps {
   uids: Array<number>

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './index.scss';
+import './common.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 // redux
@@ -9,6 +10,7 @@ import { Provider } from 'react-redux'
 // router
 import router from './router';
 import { RouterProvider } from 'react-router-dom'
+import './mock/mock'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,7 +19,7 @@ root.render(
   // <React.StrictMode>
     <Provider store={store}>
     {/* <App /> */}
-    <RouterProvider router={router}></RouterProvider>
+      <RouterProvider router={router}></RouterProvider>
     </Provider>
   // </React.StrictMode>
 );
