@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from './mouduls/counterStoreA'
-import channelReducer from './mouduls/counterStoreB'
+import userReducer from './mouduls/user'
 
 const store = configureStore({
     reducer: {
-        counter: counterReducer,
-        channel: channelReducer
+        user: userReducer
     }
 })
 

@@ -1,7 +1,6 @@
 
 // 同步请求
 import { createSlice } from "@reduxjs/toolkit";
-import axios from 'axios';
 
 const counterStore = createSlice({
     name: 'counter',

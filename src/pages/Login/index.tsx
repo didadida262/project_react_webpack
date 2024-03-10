@@ -1,7 +1,9 @@
-import { Link, useNavigation, useSearchParams, useParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams, useParams } from 'react-router-dom'
 import './index.scss'
-import { Card, Button, Checkbox, Form, Input, type FormProps } from 'antd';
+import { Card, Button, Checkbox, Form, Input, type FormProps, message  } from 'antd';
 import api from '../../axios'
+import { fetchToken } from '../../store/mouduls/user';
+import { useDispatch, useSelector } from 'react-redux';
 
 type FieldType = {
   username?: string;
@@ -9,19 +11,20 @@ type FieldType = {
   remember?: string;
 };
 
-const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
-  console.log('Success:', values);
-  const res = await api.post('http://localhost:3001/signIn', values)
-  console.log('res>>>', res)
-};
-
-const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
-  console.log('Failed:', errorInfo);
-};
-
 const LoginComponent = () => {
-    const params = useParams()
-    console.log('pramas>>>', params)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    console.log('Success:', values);
+    await dispatch(fetchToken(values) as any)
+    message.success('登陆成功')
+    navigate('/')
+  };
+  
+  const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+  const { token } = useSelector((state: any) => state.user)
     return (
         <div className='login flex-cc'>
           <Card title="Login" bordered={true} style={{ width: 500 }}>
