@@ -5,11 +5,11 @@ import LayoutComponent from '../pages/Layout'
 import HomeComponent from '../pages/Home'
 import AboutComponent from '../pages/About'
 import NotfoundComponent from '../pages/Notfound'
-
+import AuthRoute from '../components/AuthRoute'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <LayoutComponent/>,
+    element: <AuthRoute><LayoutComponent/></AuthRoute>,
     children: [
       {
         index: true,

@@ -12,7 +12,9 @@ instance.interceptors.request.use(
   config => {
     // 可以在这里添加例如token等请求头
     const token = getToken() 
-    config.headers['Authorization'] = token;
+    if (token) {
+      config.headers['Authorization'] = token;
+    }
     return config;
   },
   error => {
