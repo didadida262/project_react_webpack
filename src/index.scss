@@ -7,7 +7,7 @@ body {
 }
 
 html {
-  height: 99vh;
+  height: 100vh;
   box-sizing: border-box;
 }
 
@@ -47,4 +47,14 @@ div:focus {
     clear: both;
     height: 0;
   }
+}
+body,
+ul,
+p,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
 }
