@@ -1,3 +1,5 @@
+import React from "react"
+
 const ChildComponent = (props) => {
   const { name } = props
   console.log('儿子组件渲染')

@@ -14,7 +14,8 @@ const DrawComponent = () => {
   const onMouseDrag = (e) => {
     const delta = initPoint.current.subtract(e.point)
     const newCenter = paper.project.view.center.add(delta)
-    paper.project.view.setCenter(newCenter)
+    const view: paper.View = paper.project.view
+    paper.project.view.center = newCenter
 
   }
   const initCanvas = () => {
@@ -22,9 +23,6 @@ const DrawComponent = () => {
     paper.setup(canvas.current)
     // paper.view.onMouseDown = onMouseDown
     // paper.view.onMouseDrag = onMouseDrag
-
-
-
     console.log('paper>>>', paper)
     
   }
