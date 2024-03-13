@@ -1,6 +1,7 @@
+import React from "react"
 import { Outlet } from 'react-router-dom'
 
-const ContentComponent = () => {
+const AboutComponent = () => {
   return (
     <div>
       <Outlet></Outlet>
@@ -8,4 +9,4 @@ const ContentComponent = () => {
   )
 }
 
-export default ContentComponent
+export default AboutComponent

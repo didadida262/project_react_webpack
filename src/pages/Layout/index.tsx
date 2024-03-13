@@ -1,9 +1,8 @@
-import { Link, Outlet, useNavigate, useSearchParams } from 'react-router-dom'
-import{ Button} from 'antd'
 import './index.scss'
 import Menu from '../menu'
 import ContentComponent from '../Content'
 import HeaderComponent from '../Header'
+import React from 'react'
 
 const LayoutComponent = () => {
   return (

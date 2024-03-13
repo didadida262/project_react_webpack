@@ -3,9 +3,10 @@ import { Suspense, lazy } from 'react'
 import LoginComponent from '../pages/Login'
 import LayoutComponent from '../pages/Layout'
 import HomeComponent from '../pages/Home'
-import AboutComponent from '../pages/About'
 import NotfoundComponent from '../pages/Notfound'
 import AuthRoute from '../components/AuthRoute'
+import LabelComponent from '../pages/Label'
+import React from 'react'
 
 // 路由懒加载
 const About = lazy(() => import('../pages/About'))
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginComponent/>
+  },
+  {
+    path: '/label',
+    element: <LabelComponent/>
   },
   {
     path: '*',

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import './common.scss';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 // redux
 import store from './store'
@@ -10,7 +9,7 @@ import { Provider } from 'react-redux'
 // router
 import router from './router';
 import { RouterProvider } from 'react-router-dom'
-import './mock/mock'
+// import './mock/mock'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
