@@ -4,12 +4,15 @@ import { Button } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
 import paper from 'paper'
 
-const PencilComponent = () => {
+
+
+const PencilComponent = (props) => {
+  const { activeTool, onClick } = props
+  const name = 'pencil'
+  console.log('activeTool>>>', activeTool)
   let path = {} as any
   const resp: Array<object> = []
-  const handleClick = () => {
-      initTool()
-  }
+
   const initTool = () => {
     let tool = new paper.Tool()
     tool.onMouseDown = (e) => {
@@ -39,20 +42,24 @@ const PencilComponent = () => {
       path.remove()
     }
     tool.activate()
-
   }
-
 
   useEffect(() => {
     return () => {
     }
   }, [])
+  useEffect(() => {
+    if (activeTool === name) {
+      initTool()
+    }
+  }, [activeTool])
   return (
     <div className='pencil mgb10'>
       <Button
-        style={{ width: 80 }} 
+        className={ activeTool === 'pencil' ? 'active' : ''}
+        style={{ width: 80}} 
         icon={ <EditOutlined />}
-        onClick={ handleClick }>
+        onClick={ () => onClick(name) }>
        </Button>
     </div>
   )

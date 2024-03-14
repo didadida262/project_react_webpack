@@ -5,7 +5,9 @@ import { BorderOutlined } from '@ant-design/icons';
 import paper from 'paper'
 import { getRandomColor } from '../../../utils/common_weapons';
 
-const ReactComponent = () => {
+const ReactComponent = (props) => {
+  const { activeTool, onClick } = props
+  const name = 'rect'
   let path = {} as any
   const resp: Array<object> = []
   let first = new paper.Point(0, 0)
@@ -59,12 +61,18 @@ const ReactComponent = () => {
   useEffect(() => {
   
   }, [])
+  useEffect(() => {
+    if (activeTool === name) {
+      initTool()
+    }
+  }, [activeTool])
   return (
     <div className='pencil'>
       <Button
+        className={ activeTool === 'rect' ? 'active' : ''}
        style={{width: 80}} 
        icon={ <BorderOutlined /> }
-       onClick={handleClick}></Button>
+       onClick={() => onClick(name)}></Button>
     </div>
   )
 }
