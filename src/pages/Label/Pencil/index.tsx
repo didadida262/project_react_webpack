@@ -1,9 +1,8 @@
 import './index.scss'
 import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
-import { RiseOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
 import paper from 'paper'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const PencilComponent = () => {
   const tool = useRef({}) as any
@@ -41,11 +40,11 @@ const PencilComponent = () => {
   }, [])
   return (
     <div className='pencil mgb10'>
-      {/* <Button
+      <Button
        style={{width: 80}} 
+       icon={<EditOutlined />}
        onClick={handleClick}>
-       </Button> */}
-       <i className="fa fa-camera-retro fa-5x"></i>
+       </Button>
     </div>
   )
 }
