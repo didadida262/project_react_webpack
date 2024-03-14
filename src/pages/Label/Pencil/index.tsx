@@ -28,7 +28,6 @@ const PencilComponent = () => {
     }
     tool.current.onMouseMove = (e) => {
       console.log('move--pencil')
-
     }
     tool.current.onMouseUp = (e) => {
       console.log('up--pencil')
@@ -36,14 +35,15 @@ const PencilComponent = () => {
   }
 
   useEffect(() => {
-  
+    return () => {
+    }
   }, [])
   return (
     <div className='pencil mgb10'>
       <Button
-       style={{width: 80}} 
-       icon={<EditOutlined />}
-       onClick={handleClick}>
+       style={{ width: 80 }} 
+       icon={ <EditOutlined />}
+       onClick={ handleClick }>
        </Button>
     </div>
   )

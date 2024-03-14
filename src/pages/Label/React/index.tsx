@@ -1,7 +1,7 @@
 import './index.scss'
 import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
-import { RiseOutlined } from '@ant-design/icons';
+import { BorderOutlined } from '@ant-design/icons';
 import paper from 'paper'
 import { getRandomColor } from '../../../utils/common_weapons';
 
@@ -61,7 +61,7 @@ const ReactComponent = () => {
     <div className='pencil'>
       <Button
        style={{width: 80}} 
-       icon={<RiseOutlined />}
+       icon={ <BorderOutlined /> }
        onClick={handleClick}></Button>
     </div>
   )
