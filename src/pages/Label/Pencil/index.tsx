@@ -25,6 +25,8 @@ const PencilComponent = () => {
     tool.onMouseUp = (e) => {
       console.log('up--pencil')
     }
+    tool.activate()
+
   }
   const initPath = () => {
     path = new paper.Path(

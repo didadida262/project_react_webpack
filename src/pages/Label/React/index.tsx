@@ -12,7 +12,6 @@ const ReactComponent = () => {
   const handleClick = () => {
       initTool()
       initPath()
-
   }
   const initPath = () => {
     path = new paper.Path(
@@ -51,6 +50,7 @@ const ReactComponent = () => {
     tool.onMouseUp = (e) => {
       console.log('up--react')
     }
+    tool.activate()
   }
 
   useEffect(() => {
