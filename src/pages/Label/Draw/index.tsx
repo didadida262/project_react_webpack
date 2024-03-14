@@ -5,7 +5,7 @@ import { useState, useEffect, useRef } from 'react'
 import imgurl from '../../../assets/只狼.jpeg'
 
 const DrawComponent = () => {
-  const canvas = useRef(null) as any
+  const canvasRef = useRef(null) as any
   const initPoint = useRef(new paper.Point(0, 0))
 
   const onMouseDown = (e) => {
@@ -19,8 +19,7 @@ const DrawComponent = () => {
 
   }
   const initCanvas = () => {
-    console.log('canvas>>', canvas)
-    paper.setup(canvas.current)
+    paper.setup(canvasRef.current)
     // paper.view.onMouseDown = onMouseDown
     // paper.view.onMouseDrag = onMouseDrag
     console.log('paper>>>', paper)
@@ -39,7 +38,7 @@ const DrawComponent = () => {
   }, [])
   return (
     <div className='draw'>
-      <canvas ref={canvas} id="main_canvas" className="main_canvas" />
+      <canvas ref={ canvasRef} className="main_canvas" />
     </div>
   )
 }

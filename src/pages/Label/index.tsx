@@ -8,7 +8,7 @@ import ReactComponent from './React'
 const LabelComponent = () => {
   return (
     <div className='label flex-sb'>
-      <div className='tools-container flex-col-start'>
+      <div className='tools-container pd5'>
         <Pencil />
         <ReactComponent />
       </div>

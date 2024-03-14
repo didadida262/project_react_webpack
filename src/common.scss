@@ -19,6 +19,19 @@
 .flex-col-start {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: start;
   flex-direction: column;
+}
+
+.pd10 {
+  padding: 10px;
+}
+.pd5 {
+  padding: 5px;
+}
+.mgb5 {
+  margin-bottom: 5px;
+}
+.mgb10 {
+  margin-bottom: 10px;
 }
