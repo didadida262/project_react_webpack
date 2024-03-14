@@ -7,19 +7,11 @@ import { getRandomColor } from '../../../utils/common_weapons';
 
 const ReactComponent = () => {
   let path = {} as any
+  const resp: Array<object> = []
   let first = new paper.Point(0, 0)
   let color = ''
   const handleClick = () => {
       initTool()
-      initPath()
-  }
-  const initPath = () => {
-    path = new paper.Path(
-      {
-        strokeColor: 'black',
-        strokeWidth: 5
-      }
-    )
   }
   const removeSelection = () => {
     if (path.current) {
@@ -30,6 +22,12 @@ const ReactComponent = () => {
   const initTool = () => {
     const tool =  new paper.Tool()
     tool.onMouseDown = (e) => {
+      path = new paper.Path(
+        {
+          strokeColor: 'black',
+          strokeWidth: 5
+        }
+      )
       console.log('down--react')
       first = e.point
       color = getRandomColor()
@@ -49,6 +47,11 @@ const ReactComponent = () => {
     }
     tool.onMouseUp = (e) => {
       console.log('up--react')
+      path.add(e.point)
+      const resPath = path.clone()
+      resp.push(path.clone())
+      resPath.remove()
+      path.remove()
     }
     tool.activate()
   }

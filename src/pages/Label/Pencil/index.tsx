@@ -6,14 +6,22 @@ import paper from 'paper'
 
 const PencilComponent = () => {
   let path = {} as any
+  const resp: Array<object> = []
   const handleClick = () => {
       initTool()
-      initPath()
   }
   const initTool = () => {
     let tool = new paper.Tool()
     tool.onMouseDown = (e) => {
+      path = new paper.Path(
+        {
+          strokeColor: 'black',
+          strokeWidth: 5
+        }
+      )
       console.log('down--pencil')
+      path.add(e.point)
+
     }
     tool.onMouseDrag = (e) => {
       console.log('drag--pencil')
@@ -24,18 +32,16 @@ const PencilComponent = () => {
     }
     tool.onMouseUp = (e) => {
       console.log('up--pencil')
+      path.add(e.point)
+      const resPath = path.clone()
+      resp.push(path.clone())
+      resPath.remove()
+      path.remove()
     }
     tool.activate()
 
   }
-  const initPath = () => {
-    path = new paper.Path(
-      {
-        strokeColor: 'black',
-        strokeWidth: 5
-      }
-    )
-  }
+
 
   useEffect(() => {
     return () => {
