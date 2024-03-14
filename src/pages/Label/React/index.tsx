@@ -6,20 +6,21 @@ import paper from 'paper'
 import { getRandomColor } from '../../../utils/common_weapons';
 
 const ReactComponent = () => {
-  const tool = useRef({}) as any
-  const path = useRef({}) as any
-  const first = useRef({}) as any
-  const color = useRef({}) as any
+  let path = {} as any
+  let first = new paper.Point(0, 0)
+  let color = ''
   const handleClick = () => {
-      tool.current = new paper.Tool()
       initTool()
-      tool.current.activate()
-      path.current = new paper.Path(
-        {
-          strokeColor: 'black',
-          strokeWidth: 5
-        }
-      )
+      initPath()
+
+  }
+  const initPath = () => {
+    path = new paper.Path(
+      {
+        strokeColor: 'black',
+        strokeWidth: 5
+      }
+    )
   }
   const removeSelection = () => {
     if (path.current) {
@@ -28,28 +29,26 @@ const ReactComponent = () => {
     }
   }
   const initTool = () => {
-    tool.current.onMouseDown = (e) => {
+    const tool =  new paper.Tool()
+    tool.onMouseDown = (e) => {
       console.log('down--react')
-      first.current = e.point
-      color.current = getRandomColor()
+      first = e.point
+      color = getRandomColor()
     }
-    tool.current.onMouseDrag = (e) => {
+    tool.onMouseDrag = (e) => {
       console.log('drag--react')
       removeSelection()
-      const width = e.point.x - first.current.x
-      const height = e.point.y - first.current.y
-      path.current = new paper.Path.Rectangle(new paper.Point(first.current.x, first.current.y), new paper.Size(width, height))
+      const width = e.point.x - first.x
+      const height = e.point.y - first.y
+      path.current = new paper.Path.Rectangle(new paper.Point(first.x, first.y), new paper.Size(width, height))
       path.current.selected = true
-      path.current.fillColor = color.current
-
-
-
+      path.current.fillColor = color
     }
-    tool.current.onMouseMove = (e) => {
+    tool.onMouseMove = (e) => {
       console.log('move--react')
 
     }
-    tool.current.onMouseUp = (e) => {
+    tool.onMouseUp = (e) => {
       console.log('up--react')
     }
   }
