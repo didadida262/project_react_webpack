@@ -9,6 +9,8 @@
     .view-container {
         width: calc(100% - 310px);
         height: 100%;
+        border: 2px solid rgb(114, 159, 222);
+        border-radius: 5px;
     }
     .category-container {
         width: 200px;

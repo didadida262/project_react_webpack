@@ -3,7 +3,6 @@
 import './index.scss'
 import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
-import { TaobaoCircleOutlined } from '@ant-design/icons';
 import paper from 'paper'
 
 const pointerComponent = (props) => {
@@ -43,8 +42,8 @@ const pointerComponent = (props) => {
       <Button
         className={ activeTool === 'pointer' ? 'active' : ''}
         style={{ width: 80}} 
-        icon={ <TaobaoCircleOutlined />}
         onClick={ () => onClick(name) }>
+         <i className="fa fa-hand-pointer-o"></i> 
        </Button>
     </div>
   )

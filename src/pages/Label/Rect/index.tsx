@@ -26,12 +26,10 @@ const RectComponent = (props) => {
           strokeWidth: 5
         }
       )
-      console.log('down--react')
       first = e.point
       color = getRandomColor()
     }
     tool.onMouseDrag = (e) => {
-      console.log('drag--react')
       removeSelection()
       const width = e.point.x - first.x
       const height = e.point.y - first.y
@@ -40,11 +38,8 @@ const RectComponent = (props) => {
       path.current.fillColor = color
     }
     tool.onMouseMove = (e) => {
-      console.log('move--react')
-
     }
     tool.onMouseUp = (e) => {
-      console.log('up--react')
       path.add(e.point)
       const resPath = path.clone()
       submitPath(resPath)
@@ -68,7 +63,9 @@ const RectComponent = (props) => {
         className={ activeTool === 'rect' ? 'active' : ''}
        style={{width: 80}} 
        icon={ <BorderOutlined /> }
-       onClick={() => onClick(name)}></Button>
+       onClick={() => onClick(name)}>
+         {/* <i className="fa fa-square-o"></i>  */}
+       </Button>
     </div>
   )
 }

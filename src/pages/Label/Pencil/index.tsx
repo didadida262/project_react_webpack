@@ -1,7 +1,6 @@
 import './index.scss'
 import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
-import { EditOutlined } from '@ant-design/icons';
 import paper from 'paper'
 
 
@@ -56,8 +55,8 @@ const PencilComponent = (props) => {
       <Button
         className={ activeTool === 'pencil' ? 'active' : ''}
         style={{ width: 80}} 
-        icon={ <EditOutlined />}
         onClick={ () => onClick(name) }>
+         <i className="fa fa-pencil"></i> 
        </Button>
     </div>
   )
