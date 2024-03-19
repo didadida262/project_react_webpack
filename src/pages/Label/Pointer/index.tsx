@@ -15,20 +15,16 @@ const pointerComponent = (props) => {
     let tool = new paper.Tool()
     tool.onMouseDown = (e) => {
       initPoint = e.point
-      console.log('down--pointer')
     }
     tool.onMouseDrag = (e) => {
       const delta = initPoint.subtract(e.point)
-      console.log('drag--pointer')
       const currentProject: paper.Project = paper.project
       const currentCenter = currentProject.view.center
       currentProject.view.center = currentCenter.add(delta)
     }
     tool.onMouseMove = (e) => {
-      console.log('move--pointer')
     }
     tool.onMouseUp = (e) => {
-      console.log('up--pointer')
     }
     tool.activate()
   }

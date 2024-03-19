@@ -7,11 +7,10 @@ import paper from 'paper'
 
 
 const PencilComponent = (props) => {
-  const { activeTool, onClick } = props
+  const { activeTool, onClick, submitPath, categories } = props
   const name = 'pencil'
-  console.log('activeTool>>>', activeTool)
+  console.warn('子组件B')
   let path = {} as any
-  const resp: Array<object> = []
 
   const initTool = () => {
     let tool = new paper.Tool()
@@ -22,23 +21,22 @@ const PencilComponent = (props) => {
           strokeWidth: 5
         }
       )
-      console.log('down--pencil')
       path.add(e.point)
 
     }
     tool.onMouseDrag = (e) => {
-      console.log('drag--pencil')
       path.add(e.point)
     }
     tool.onMouseMove = (e) => {
-      console.log('move--pencil')
     }
     tool.onMouseUp = (e) => {
-      console.log('up--pencil')
       path.add(e.point)
       const resPath = path.clone()
-      resp.push(path.clone())
-      resPath.remove()
+      // const newPath = {
+      //   key: categories.length,
+      //   path: resPath
+      // }
+      submitPath(resPath)
       path.remove()
     }
     tool.activate()
