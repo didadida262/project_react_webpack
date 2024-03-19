@@ -5,7 +5,7 @@ import { BorderOutlined } from '@ant-design/icons';
 import paper from 'paper'
 import { getRandomColor } from '../../../utils/common_weapons';
 
-const ReactComponent = (props) => {
+const RectComponent = (props) => {
   const { activeTool, onClick } = props
   const name = 'rect'
   let path = {} as any
@@ -77,4 +77,4 @@ const ReactComponent = (props) => {
   )
 }
 
-export default ReactComponent
+export default RectComponent

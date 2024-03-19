@@ -3,12 +3,12 @@ import React, { useState } from 'react'
 // import ToolsComponent from './Tools'
 import DrawComponent from './Draw'
 import Pencil from './Pencil'
-import ReactComponent from './React'
+import Rect from './Rect'
 import Pointer from './Pointer'
 import { message } from 'antd'
 
 const LabelComponent = () => {
-  const [activeTool, setactiveTool] = useState('pencil')
+  const [activeTool, setactiveTool] = useState('pointer')
   const handleClickTool = (tool) => {
     setactiveTool(tool)
     message.success(`激活${tool}`)
@@ -24,7 +24,7 @@ const LabelComponent = () => {
          activeTool={activeTool}
          onClick={handleClickTool}
          />
-        <ReactComponent
+        <Rect
           activeTool={activeTool}
           onClick={handleClickTool}
          />
