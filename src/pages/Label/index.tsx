@@ -5,7 +5,7 @@ import DrawComponent from './Draw'
 import Pencil from './Pencil'
 import Rect from './Rect'
 import Pointer from './Pointer'
-import Category from './Category'
+import PathItem from './PathItem'
 import { message } from 'antd'
 
 interface ICateItem {
@@ -25,17 +25,12 @@ const LabelComponent = () => {
     message.success(`激活${tool}`)
   }
   const submitPath = (data) => {
-    const newPath = {
-      key: count,
-      name: `标注数据:${count}`,
-      path: data
-    }
-    console.log('newPath>>>', newPath)
     setcount((precount) => precount + 1)
-    settemp(newPath)
+    settemp(data)
   }
   useEffect(() => {
     if (Object.keys(temp).length) {
+      console.log('temp>>', temp)
       const newPath = {
         key: count - 1,
         name: `标注数据:${count -1}`,
@@ -67,7 +62,7 @@ const LabelComponent = () => {
         <DrawComponent />
       </div>
       <div className='category-container'>
-        <Category data={categories}/>
+        <PathItem data={categories}/>
       </div>
     </div>
   )

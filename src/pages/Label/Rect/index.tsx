@@ -12,9 +12,8 @@ const RectComponent = (props) => {
   let first = new paper.Point(0, 0)
   let color = ''
   const removeSelection = () => {
-    if (path.current) {
-      path.current.remove()
-      path.current = null
+    if (path) {
+      path.remove()
     }
   }
   const initTool = () => {
@@ -33,17 +32,14 @@ const RectComponent = (props) => {
       removeSelection()
       const width = e.point.x - first.x
       const height = e.point.y - first.y
-      path.current = new paper.Path.Rectangle(new paper.Point(first.x, first.y), new paper.Size(width, height))
-      path.current.selected = true
-      path.current.fillColor = color
+      path = new paper.Path.Rectangle(new paper.Point(first.x, first.y), new paper.Size(width, height))
+      path.fillColor = color
     }
     tool.onMouseMove = (e) => {
     }
     tool.onMouseUp = (e) => {
       path.add(e.point)
-      const resPath = path.clone()
-      submitPath(resPath)
-      resPath.remove()
+      submitPath(path.clone())
       path.remove()
     }
     tool.activate()

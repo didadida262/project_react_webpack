@@ -30,12 +30,7 @@ const PencilComponent = (props) => {
     }
     tool.onMouseUp = (e) => {
       path.add(e.point)
-      const resPath = path.clone()
-      // const newPath = {
-      //   key: categories.length,
-      //   path: resPath
-      // }
-      submitPath(resPath)
+      submitPath(path.clone())
       path.remove()
     }
     tool.activate()
