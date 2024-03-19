@@ -6,15 +6,11 @@ import paper from 'paper'
 import { getRandomColor } from '../../../utils/common_weapons';
 
 const RectComponent = (props) => {
-  const { activeTool, onClick } = props
+  const { activeTool, onClick, submitPath } = props
   const name = 'rect'
   let path = {} as any
-  const resp: Array<object> = []
   let first = new paper.Point(0, 0)
   let color = ''
-  const handleClick = () => {
-      initTool()
-  }
   const removeSelection = () => {
     if (path.current) {
       path.current.remove()
@@ -51,7 +47,7 @@ const RectComponent = (props) => {
       console.log('up--react')
       path.add(e.point)
       const resPath = path.clone()
-      resp.push(path.clone())
+      submitPath(resPath)
       resPath.remove()
       path.remove()
     }
