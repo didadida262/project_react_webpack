@@ -7,6 +7,7 @@ import Rect from './Rect'
 import Pointer from './Pointer'
 import PathItem from './PathItem'
 import { message } from 'antd'
+import Brush from './Brush'
 
 interface ICateItem {
   key: number,
@@ -53,6 +54,11 @@ const LabelComponent = () => {
          submitPath={submitPath}
          />
         <Rect
+          activeTool={activeTool}
+          onClick={handleClickTool}
+          submitPath={submitPath}
+         />
+        <Brush
           activeTool={activeTool}
           onClick={handleClickTool}
           submitPath={submitPath}

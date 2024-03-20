@@ -54,7 +54,7 @@ const RectComponent = (props) => {
     }
   }, [activeTool])
   return (
-    <div className='pencil'>
+    <div className='rect mgb10'>
       <Button
         className={ activeTool === 'rect' ? 'active' : ''}
        style={{width: 80}} 
