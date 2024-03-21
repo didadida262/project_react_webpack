@@ -17,30 +17,30 @@ interface ICateItem {
 const LabelComponent = () => {
   console.warn('父组件')
   const [activeTool, setactiveTool] = useState('pencil')
-  const [categories, setcategories] = useState<ICateItem[]>([]) as any
-  const [count, setcount] = useState(0)
-  const [temp, settemp] = useState({}) as any
+  // const [categories, setcategories] = useState<ICateItem[]>([]) as any
+  const [categories, setcategories] = useState([]) as any
+  const [currentPath, setcurrentPath] = useState(null) as any
 
   const handleClickTool = (tool) => {
     setactiveTool(tool)
     message.success(`激活${tool}`)
   }
-  const submitPath = (data) => {
-    setcount((precount) => precount + 1)
-    settemp(data)
-  }
   useEffect(() => {
-    if (Object.keys(temp).length) {
-      console.log('temp>>', temp)
+    console.log(currentPath)
+    if (currentPath) {
+      const len = categories.length
       const newPath = {
-        key: count - 1,
-        name: `标注数据:${count -1}`,
-        path: temp
+        key: len,
+        name: `标注数据:${len}`,
+        path: currentPath
       }
       setcategories((prevItems) => [...prevItems, newPath]);
-      settemp({})
     }
-  }, [count])
+  }, [currentPath])
+  const submitPath = (data) => {
+    console.log('父组件当前data>>>2',data)
+    setcurrentPath(data)
+  }
   return (
     <div className='label flex-sb'>
       <div className='tools-container pd10'>

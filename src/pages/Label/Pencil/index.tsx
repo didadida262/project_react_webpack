@@ -6,7 +6,7 @@ import paper from 'paper'
 
 
 const PencilComponent = (props) => {
-  const { activeTool, onClick, submitPath, categories } = props
+  const { activeTool, onClick, submitPath } = props
   const name = 'pencil'
   console.warn('子组件B')
   let path = {} as any
