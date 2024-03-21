@@ -62,7 +62,9 @@ const LabelComponent = () => {
          />
       </div>
       <div className='view-container'>
-        <DrawComponent />
+        <DrawComponent
+          activeTool={activeTool}
+          />
       </div>
       <div className='category-container'>
         <PathItem data={categories}/>

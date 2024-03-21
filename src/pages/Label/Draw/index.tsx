@@ -4,7 +4,8 @@ import paper from 'paper'
 import { useState, useEffect, useRef } from 'react'
 import imgurl from '../../../assets/只狼.jpeg'
 
-const DrawComponent = () => {
+const DrawComponent = (props) => {
+  const { activeTool }  = props
   const canvasRef = useRef(null) as any
   const initPoint = useRef(new paper.Point(0, 0))
 
@@ -17,6 +18,22 @@ const DrawComponent = () => {
     const view: paper.View = paper.project.view
     paper.project.view.center = newCenter
 
+  }
+  const setCursorPointer = () => {
+    switch (activeTool) {
+      case 'pointer':
+        canvasRef.current.style.cursor = 'pointer'
+        break;
+      case 'rect':
+        canvasRef.current.style.cursor = 'crosshair'
+        break
+      case 'pencil':
+        canvasRef.current.style.cursor = 'crosshair'
+        break
+      case 'brush':
+        canvasRef.current.style.cursor = 'none'
+        break
+    }
   }
   const initCanvas = () => {
     paper.setup(canvasRef.current)
@@ -36,9 +53,12 @@ const DrawComponent = () => {
     drawPic()
 
   }, [])
+  useEffect(() => {
+    setCursorPointer()
+  }, [activeTool])
   return (
     <div className='draw'>
-      <canvas ref={ canvasRef} className="main_canvas" />
+      <canvas ref={ canvasRef } className="main_canvas" />
     </div>
   )
 }
