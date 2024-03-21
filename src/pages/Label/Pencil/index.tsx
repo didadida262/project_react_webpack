@@ -8,7 +8,6 @@ import paper from 'paper'
 const PencilComponent = (props) => {
   const { activeTool, onClick, submitPath } = props
   const name = 'pencil'
-  console.warn('子组件B')
   let path = {} as any
 
   const initTool = () => {
@@ -16,7 +15,7 @@ const PencilComponent = (props) => {
     tool.onMouseDown = (e) => {
       path = new paper.Path(
         {
-          strokeColor: 'black',
+          strokeColor: 'green',
           strokeWidth: 5
         }
       )

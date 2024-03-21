@@ -15,9 +15,7 @@ interface ICateItem {
 }
 
 const LabelComponent = () => {
-  console.warn('父组件')
   const [activeTool, setactiveTool] = useState('pencil')
-  // const [categories, setcategories] = useState<ICateItem[]>([]) as any
   const [categories, setcategories] = useState([]) as any
   const [currentPath, setcurrentPath] = useState(null) as any
 
@@ -31,14 +29,13 @@ const LabelComponent = () => {
       const len = categories.length
       const newPath = {
         key: len,
-        name: `标注数据:${len}`,
+        name: `标注数据:${len + 1}`,
         path: currentPath
       }
       setcategories((prevItems) => [...prevItems, newPath]);
     }
   }, [currentPath])
   const submitPath = (data) => {
-    console.log('父组件当前data>>>2',data)
     setcurrentPath(data)
   }
   return (
