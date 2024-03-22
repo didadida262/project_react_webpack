@@ -1,7 +1,6 @@
 import './index.scss'
 import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
-import { BorderOutlined } from '@ant-design/icons';
 import paper from 'paper'
 import { getRandomColor } from '../../../utils/common_weapons';
 
@@ -58,9 +57,8 @@ const RectComponent = (props) => {
       <Button
         className={ activeTool === 'rect' ? 'active' : ''}
        style={{width: 80}} 
-       icon={ <BorderOutlined /> }
        onClick={() => onClick(name)}>
-         {/* <i className="fa fa-square-o"></i>  */}
+         <i className="fa fa-object-group"></i> 
        </Button>
     </div>
   )

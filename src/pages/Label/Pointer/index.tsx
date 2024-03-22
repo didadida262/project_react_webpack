@@ -92,7 +92,7 @@ const pointerComponent = (props) => {
         className={ activeTool === 'pointer' ? 'active' : ''}
         style={{ width: 80}} 
         onClick={ () => onClick(name) }>
-         <i className="fa fa-hand-pointer-o"></i> 
+         <i className="fa fa-mouse-pointer"></i> 
        </Button>
     </div>
   )
