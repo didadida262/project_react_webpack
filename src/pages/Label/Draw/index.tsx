@@ -37,10 +37,6 @@ const DrawComponent = (props) => {
   }
   const initCanvas = () => {
     paper.setup(canvasRef.current)
-    // paper.view.onMouseDown = onMouseDown
-    // paper.view.onMouseDrag = onMouseDrag
-    console.log('paper>>>', paper)
-    
   }
   const drawPic = () => {
     const raster = new paper.Raster(imgurl)

@@ -23,7 +23,8 @@ function getItem(
 }
 
 const items: MenuProps['items'] = [
-  getItem('', 'grp', null, [getItem('Label', 'label'), getItem('About', 'about')], 'group'),
+  getItem('Paperjs', 'paperjs', null, [getItem('标注', 'label'), getItem('Tadpoles', 'tadpoles')], 'group'),
+  getItem('', 'grp', null, [getItem('Aout', 'about')], 'group'),
 ];
 
 const App: React.FC = () => {

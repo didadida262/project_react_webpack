@@ -3,8 +3,6 @@ import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
 import paper from 'paper'
 
-
-
 const PencilComponent = (props) => {
   const { activeTool, onClick, submitPath } = props
   const name = 'pencil'

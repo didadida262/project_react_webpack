@@ -6,6 +6,7 @@ import HomeComponent from '../pages/Home'
 import NotfoundComponent from '../pages/Notfound'
 import AuthRoute from '../components/AuthRoute'
 import LabelComponent from '../pages/Label'
+import TadpolesComponent from '../pages/Tadpoles'
 import React from 'react'
 
 // 路由懒加载
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
         path: 'about',
         element: <Suspense fallback={'加载中'}><About/></Suspense>
       },
+      {
+        path: '/tadpoles',
+        element: <TadpolesComponent />
+      }
     ]
   },
   {
