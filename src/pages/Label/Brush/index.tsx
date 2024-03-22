@@ -4,6 +4,7 @@ import './index.scss'
 import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
 import paper from 'paper'
+import { judeToolExisted } from '../../../utils/paperjsWeapon'
 
 const brushComponent = (props) => {
   const { activeTool, onClick } = props
@@ -11,9 +12,11 @@ const brushComponent = (props) => {
   let initPoint = new paper.Point(0, 0)
   let circle = null as any
   let path = null as any
+  let tool = null as any
 
   const initTool = () => {
-    let tool = new paper.Tool()
+    tool = new paper.Tool()
+    tool.name = name
     circle = new paper.Path.Circle({
       center: 0,
       radius: 10,
@@ -25,13 +28,11 @@ const brushComponent = (props) => {
       initPoint = e.point
     }
     tool.onMouseDrag = (e) => {
-      console.log('path>>>', path)
      new paper.Path.Circle({
         center: e.point,
         radius: 10,
         fillColor: 'red'
       })
-      // path.addChild(cur)
     }
     tool.onMouseMove = (e) => {
       circle.remove()
@@ -45,15 +46,21 @@ const brushComponent = (props) => {
     }
     tool.activate()
   }
+  const switchTool = () => {
+    if (activeTool !== name) return
+    if (!judeToolExisted(paper, name)) {
+      initTool()
+    }
+  }
 
   useEffect(() => {
     return () => {
     }
   }, [])
+
   useEffect(() => {
-    if (activeTool === name) {
-      initTool()
-    }
+    switchTool()
+    console.log('paper>>>', paper)
   }, [activeTool])
   return (
     <div className='brush mgb10'>

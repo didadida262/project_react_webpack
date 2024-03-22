@@ -3,11 +3,13 @@ import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
 import paper from 'paper'
 import { getRandomColor } from '../../../utils/common_weapons';
+import { judeToolExisted } from '../../../utils/paperjsWeapon'
 
 const RectComponent = (props) => {
   const { activeTool, onClick, submitPath } = props
   const name = 'rect'
   let path = {} as any
+  let tool = null as any
   let first = new paper.Point(0, 0)
   let color = ''
   const removeSelection = () => {
@@ -16,7 +18,8 @@ const RectComponent = (props) => {
     }
   }
   const initTool = () => {
-    const tool =  new paper.Tool()
+    tool =  new paper.Tool()
+    tool.name = name
     tool.onMouseDown = (e) => {
       path = new paper.Path(
         {
@@ -43,14 +46,17 @@ const RectComponent = (props) => {
     }
     tool.activate()
   }
-
+  const switchTool = () => {
+    if (activeTool !== name) return
+    if (!judeToolExisted(paper, name)) {
+      initTool()
+    }
+  }
   useEffect(() => {
   
   }, [])
   useEffect(() => {
-    if (activeTool === name) {
-      initTool()
-    }
+    switchTool()
   }, [activeTool])
   return (
     <div className='rect mgb10'>

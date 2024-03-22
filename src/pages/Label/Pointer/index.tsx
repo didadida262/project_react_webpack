@@ -4,6 +4,7 @@ import './index.scss'
 import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
 import paper from 'paper'
+import { judeToolExisted } from '../../../utils/paperjsWeapon'
 
 const pointerComponent = (props) => {
   const { activeTool, onClick } = props
@@ -11,6 +12,7 @@ const pointerComponent = (props) => {
   let initPoint = new paper.Point(0, 0)
   let cursorPoint = null as any
   let hitResult = null as any
+  let tool = null as any
   const hitOptions = {
     segments: true,
     // stroke: true,
@@ -37,7 +39,8 @@ const pointerComponent = (props) => {
     }
   }
   const initTool = () => {
-    let tool = new paper.Tool()
+    tool = new paper.Tool()
+    tool.name = name
     tool.onMouseDown = (e) => {
       initPoint = e.point
       const activateProject = paper.project
@@ -76,15 +79,18 @@ const pointerComponent = (props) => {
     }
     tool.activate()
   }
-
+  const switchTool = () => {
+    if (activeTool !== name) return
+    if (!judeToolExisted(paper, name)) {
+      initTool()
+    }
+  }
   useEffect(() => {
     return () => {
     }
   }, [])
   useEffect(() => {
-    if (activeTool === name) {
-      initTool()
-    }
+    switchTool()
   }, [activeTool])
   return (
     <div className='pencil mgb10'>
