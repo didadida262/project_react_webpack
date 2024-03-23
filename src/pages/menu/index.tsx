@@ -24,7 +24,7 @@ function getItem(
 
 const items: MenuProps['items'] = [
   getItem('Paperjs', 'paperjs', null, [getItem('标注', 'label'), getItem('Tadpoles', 'tadpoles')], 'group'),
-  getItem('', 'grp', null, [getItem('Aout', 'about')], 'group'),
+  getItem('', 'grp', null, [getItem('Test', 'about')], 'group'),
 ];
 
 const App: React.FC = () => {

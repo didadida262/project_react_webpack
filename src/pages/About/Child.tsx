@@ -3,20 +3,15 @@ import { Button } from 'antd'
 
 
 const Child = (props) => {
-    const { text } = props
-    console.log('儿子A渲染')
-    console.log('data>>>', text)
-
+    const { count } = props
+    console.log('儿子A渲染1')
+    const content = useMemo(() => {
+    console.log('儿子A渲染2')
+      return count
+    }, [count])
     return (
         <div>
-          {/* <span>儿子：{text.join('+')}</span> */}
-          { text.map((item, index) => {
-            return (
-              <span key={index}>{item}</span>
-            )
-          })}
-
-          {/* <Button onClick={() => handleClick(Math.random())}>儿子按钮</Button> */}
+          <span>erzi</span>
         </div>
       )
   }

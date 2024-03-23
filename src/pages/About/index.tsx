@@ -1,60 +1,43 @@
 import React, { useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo } from "react"
-// import { useState, useReducer } from "react"
 import { Button } from 'antd'
 import Child from "./Child"
-    import { flushSync } from "react-dom"
-    import ChildB from "./ChildB"
+import RenderComponents from "./RenderProps"
+
+const MemoSon = memo(Child)
+const HOC = (ChildComponent) => {
+  const res = (props) => {
+    return (
+      <div>
+        <span>我是高阶</span>
+        <ChildComponent {...props}></ChildComponent>
+      </div>
+    )
+  }
+  return res
+}
+const TT = HOC(Child)
 
 const AboutComponent = function() {
-  const [count, setcount] = useState(0)
+  const [count, setcount] = useState({
+    name: 1,
+    old: 2
+  })
   const [count2, setcount2] = useState(0)
-  const [testArr, settestarr] = useState([]) as any
-  const handleClick = (data) => {
-    console.log('data>>>', data)
-    console.log('count>>>', count)
-    setcount(data)
-    // setcount((prev) => {
-    //   const res = prev + 1
-    //   console.log('res', res)
-    //   return res
-    // })
- 
-  }
-  const handleClick2 = () => {
-    setcount2(count2 + 1)
-  }
-  const handleClickArr = (data) => {
-    console.log('父组件当前data>>>',testArr)
-    settestarr([...testArr, data])
-  }
-  console.log('爸爸渲染')
-  const parentclick = () => {
-    // flushSync(()=>{
-    //   setcount(count + 1, () => )
-    //   console.warn('count>>1', count)
-    // })
-      console.warn('count>>2', count)
-
-    //在flushSync中的回调单独视为一次批处理
-     
-    // console.log(this.state.name) //zhangsan
-    // setTimeout(() => {
-    //   console.warn('count>>1', count)
-    //   setcount(count + 1)
-    //   console.warn('count>>2', count)
-    // }, 0);
-
-  }
-
+  console.log('父组件渲染')
   return (
     <div>
-      <span>count1: {count}</span>
+      <span>测试</span>
+      {/* <Child count={count} /> */}
+      <MemoSon count={count} />
+      <span>count: {count.name}</span>
       <span>count2: {count2}</span>
-      <Button onClick={parentclick}>父组件按钮</Button>
-      <Button onClick={() => handleClick(Math.random())}>React点击1</Button>
-      <Button onClick={handleClick2}>React点击2</Button>
-      <Child text={testArr} />
-      <ChildB handleClickArr={handleClickArr}/>
+      <Button onClick={() => setcount({
+        ...count,
+        name: count.name + 1
+      })}>改变子数据</Button>
+      <Button onClick={() => setcount2(count2+1)}>改变其他数据</Button>
+
+      <TT />
     </div>
   )
 }
