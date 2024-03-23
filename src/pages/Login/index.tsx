@@ -63,7 +63,7 @@ const LoginComponent = () => {
 
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  Submit
+                  Login In 
                 </Button>
               </Form.Item>
             </Form>
