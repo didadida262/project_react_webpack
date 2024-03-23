@@ -1,9 +1,16 @@
 import React from 'react';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { Navigate, useNavigate } from 'react-router-dom';
-
+import {
+  AppstoreOutlined,
+  ContainerOutlined,
+  DesktopOutlined,
+  MailOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  PieChartOutlined,
+} from '@ant-design/icons';
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -23,7 +30,10 @@ function getItem(
 }
 
 const items: MenuProps['items'] = [
-  getItem('Paperjs', 'paperjs', null, [getItem('标注', 'label'), getItem('Tadpoles', 'tadpoles')], 'group'),
+  getItem('Paperjs', 'paperjs', null, [
+    getItem('标注', 'label', <PieChartOutlined />),
+    getItem('Tank', 'tank', <AppstoreOutlined />),
+    getItem('Tadpoles', 'tadpoles', <ContainerOutlined/>)], 'group'),
   getItem('', 'grp', null, [getItem('Test', 'about')], 'group'),
 ];
 

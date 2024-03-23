@@ -8,6 +8,7 @@ import AuthRoute from '../components/AuthRoute'
 import LabelComponent from '../pages/Label'
 import TadpolesComponent from '../pages/Tadpoles'
 import React from 'react'
+import TankComponent from '../pages/Tank'
 
 // 路由懒加载
 const About = lazy(() => import('../pages/About'))
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/tadpoles',
         element: <TadpolesComponent />
+      },
+      {
+        path: '/tank',
+        element: <TankComponent />
       }
     ]
   },
