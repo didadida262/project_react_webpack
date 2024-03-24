@@ -1,9 +1,10 @@
-
+import React from "react"
+import './index.scss'
 
 const HeaderComponent = () => {
   return (
-    <div>
-      <div>header...</div>
+    <div className="HeaderComponent flex-cc">
+      <h1>Header</h1>
     </div>
   )
 }

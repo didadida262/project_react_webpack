@@ -11,6 +11,7 @@
       "@/*": ["src/*"]
     },
     "allowJs": true,
+    "jsx": "react-jsx",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -22,7 +23,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "react",
     "noImplicitAny": false
   },
   "include": [

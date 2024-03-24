@@ -1,17 +1,9 @@
-import { Link, Outlet, useNavigate, useSearchParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { Button } from 'antd'
-import { decrement, increment } from '../../store/mouduls/counterStoreA';
-import { fetchData } from '../../store/mouduls/counterStoreB';
-import { useEffect, useMemo, useState, memo } from 'react';
-
-
+import React from 'react'
+import { Outlet } from 'react-router-dom'
 
 const ContentComponent = () => {
   return (
-    <div>
-      <Outlet></Outlet>
-    </div>
+    <Outlet></Outlet>
   )
 }
 

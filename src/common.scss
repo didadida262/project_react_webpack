@@ -16,6 +16,27 @@
   align-items: center;
   flex-direction: column;
 }
+<<<<<<< HEAD
 .pd10 {
   padding: 10px;
+=======
+.flex-col-start {
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+  flex-direction: column;
+}
+
+.pd10 {
+  padding: 10px;
+}
+.pd5 {
+  padding: 5px;
+}
+.mgb5 {
+  margin-bottom: 5px;
+}
+.mgb10 {
+  margin-bottom: 10px;
+>>>>>>> 481587ff3bbf71445e17a96d3b4ea9c5e887f977
 }

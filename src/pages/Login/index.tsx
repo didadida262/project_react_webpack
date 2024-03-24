@@ -3,6 +3,7 @@ import './index.scss'
 import { Card, Button, Checkbox, Form, Input, type FormProps, message  } from 'antd';
 import { fetchToken } from '../../store/mouduls/user';
 import { useDispatch } from 'react-redux';
+import React from 'react';
 
 type FieldType = {
   username?: string;
@@ -62,7 +63,7 @@ const LoginComponent = () => {
 
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
                 <Button type="primary" htmlType="submit">
-                  Submit
+                  Login In 
                 </Button>
               </Form.Item>
             </Form>

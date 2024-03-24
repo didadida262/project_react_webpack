@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .Label {
     width: 100%;
     height: 100%;
@@ -7,6 +8,24 @@
     }
     .view-container {
         width: calc(100% - 90px);
+=======
+.label {
+    width: 100%;
+    height: 100%;
+    .tools-container {
+        width: 100px;
+        height: 100%;
+        border: 1px solid ghostwhite;
+    }
+    .view-container {
+        width: calc(100% - 310px);
+        height: 100%;
+        border: 2px solid rgb(114, 159, 222);
+        border-radius: 5px;
+    }
+    .category-container {
+        width: 200px;
+>>>>>>> 481587ff3bbf71445e17a96d3b4ea9c5e887f977
         height: 100%;
     }
 }

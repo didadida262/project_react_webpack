@@ -1,5 +1,24 @@
 // 基于paperjs的游戏引擎0.1版本库
+
 import paper from 'paper'
+
+// tools相关
+
+// 判断当前tool是否已存在
+
+export const judeToolExisted = (paper, name) => {
+  const tools: Array<any> = paper.tools
+  const existedCurretnTool = tools.filter((item) => item.name === name)[0]
+  if (existedCurretnTool) {
+    existedCurretnTool.activate()
+    return true
+  }
+  return false
+}
+
+
+
+
 
 // 删除指定project的某一层
 export const removeLayer = (currentProject: paper.Project, layerName: String) => {
