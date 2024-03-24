@@ -68,7 +68,6 @@ const LabelComponent = () => {
       </div>
       <div className='category-container'>
         <PathItem data={categories}/>
->>>>>>> 481587ff3bbf71445e17a96d3b4ea9c5e887f977
       </div>
     </div>
   )
