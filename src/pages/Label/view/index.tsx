@@ -5,6 +5,7 @@ import './index.scss'
 import paper from 'paper'
 // import imgUrl from '@/assets/test.png'
 import imgUrl from '../../../assets/test.webp'
+import React from 'react'
 
 const ViewComponent = () => {
   const [initPoint, setinitPoint] = useState({}) as any

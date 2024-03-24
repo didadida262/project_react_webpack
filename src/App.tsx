@@ -3,7 +3,7 @@ import CanvasComponent from './CanvasComponent'
 import BigTurntable from './BigTurntable'
 import ComputerComponent from './ComputerComponent';
 import './App.css';
-import './mock/mock'
+// import './mock/mock'
 
 function App() {
   return (

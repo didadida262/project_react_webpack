@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import { useState } from 'react';
 // import pencil from "@/assets/icons/pencil.svg"
 import paper from 'paper'
+import React from 'react';
 
 interface IToolItemProps {
   toolItem: any,
