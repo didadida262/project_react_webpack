@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import './index.scss'
 import * as Three from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { setOrbit, setAxes, setGrid } from '../../utils/threejsWeapon'
+import { setOrbit, setAxes, setGrid, setGui } from '../../utils/threejsWeapon'
 
 const threejsComponent = (props) => {
   const canvasRef = useRef(null) as any
@@ -40,7 +40,7 @@ const threejsComponent = (props) => {
      let s = 20; //三维场景显示范围控制系数，系数越大，显示的范围越大
      //创建相机对象
      camera = new Three.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
-     camera.position.set(200, 300, 200); //设置相机位置
+     camera.position.set(100, 50, 200); //设置相机位置
      camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
      /**
       * 创建渲染器对象
@@ -51,6 +51,9 @@ const threejsComponent = (props) => {
      container.appendChild(renderer.domElement); //body元素中插入canvas对象
      //执行渲染操作   指定场景、相机作为参数
      renderer.render(scene, camera); 
+
+    
+
   }
   const animate = () => {
     requestAnimationFrame(animate)
@@ -63,6 +66,7 @@ const threejsComponent = (props) => {
     setOrbit(camera, renderer)
     setAxes(scene)
     setGrid(scene)
+    setGui(cube)
     animate()
   }, [])
   return (
