@@ -1,9 +1,7 @@
 import React from 'react'
 import paper from 'paper'
-import { useState, useEffect, useRef } from 'react'
-import imgurl from '../../assets/只狼.jpeg'
+import { useEffect, useRef } from 'react'
 import './index.scss'
-import { Boid } from './myBoid.js'
 import { randomPoint, getRandomDirection } from '../../utils/paperjsWeapon'
 import { Tank } from './Tank'
 

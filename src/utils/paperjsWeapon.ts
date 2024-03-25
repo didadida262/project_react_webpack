@@ -57,19 +57,19 @@ export const drawXY = (currentProject: paper.Project) => {
   const layerXY = new paper.Layer()
   layerXY.name = 'layerXY'
   const currentCenter = currentProject.view.center
-  const X = new paper.Path.Line({
+  new paper.Path.Line({
     from: new paper.Point(currentCenter.x - WIDTH / 2, currentCenter.y),
     to: new paper.Point(currentCenter.x + WIDTH / 2, currentCenter.y),
     strokeColor: 'red',
     strokeWidth: getViewBorderSize(currentProject),
   })
-  const Y = new paper.Path.Line({
+  new paper.Path.Line({
     from: new paper.Point(currentCenter.x, currentCenter.y - HEIGHT / 2),
     to: new paper.Point(currentCenter.x, currentCenter.y  + HEIGHT / 2),
     strokeColor: 'red',
     strokeWidth: getViewBorderSize(currentProject),
   })
-  const coordinateData = new paper.PointText({
+  new paper.PointText({
     point: currentCenter.add(2),
     content: `(${currentCenter.x.toFixed(2)} , ${currentCenter.y.toFixed(2)})`,
     fillColor: 'red',

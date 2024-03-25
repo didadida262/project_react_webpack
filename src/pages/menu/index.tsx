@@ -1,14 +1,10 @@
 import React from 'react';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   AppstoreOutlined,
   ContainerOutlined,
-  DesktopOutlined,
-  MailOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
   PieChartOutlined,
 } from '@ant-design/icons';
 type MenuItem = Required<MenuProps>['items'][number];
@@ -46,10 +42,6 @@ const App: React.FC = () => {
     console.log('click ', e);
     navigat(`/${e.key}`)
   };
-
-  const handleRouter = (keyPath: Array<string>) => {
-    navigat(`/${keyPath[0]}`)
-  }
 
   return (
     <Menu

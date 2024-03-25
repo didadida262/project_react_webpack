@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
-import { useState, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import './index.scss'
 import * as Three from 'three'
 import { setOrbit, setAxes, setGrid, setGui} from '../../utils/threejsWeapon'
@@ -37,7 +37,7 @@ const threejsComponent = (props) => {
 
     //  相机设置
      let k = width / height; //窗口宽高比
-     let s = 20; //三维场景显示范围控制系数，系数越大，显示的范围越大
+    //  let s = 20; //三维场景显示范围控制系数，系数越大，显示的范围越大
     //  camera = new Three.OrthographicCamera(-s * k, s * k, s, -s, 1, 800);
     camera = new Three.PerspectiveCamera(45, k, 1, 800);
      camera.position.set(100, 50, 100); //设置相机位置

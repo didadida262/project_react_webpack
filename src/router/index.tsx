@@ -68,5 +68,4 @@ const router = createBrowserRouter([
     element: <NotfoundComponent />
   }
 ])
-
 export default router

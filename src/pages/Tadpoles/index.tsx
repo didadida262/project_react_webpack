@@ -1,14 +1,12 @@
 import React from 'react'
 import paper from 'paper'
-import { useState, useEffect, useRef } from 'react'
-import imgurl from '../../assets/只狼.jpeg'
+import { useEffect, useRef } from 'react'
 import './index.scss'
 import { Boid } from './myBoid.js'
 
 const TadpolesComponent = (props) => {
   const canvasRef = useRef(null) as any
   const boids = [] as any
-  const initPoint = useRef(new paper.Point(0, 0))
   let WIDTH = 0
   let HEIGHT = 0
 

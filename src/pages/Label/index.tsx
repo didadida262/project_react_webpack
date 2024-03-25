@@ -9,11 +9,6 @@ import PathItem from './PathItem'
 import { message } from 'antd'
 import Brush from './Brush'
 
-interface ICateItem {
-  key: number,
-  name: string
-}
-
 const LabelComponent = () => {
   const [activeTool, setactiveTool] = useState('pencil')
   const [categories, setcategories] = useState([]) as any
