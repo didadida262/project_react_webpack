@@ -44,14 +44,19 @@ const App: React.FC = () => {
     navigat(`/${e.key}`)
   };
 
+  const handleRouter = (keyPath: Array<string>) => {
+    navigat(`/${keyPath[0]}`)
+  }
+
   return (
     <Menu
       onClick={onClick}
       style={{ width: 250 }}
       defaultSelectedKeys={['1']}
-      defaultOpenKeys={['sub1']}
+      defaultOpenKeys={['paperjs']}
       mode="inline"
       items={items}
+      theme={'dark'}
     />
   );
 };

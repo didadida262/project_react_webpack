@@ -24,6 +24,10 @@ const router = createBrowserRouter([
         element: <HomeComponent/>
       },
       {
+        path: 'home',
+        element: <HomeComponent/>
+      },
+      {
         path: 'about',
         element: <Suspense fallback={'加载中'}><About/></Suspense>
       },
@@ -36,6 +40,10 @@ const router = createBrowserRouter([
         element: <TankComponent />
       }
     ]
+  },
+  {
+    path: 'label',
+    element: <LabelComponent />
   },
   {
     path: '/login',
