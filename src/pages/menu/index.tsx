@@ -56,7 +56,6 @@ const App: React.FC = () => {
       defaultOpenKeys={['paperjs']}
       mode="inline"
       items={items}
-      theme={'dark'}
     />
   );
 };
