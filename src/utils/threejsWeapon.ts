@@ -13,7 +13,7 @@ export const setOrbit = (camera, renderer) => {
 // 添加坐标轴
 export const setAxes = (scene) => {
     const axesHelper = new Three.AxesHelper(500)
-    axesHelper.setColors('red','green','orange')
+    axesHelper.setColors('red','orange','blue')
     scene.add(axesHelper)
 }
 // grid
@@ -26,8 +26,8 @@ export const setGui = (cube) => {
      const gui = new dat.GUI()
      gui.add(cube.position, "x")
        .min(0)
-       .max(10)
-       .step(0.01)
+       .max(100)
+       .step(1)
        .name('移动x')
        .onChange((val) => {
        })
@@ -35,8 +35,8 @@ export const setGui = (cube) => {
        })
      gui.add(cube.position, "y")
        .min(0)
-       .max(10)
-       .step(0.01)
+       .max(100)
+       .step(1)
        .name('移动y')
        .onChange((val) => {
        })
@@ -45,8 +45,8 @@ export const setGui = (cube) => {
        })
      gui.add(cube.position, "z")
        .min(0)
-       .max(10)
-       .step(0.01)
+       .max(100)
+       .step(1)
        .name('移动z')
        .onChange((val) => {
        })
@@ -54,4 +54,6 @@ export const setGui = (cube) => {
          // 防抖版本...
        })
 }
+
+
 

@@ -53,6 +53,8 @@ const threejsComponent = (props) => {
      //执行渲染操作   指定场景、相机作为参数
      renderer.render(scene, camera); 
 
+    
+
   }
   const animate = () => {
     requestAnimationFrame(animate)
