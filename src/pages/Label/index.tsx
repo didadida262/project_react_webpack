@@ -36,6 +36,7 @@ const LabelComponent = () => {
     }
   }, [currentPath])
   const submitPath = (data) => {
+    console.log('data>>>',data)
     setcurrentPath(data)
   }
   return (

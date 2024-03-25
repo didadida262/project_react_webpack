@@ -34,6 +34,9 @@ const items: MenuProps['items'] = [
     getItem('标注', 'label', <PieChartOutlined />),
     getItem('Tank', 'tank', <AppstoreOutlined />),
     getItem('Tadpoles', 'tadpoles', <ContainerOutlined/>)], 'group'),
+  getItem('Threejs', 'threejs', null, [
+    getItem('Test', 'threejs/threejstest')
+  ], 'group'),
   getItem('', 'grp', null, [getItem('Test', 'about')], 'group'),
 ];
 

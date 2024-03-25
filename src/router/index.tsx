@@ -9,6 +9,7 @@ import LabelComponent from '../pages/Label'
 import TadpolesComponent from '../pages/Tadpoles'
 import React from 'react'
 import TankComponent from '../pages/Tank'
+import ThreejsComponent from '../pages/Threejs'
 
 // 路由懒加载
 const About = lazy(() => import('../pages/About'))
@@ -30,6 +31,15 @@ const router = createBrowserRouter([
       {
         path: 'about',
         element: <Suspense fallback={'加载中'}><About/></Suspense>
+      },
+      {
+        path: 'threejs',
+        children: [
+          {
+            path: 'threejstest',
+            element: <ThreejsComponent />
+          }
+        ]
       },
       {
         path: '/tadpoles',
