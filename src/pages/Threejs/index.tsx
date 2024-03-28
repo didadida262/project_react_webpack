@@ -21,7 +21,7 @@ const threejsComponent = (props) => {
     height = container.clientHeight; //窗口高度
     scene = new Three.Scene()
     const geometry  = new Three.BoxGeometry(10, 10, 10)
-    const material = new Three.MeshBasicMaterial( {color: 'red'} ); 
+    const material = new Three.MeshBasicMaterial( {color: 'green'} ); 
     cube = new Three.Mesh( geometry, material ); 
     cube.position.y = 10
     scene.add(cube)
@@ -39,7 +39,7 @@ const threejsComponent = (props) => {
      let k = width / height; //窗口宽高比
     //  let s = 20; //三维场景显示范围控制系数，系数越大，显示的范围越大
     //  camera = new Three.OrthographicCamera(-s * k, s * k, s, -s, 1, 800);
-    camera = new Three.PerspectiveCamera(45, k, 1, 800);
+    camera = new Three.PerspectiveCamera(20, k, 1, 800);
      camera.position.set(100, 50, 100); //设置相机位置
      camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
 
