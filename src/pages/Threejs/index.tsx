@@ -20,28 +20,60 @@ const threejsComponent = (props) => {
     width = container.clientWidth; //窗口宽度
     height = container.clientHeight; //窗口高度
     scene = new Three.Scene()
-    const geometry  = new Three.BoxGeometry(10, 10, 10)
-    const material = new Three.MeshBasicMaterial( {color: 'green'} ); 
-    cube = new Three.Mesh( geometry, material ); 
-    cube.position.y = 10
+
+    // 物体
+    const geometry = new Three.BoxGeometry( 1, 1, 1 ); 
+    const mesh = new Three.MeshPhongMaterial(
+    {
+        color: 'black',
+        shininess: 1000
+    } ); 
+    cube = new Three.Mesh(geometry, mesh)
+    cube.position.set(0, 0.5, 0)
+    cube.receiveShadow = true
+    cube.castShadow = true
     scene.add(cube)
 
-      // 光源设置
+    // 地面面图形
+    const floor = new Three.Mesh(
+    new Three.PlaneGeometry( 100, 100 ),
+    new Three.MeshPhongMaterial( {color: 0x1b5120, side: Three.DoubleSide} )
+    )
+    floor.receiveShadow = true
+
+    // floor.rotation.x -= Math.PI / 2
+    floor.rotateX(Math.PI / 2)
+    scene.add( floor );
+
+
+    // // 物体
+    // const geometry  = new Three.BoxGeometry(10, 10, 10)
+    // const material = new Three.MeshBasicMaterial( {color: 'black'} ); 
+    // cube = new Three.Mesh( geometry, material ); 
+    // cube.position.y = 10
+    // scene.add(cube)
+ 
      // 点光
-     let point = new Three.PointLight(0xffffff, 0.2)
-     point.position.set(2,200,300)
-     scene.add(point)
+    // 灯光配置
+    const pointLight = new Three.PointLight(0xffffff,1000, 1000)
+    pointLight.position.set(2, 2, 2)
+    pointLight.castShadow = true
+    scene.add(pointLight)
+    const sphereSize = 1;
+    const pointLightHelper = new Three.PointLightHelper( pointLight, sphereSize, 'white' );
+    scene.add( pointLightHelper );
      // 环境光
-     let ambient = new Three.AmbientLight(0x444444);
+     let ambient = new Three.AmbientLight('white', 5);
      scene.add(ambient);
+
 
     //  相机设置
      let k = width / height; //窗口宽高比
     //  let s = 20; //三维场景显示范围控制系数，系数越大，显示的范围越大
     //  camera = new Three.OrthographicCamera(-s * k, s * k, s, -s, 1, 800);
     camera = new Three.PerspectiveCamera(20, k, 1, 800);
-     camera.position.set(100, 50, 100); //设置相机位置
-     camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+    camera.position.set(20, 10, -20); //设置相机位置
+    camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
 
      /**
       * 创建渲染器对象
@@ -56,15 +88,13 @@ const threejsComponent = (props) => {
   }
   const animate = () => {
     requestAnimationFrame(animate)
-    cube.rotation.x += 0.01
-    cube.rotation.y += 0.02
     renderer.render(scene, camera)
   }
   useEffect(() => {
     initWorld()
     setOrbit(camera, renderer)
     setAxes(scene)
-    setGrid(scene)
+    // setGrid(scene)
     setGui(cube)
 
     animate()
