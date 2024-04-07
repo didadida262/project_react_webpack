@@ -54,7 +54,6 @@ const threejsComponent = (props) => {
     // scene.add(cube)
  
      // 点光
-    // 灯光配置
     const pointLight = new Three.PointLight(0xffffff,1000, 1000)
     pointLight.position.set(2, 2, 2)
     pointLight.castShadow = true
@@ -65,6 +64,20 @@ const threejsComponent = (props) => {
      // 环境光
      let ambient = new Three.AmbientLight('white', 5);
      scene.add(ambient);
+
+    //  const spotLight = new Three.SpotLight(0xffffff, 1000, 100, Math.PI/4, 0, 2); //创建一个白色聚光灯，强度为1，有效距离为100，光锥角度为45度，模糊半径为0，衰减系数为2
+
+    //  spotLight.position.set(2,2,2); //设置聚光灯的位置
+     
+    //  const spotLightTarget = new Three.Object3D(); //创建一个对象作为聚光灯的目标
+    //  spotLightTarget.position.set(0, 5, 0); //设置目标位置
+    //  scene.add(spotLightTarget); //将目标对象添加到场景中
+     
+    //  spotLight.target = spotLightTarget; //设置聚光灯的目标为目标对象
+     
+    //  scene.add(spotLight); //将聚光灯添加到场景中
+     
+
 
 
     //  相机设置
