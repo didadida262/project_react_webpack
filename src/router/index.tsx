@@ -10,6 +10,7 @@ import TadpolesComponent from '../pages/Tadpoles'
 import React from 'react'
 import TankComponent from '../pages/Tank'
 import ThreejsComponent from '../pages/Threejs'
+import ChatGpt from '../pages/ChatGpt'
 
 // 路由懒加载
 const About = lazy(() => import('../pages/About'))
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         ]
       },
       {
+        path: 'ChatGpt',
+        element: <ChatGpt />
+      },
+      {
         path: '/tadpoles',
         element: <TadpolesComponent />
       },
@@ -51,10 +56,7 @@ const router = createBrowserRouter([
       }
     ]
   },
-  {
-    path: 'label',
-    element: <LabelComponent />
-  },
+
   {
     path: '/login',
     element: <LoginComponent/>

@@ -33,7 +33,10 @@ const items: MenuProps['items'] = [
   getItem('Threejs', 'threejs', null, [
     getItem('Test', 'threejs/threejstest')
   ], 'group'),
-  getItem('', 'grp', null, [getItem('Test', 'about')], 'group'),
+  getItem('', 'grp', null, [
+    getItem('Test', 'about'),
+    getItem('ChatGpt', 'ChatGpt')
+  ], 'group'),
 ];
 
 const App: React.FC = () => {

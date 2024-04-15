@@ -13,15 +13,11 @@ import 'font-awesome/less/font-awesome.less';
 // import './mock/mock'
   
 
-// fiber
 const root = ReactDOM.createRoot(
-// const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  // <React.StrictMode>
     <Provider store={store}>
-    {/* <App /> */}
       <RouterProvider router={router} ></RouterProvider>
     </Provider>
 );
