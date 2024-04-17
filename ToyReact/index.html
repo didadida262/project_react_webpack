@@ -17,29 +17,35 @@
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
 
   <script>
-    const myCreateElement = (type, props, content) => {
-      const res = {
+    const createTextNode = (child) => {
+      return {
+        type: 'text',
+        props: {
+          nodeValue: child,
+          children: []
+          
+        }
+      }
+    }
+    const myCreateElement = (type, props, ...children) => {
+      return {
         type: type,
         props: {
-          ...props
+          ...props,
+          children: children.map((child) => typeof child === 'object'? child: createTextNode(child))
         },
-        children: content
       }
-      return res
     }
 
-    const myRender = (VNode, container) => {
-      const dom = VNode.type === 'text'? document.createTextNode(VNode.children): document.createElement(VNode.type)
-      Object.keys(VNode.props).forEach((item) => dom[item] = VNode.props[item])
-      // dom.appendChild(VNode.children)
-      // console.log('dom',dom)
-      // VNode.children.forEach((child) => myRender(child, dom))
-      // myRender(VNode.children, dom)
+    const myRender = (element, container) => {
+      const dom = element.type === 'text'? document.createTextNode(element.props.nodeValue): document.createElement(element.type)
+      Object.keys(element.props).filter((item) => item !== 'children').forEach((item) => dom[item] = element.props[item])
+      element?.props?.children?.forEach((child) => myRender(child, dom))
       container.appendChild(dom)
     }
 
     const VNode = myCreateElement(
-      'text',
+      'div',
       {
         title: 'title',
         id: 'id'
