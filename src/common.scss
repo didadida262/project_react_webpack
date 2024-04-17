@@ -35,3 +35,8 @@
 .mgb10 {
   margin-bottom: 10px;
 }
+.SingleLineTextOverflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

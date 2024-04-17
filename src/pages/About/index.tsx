@@ -2,6 +2,7 @@ import React, { useCallback,useRef, forwardRef, useImperativeHandle, useState, u
 import { Button } from 'antd'
 import Child from "./Child"
 import RenderComponents from "./RenderProps"
+import './index.scss'
 
 const MemoSon = memo(Child)
 const HOC = (ChildComponent) => {
@@ -38,6 +39,17 @@ const AboutComponent = function() {
       <Button onClick={() => setcount2(count2+1)}>改变其他数据</Button>
 
       <TT />
+      <div className="fadeIn">
+        <p className="test SingleLineTextOverflow">
+        这是一段很长很长的文本
+        这是一段很长很长的文本
+        这是一段很长很长的文本
+        这是一段很长很长的文本
+        这是一段很长很长的文本
+        这是一段很长很长的文本
+        这是一段很长很长的文本
+        </p>
+      </div>
     </div>
   )
 }
