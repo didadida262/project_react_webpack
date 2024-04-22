@@ -1,8 +1,18 @@
+/*
+ * @Description: 
+ * @Author: didadida262
+ * @Date: 2024-03-14 02:00:24
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-04-22 11:29:07
+ */
 import React, { useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo } from "react"
 import { Button } from 'antd'
 import Child from "./Child"
 import RenderComponents from "./RenderProps"
 import './index.scss'
+import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
+import TypeWriter from '../../components/TypeWriter';
+
 
 const MemoSon = memo(Child)
 const HOC = (ChildComponent) => {
@@ -50,6 +60,9 @@ const AboutComponent = function() {
         这是一段很长很长的文本
         </p>
       </div>
+      {/* <motion.h2>测试motion文本效果</motion.h2> */}
+      <TypeWriter text='犹豫， 就会败北...' className={""}  />
+
     </div>
   )
 }
