@@ -48,6 +48,7 @@
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
     "langchain": "^0.1.33",
+    "miles_common_weapons": "^1.0.0",
     "mini-css-extract-plugin": "^2.4.5",
     "paper": "^0.12.17",
     "postcss": "^8.4.4",

@@ -8569,6 +8569,11 @@ micromatch@^4.0.2, micromatch@^4.0.4, micromatch@^4.0.5:
     braces "^3.0.2"
     picomatch "^2.3.1"
 
+miles_common_weapons@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/miles_common_weapons/-/miles_common_weapons-1.0.0.tgz"
+  integrity sha512-+GjOB7nrPoJMWhnuGn7lzGksLo7Vd3v1p9SMFXmd8bAQg/7FyjmqmycaFkBc8wWmAoYg8RE1DHue6qk12rEoVg==
+
 "mime-db@>= 1.43.0 < 2", mime-db@1.52.0:
   version "1.52.0"
   resolved "https://registry.npmmirror.com/mime-db/-/mime-db-1.52.0.tgz"

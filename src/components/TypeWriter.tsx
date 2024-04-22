@@ -1,9 +1,9 @@
 /*
- * @Description: 
+ * @Description: 渐进式的展示文本效果
  * @Author: didadida262
  * @Date: 2024-04-22 11:07:28
  * @LastEditors: didadida262
- * @LastEditTime: 2024-04-22 11:28:00
+ * @LastEditTime: 2024-04-22 15:07:51
  */
 
 
@@ -26,7 +26,6 @@ export default function TypeWriter({ text, className }: Props) {
     (latest) => `${baseText.get().slice(0, latest)}`
   );
   const updatedThisRound = useMotionValue(true);
-  console.log('className>>>', className);
   useEffect(() => {
     animate(count, 60, {
       type: 'tween',
@@ -37,8 +36,10 @@ export default function TypeWriter({ text, className }: Props) {
       repeatDelay: 2,
       onUpdate(latest) {
         if (updatedThisRound.get() === true && latest > 0) {
+          console.warn(1)
           updatedThisRound.set(false);
         } else if (updatedThisRound.get() === false && latest === 0) {
+          console.warn(2)
           updatedThisRound.set(true);
         }
       }

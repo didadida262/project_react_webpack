@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 02:00:24
  * @LastEditors: didadida262
- * @LastEditTime: 2024-04-22 11:29:07
+ * @LastEditTime: 2024-04-22 16:37:04
  */
 import React, { useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo } from "react"
 import { Button } from 'antd'
@@ -11,6 +11,7 @@ import Child from "./Child"
 import RenderComponents from "./RenderProps"
 import './index.scss'
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
+import { getRandomColor } from 'miles_common_weapons'
 
 
 const MemoSon = memo(Child)
@@ -28,12 +29,14 @@ const HOC = (ChildComponent) => {
 const TT = HOC(Child)
 
 const AboutComponent = function() {
+  console.log('getRandomColor>>>>>>',getRandomColor())
   const [count, setcount] = useState({
     name: 1,
     old: 2
   })
   const [count2, setcount2] = useState(0)
   console.log('父组件渲染')
+
   return (
     <div>
       <span>测试</span>
@@ -59,8 +62,6 @@ const AboutComponent = function() {
         这是一段很长很长的文本
         </p>
       </div>
-      {/* <motion.h2>测试motion文本效果</motion.h2> */}
-
     </div>
   )
 }
