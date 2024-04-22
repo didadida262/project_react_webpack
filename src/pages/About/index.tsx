@@ -11,7 +11,6 @@ import Child from "./Child"
 import RenderComponents from "./RenderProps"
 import './index.scss'
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
-import TypeWriter from '../../components/TypeWriter';
 
 
 const MemoSon = memo(Child)
@@ -61,7 +60,6 @@ const AboutComponent = function() {
         </p>
       </div>
       {/* <motion.h2>测试motion文本效果</motion.h2> */}
-      <TypeWriter text='犹豫， 就会败北...' className={""}  />
 
     </div>
   )
