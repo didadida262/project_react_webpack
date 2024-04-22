@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 02:00:24
  * @LastEditors: didadida262
- * @LastEditTime: 2024-04-22 16:37:04
+ * @LastEditTime: 2024-04-22 17:26:35
  */
 import React, { useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo } from "react"
 import { Button } from 'antd'
@@ -12,6 +12,7 @@ import RenderComponents from "./RenderProps"
 import './index.scss'
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 import { getRandomColor } from 'miles_common_weapons'
+import { Sparkles } from "../../components/Sparkles"
 
 
 const MemoSon = memo(Child)
@@ -61,6 +62,9 @@ const AboutComponent = function() {
         这是一段很长很长的文本
         这是一段很长很长的文本
         </p>
+      </div>
+      <div style={{ width: '500px', height: '500px', border: '1px solid red', backgroundColor: 'black'}}>
+        <Sparkles />
       </div>
     </div>
   )
