@@ -90,12 +90,7 @@
     "test": "node scripts/test.js",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
+
   "browserslist": {
     "production": [
       ">0.2%",

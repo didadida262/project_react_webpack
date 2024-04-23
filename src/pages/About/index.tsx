@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 02:00:24
  * @LastEditors: didadida262
- * @LastEditTime: 2024-04-22 17:26:35
+ * @LastEditTime: 2024-04-23 11:17:06
  */
 import React, { useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo } from "react"
 import { Button } from 'antd'
@@ -53,7 +53,7 @@ const AboutComponent = function() {
 
       <TT />
       <div className="fadeIn">
-        <p className="test SingleLineTextOverflow">
+        <p className="test SingleLineTextOverflow bg-[black] text-[green]">
         这是一段很长很长的文本
         这是一段很长很长的文本
         这是一段很长很长的文本
@@ -63,9 +63,9 @@ const AboutComponent = function() {
         这是一段很长很长的文本
         </p>
       </div>
-      <div style={{ width: '500px', height: '500px', border: '1px solid red', backgroundColor: 'black'}}>
+      {/* <div style={{ width: '500px', height: '500px', border: '1px solid red', backgroundColor: 'black'}}>
         <Sparkles />
-      </div>
+      </div> */}
     </div>
   )
 }
