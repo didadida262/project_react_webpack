@@ -3,9 +3,9 @@
  * @Author: didadida262
  * @Date: 2024-03-14 02:00:24
  * @LastEditors: didadida262
- * @LastEditTime: 2024-04-23 11:17:06
+ * @LastEditTime: 2024-04-23 11:33:24
  */
-import React, { useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo } from "react"
+import React, { useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo, useContext } from "react"
 import { Button } from 'antd'
 import Child from "./Child"
 import RenderComponents from "./RenderProps"
@@ -13,6 +13,7 @@ import './index.scss'
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 import { getRandomColor } from 'miles_common_weapons'
 import { Sparkles } from "../../components/Sparkles"
+import { ThemeContext,ThemeMode } from "../../components/themeProvider"
 
 
 const MemoSon = memo(Child)
@@ -30,6 +31,8 @@ const HOC = (ChildComponent) => {
 const TT = HOC(Child)
 
 const AboutComponent = function() {
+  const { currentTheme, setCurrentTheme } = useContext(ThemeContext);
+
   console.log('getRandomColor>>>>>>',getRandomColor())
   const [count, setcount] = useState({
     name: 1,
@@ -66,6 +69,12 @@ const AboutComponent = function() {
       {/* <div style={{ width: '500px', height: '500px', border: '1px solid red', backgroundColor: 'black'}}>
         <Sparkles />
       </div> */}
+      <Button onClick={() =>setCurrentTheme(ThemeMode.DARK_MODE)}>黑夜</Button>
+      <Button onClick={() =>setCurrentTheme(ThemeMode.LIGHT_MODE)}>白天</Button>
+      <p>{currentTheme}</p>
+      <div style={{width: '500px', height: '200px', border: '1px solid red'}} className="bg-[--bg-card-color]">
+      测试注意
+      </div>
     </div>
   )
 }

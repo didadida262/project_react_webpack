@@ -11,15 +11,18 @@ import router from './router';
 import { RouterProvider } from 'react-router-dom'
 import 'font-awesome/less/font-awesome.less';
 // import './mock/mock'
+import { ThemeProvider } from './components/themeProvider'
   
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
+  <ThemeProvider>
     <Provider store={store}>
       <RouterProvider router={router} ></RouterProvider>
     </Provider>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
