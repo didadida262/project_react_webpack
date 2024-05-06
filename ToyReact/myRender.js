@@ -4,5 +4,3 @@ const myRender = (element, container) => {
     element?.props?.children?.forEach((child) => myRender(child, dom))
     container.appendChild(dom)
   }
-
-  export default myRender

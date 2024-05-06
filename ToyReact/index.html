@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,8 +14,10 @@
   <body>
     <div id="root">roots</div>
   </body>
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <!-- <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script> -->
+  <script src="./myRender.js"></script>
+  <script src="./myCreateElement.js"></script>
 
   <script>
     const createTextNode = (child) => {
@@ -23,26 +26,19 @@
         props: {
           nodeValue: child,
           children: []
-          
         }
       }
     }
-    const myCreateElement = (type, props, ...children) => {
-      return {
-        type: type,
-        props: {
-          ...props,
-          children: children.map((child) => typeof child === 'object'? child: createTextNode(child))
-        },
-      }
+    const workLoop2 = () => {
+      console.log('requestIdleCallback')
+      requestIdleCallback(workLoop2)
     }
-    const myRender = (element, container) => {
-      const dom = element.type === 'text'? document.createTextNode(element.props.nodeValue): document.createElement(element.type)
-      Object.keys(element.props).filter((item) => item !== 'children').forEach((item) => dom[item] = element.props[item])
-      element?.props?.children?.forEach((child) => myRender(child, dom))
-      container.appendChild(dom)
+    requestIdleCallback(workLoop2)
+    const workLoop1 = () => {
+      console.log('requestAnimationFrame')
+      requestAnimationFrame(workLoop1)
     }
-
+    requestAnimationFrame(workLoop1)
     const VNode = myCreateElement(
       'div',
       {

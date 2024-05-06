@@ -51,7 +51,7 @@
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
     "langchain": "^0.1.33",
-    "miles_common_weapons": "^1.0.0",
+    "miles_common_weapons": "^1.0.1",
     "mini-css-extract-plugin": "^2.4.5",
     "paper": "^0.12.17",
     "postcss": "^8.4.4",
@@ -90,7 +90,6 @@
     "test": "node scripts/test.js",
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
-
   "browserslist": {
     "production": [
       ">0.2%",

@@ -1,3 +1,4 @@
+
 import { createBrowserRouter } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import LoginComponent from '../pages/Login'
@@ -11,6 +12,7 @@ import React from 'react'
 import TankComponent from '../pages/Tank'
 import ThreejsComponent from '../pages/Threejs'
 import ChatGpt from '../pages/ChatGpt'
+import TestCss from '../pages/TestCss'
 
 // 路由懒加载
 const About = lazy(() => import('../pages/About'))
@@ -45,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: 'ChatGpt',
         element: <ChatGpt />
+      },
+      {
+        path: 'testcss',
+        element: <TestCss />
       },
       {
         path: '/tadpoles',

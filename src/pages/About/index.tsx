@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 02:00:24
  * @LastEditors: didadida262
- * @LastEditTime: 2024-04-23 11:33:24
+ * @LastEditTime: 2024-05-06 16:37:47
  */
 import React, { useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo, useContext } from "react"
 import { Button } from 'antd'
@@ -55,26 +55,11 @@ const AboutComponent = function() {
       <Button onClick={() => setcount2(count2+1)}>改变其他数据</Button>
 
       <TT />
-      <div className="fadeIn">
-        <p className="test SingleLineTextOverflow bg-[black] text-[green]">
-        这是一段很长很长的文本
-        这是一段很长很长的文本
-        这是一段很长很长的文本
-        这是一段很长很长的文本
-        这是一段很长很长的文本
-        这是一段很长很长的文本
-        这是一段很长很长的文本
-        </p>
-      </div>
+
       {/* <div style={{ width: '500px', height: '500px', border: '1px solid red', backgroundColor: 'black'}}>
         <Sparkles />
       </div> */}
-      <Button onClick={() =>setCurrentTheme(ThemeMode.DARK_MODE)}>黑夜</Button>
-      <Button onClick={() =>setCurrentTheme(ThemeMode.LIGHT_MODE)}>白天</Button>
-      <p>{currentTheme}</p>
-      <div style={{width: '500px', height: '200px', border: '1px solid red'}} className="bg-[--bg-card-color]">
-      测试注意
-      </div>
+
     </div>
   )
 }

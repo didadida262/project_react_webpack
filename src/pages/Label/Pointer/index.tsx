@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
 import './index.scss'
 import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
