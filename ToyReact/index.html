@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,28 +16,10 @@
   <!-- <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script> -->
   <script src="./myRender.js"></script>
-  <script src="./myCreateElement.js"></script>
+  <!-- <script src="./myCreateElement.js"></script> -->
 
   <script>
-    const createTextNode = (child) => {
-      return {
-        type: 'text',
-        props: {
-          nodeValue: child,
-          children: []
-        }
-      }
-    }
-    const workLoop2 = () => {
-      console.log('requestIdleCallback')
-      requestIdleCallback(workLoop2)
-    }
-    requestIdleCallback(workLoop2)
-    const workLoop1 = () => {
-      console.log('requestAnimationFrame')
-      requestAnimationFrame(workLoop1)
-    }
-    requestAnimationFrame(workLoop1)
+
     const VNode = myCreateElement(
       'div',
       {
@@ -48,7 +29,6 @@
       '一段文本....川崎重工'
     )
     console.log('VNode>>',VNode)
-
     const root = document.getElementById('root')
     console.log('root>>>', root)
     myRender(VNode, root)
