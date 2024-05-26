@@ -4,6 +4,8 @@ import { Button } from 'antd';
 import paper from 'paper'
 import { getRandomColor } from '../../../utils/common_weapons';
 import { judeToolExisted } from '../../../utils/paperjsWeapon'
+import { BsTextareaResize } from "react-icons/bs";
+import pattern from '../../../styles/pattern';
 
 const RectComponent = (props) => {
   const { activeTool, onClick, submitPath } = props
@@ -61,10 +63,9 @@ const RectComponent = (props) => {
   return (
     <div className='rect mgb10'>
       <Button
-        className={ activeTool === 'rect' ? 'active' : ''}
-       style={{width: 80}} 
-       onClick={() => onClick(name)}>
-         <i className="fa fa-object-group"></i> 
+        className={`w-[80px] ${pattern.flexCenter} ${activeTool === name ? 'active': ''}`}
+        onClick={() => onClick(name)}>
+        <BsTextareaResize />
        </Button>
     </div>
   )

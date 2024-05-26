@@ -21,6 +21,8 @@ const createDom = (fiber) => {
     const dom = fiber.type === 'text'? document.createTextNode(fiber.props.nodeValue): document.createElement(fiber.type)
   return dom
 }
+
+// 初始版本
 // const creatmyCreateElementeElement = (type, props, ...children) => {
 //   return {
 //     type,
@@ -34,7 +36,6 @@ const createDom = (fiber) => {
 //     },
 //   }
 // }
-// 初始版本
 // const myRender = (element, container) => {
 //     const dom = element.type === 'text'? document.createTextNode(element.props.nodeValue): document.createElement(element.type)
 //     Object.keys(element.props).filter((item) => item !== 'children').forEach((item) => dom[item] = element.props[item])
@@ -46,17 +47,17 @@ const createDom = (fiber) => {
 // // fiber架构版本
 
 let nextUniteWork = null
+let wiproot = null
 const performUniteOfWork = (fiber) => {
+  console.log('<<<<<<<<<<<<<<<<performUniteOfWork>>>>>>>>>>>>>')
+  console.log('fiber>>>', fiber)
   if (!fiber.dom) {
     fiber.dom = createDom(fiber)
-    console.log('fiber>>>',fiber)
-    console.log('fiber.dom>>>',fiber.dom)
   }
-  if (fiber.parent) {
-    fiber.parent.dom.appendChild(fiber.dom)
-  }
+  // if (fiber.parent) {
+  //   fiber.parent.dom.appendChild(fiber.dom)
+  // }
   const elements = fiber?.props?.children
-  console.log('elements>>', elements)
   let preSibling = null
   elements?.forEach((childElement, index) => {
     const newFiber = {
@@ -85,6 +86,17 @@ const performUniteOfWork = (fiber) => {
   }
 
 }
+const commitWorker = (fiber) => {
+  if (!fiber) return
+  const domParent = fiber.parent.dom
+  domParent.appendChild(fiber.dom)
+  commitWorker(fiber.child)
+  commitWorker(fiber.sibling)
+}
+const commitRoot = () => {
+  commitWorker(wiproot.child)
+  wiproot = null
+}
 const workLoop = (deadline) => {
   let shouldYield = true
   console.warn('执行>>>loop')
@@ -93,16 +105,21 @@ const workLoop = (deadline) => {
     nextUniteWork = performUniteOfWork(nextUniteWork)
     shouldYield = deadline.timeRemaining() > 100
   }
+  if (!nextUniteWork && wiproot) {
+    console.log('wiproot>>>>', wiproot)
+    commitRoot()
+  }
   requestIdleCallback(workLoop)
 }
-requestIdleCallback(workLoop)
+// requestIdleCallback(workLoop)
 
 const myRender = (element, container) => {
   console.log('element>>', element)
-  nextUniteWork = {
+  wiproot = {
     dom: container,
     props: {
       children: [element]
     }
   }
+  nextUniteWork = wiproot
 }

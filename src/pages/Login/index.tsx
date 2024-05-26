@@ -16,7 +16,9 @@ const LoginComponent = () => {
   const dispatch = useDispatch()
   const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
     console.log('Success:', values);
-    await dispatch(fetchToken(values) as any)
+    // await dispatch(fetchToken(values) as any)
+    localStorage.setItem('token', 'asdasdasdasd')
+
     message.success('登陆成功')
     navigate('/')
   };

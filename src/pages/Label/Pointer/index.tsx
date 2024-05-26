@@ -3,6 +3,8 @@ import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
 import paper from 'paper'
 import { judeToolExisted } from '../../../utils/paperjsWeapon'
+import { BsCursor } from "react-icons/bs";
+import pattern from '../../../styles/pattern';
 
 const pointerComponent = (props) => {
   const { activeTool, onClick } = props
@@ -93,10 +95,9 @@ const pointerComponent = (props) => {
   return (
     <div className='pencil mgb10'>
       <Button
-        className={ activeTool === 'pointer' ? 'active' : ''}
-        style={{ width: 80}} 
+        className={`w-[80px] ${pattern.flexCenter} ${activeTool === name ? 'active': ''}`}
         onClick={ () => onClick(name) }>
-         <i className="fa fa-mouse-pointer"></i> 
+         <BsCursor />
        </Button>
     </div>
   )

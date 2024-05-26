@@ -1,10 +1,3 @@
-/*
- * @Description:
- * @Author: didadida262
- * @Date: 2024-04-23 16:03:52
- * @LastEditors: didadida262
- * @LastEditTime: 2024-05-06 17:24:14
- */
 const pattern = {
     // lineheight
     leading77:

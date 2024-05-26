@@ -9,7 +9,6 @@ import { Provider } from 'react-redux'
 // router
 import router from './router';
 import { RouterProvider } from 'react-router-dom'
-import 'font-awesome/less/font-awesome.less';
 // import './mock/mock'
 import { ThemeProvider } from './components/themeProvider'
   

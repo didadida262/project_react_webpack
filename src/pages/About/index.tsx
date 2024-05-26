@@ -1,10 +1,11 @@
 /*
  * @Description: 
  * @Author: didadida262
- * @Date: 2024-03-14 02:00:24
+ * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-05-06 16:37:47
+ * @LastEditTime: 2024-05-20 17:59:30
  */
+
 import React, { useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo, useContext } from "react"
 import { Button } from 'antd'
 import Child from "./Child"
@@ -14,7 +15,7 @@ import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 import { getRandomColor } from 'miles_common_weapons'
 import { Sparkles } from "../../components/Sparkles"
 import { ThemeContext,ThemeMode } from "../../components/themeProvider"
-
+import { Observable } from 'rxjs'
 
 const MemoSon = memo(Child)
 const HOC = (ChildComponent) => {
@@ -32,8 +33,14 @@ const TT = HOC(Child)
 
 const AboutComponent = function() {
   const { currentTheme, setCurrentTheme } = useContext(ThemeContext);
-
-  console.log('getRandomColor>>>>>>',getRandomColor())
+  let Ob1 = new Observable((observer) => {
+    observer.next('observable')
+  })
+  Ob1.subscribe((value) => {
+    console.log(value)
+  })
+  console.log('Ob1>>', Ob1)
+  
   const [count, setcount] = useState({
     name: 1,
     old: 2
@@ -59,7 +66,9 @@ const AboutComponent = function() {
       {/* <div style={{ width: '500px', height: '500px', border: '1px solid red', backgroundColor: 'black'}}>
         <Sparkles />
       </div> */}
-
+      <div>
+        asdasd
+      </div>
     </div>
   )
 }

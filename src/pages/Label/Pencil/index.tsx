@@ -3,6 +3,8 @@ import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
 import paper from 'paper'
 import { judeToolExisted } from '../../../utils/paperjsWeapon'
+import { BsPencil } from "react-icons/bs";
+import pattern from '../../../styles/pattern';
 
 const PencilComponent = (props) => {
   const { activeTool, onClick, submitPath } = props
@@ -52,10 +54,9 @@ const PencilComponent = (props) => {
   return (
     <div className='pencil mgb10'>
       <Button
-        className={ activeTool === 'pencil' ? 'active' : ''}
-        style={{ width: 80}} 
+        className={`w-[80px] ${pattern.flexCenter} ${activeTool === name ? 'active': ''}`}
         onClick={ () => onClick(name) }>
-         <i className="fa fa-pencil"></i> 
+         <BsPencil />
        </Button>
     </div>
   )
