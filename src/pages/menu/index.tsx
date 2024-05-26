@@ -1,10 +1,3 @@
-/*
- * @Description: 
- * @Author: didadida262
- * @Date: 2024-03-25 15:13:17
- * @LastEditors: didadida262
- * @LastEditTime: 2024-05-06 16:37:11
- */
 import React from 'react';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
@@ -14,6 +7,9 @@ import {
   ContainerOutlined,
   PieChartOutlined,
 } from '@ant-design/icons';
+import { BsNut } from "react-icons/bs";
+import { BsRocket } from "react-icons/bs";
+
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -38,12 +34,20 @@ const items: MenuProps['items'] = [
     getItem('Tank', 'tank', <AppstoreOutlined />),
     getItem('Tadpoles', 'tadpoles', <ContainerOutlined/>)], 'group'),
   getItem('Threejs', 'threejs', null, [
-    getItem('Test', 'threejs/threejstest')
+    getItem('Test', 'threejs/threejstest',
+    <BsRocket />
+)
   ], 'group'),
   getItem('', 'grp', null, [
-    getItem('Test', 'about'),
-    getItem('ChatGpt', 'ChatGpt'),
-    getItem('TestCss', 'testcss')
+    getItem('Test', 'about', 
+    <BsNut />
+),
+    getItem('ChatGpt', 'ChatGpt',
+    <BsNut />
+    ),
+    getItem('TestCss', 'testcss',
+    <BsNut />
+    )
   ], 'group'),
 ];
 
