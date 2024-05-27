@@ -7,8 +7,9 @@ import {
   ContainerOutlined,
   PieChartOutlined,
 } from '@ant-design/icons';
-import { BsNut } from "react-icons/bs";
-import { BsRocket } from "react-icons/bs";
+import { BsNut,BsRocket, BsYinYang, BsRadioactive } from "react-icons/bs";
+
+
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -43,10 +44,10 @@ const items: MenuProps['items'] = [
     <BsNut />
 ),
     getItem('ChatGpt', 'ChatGpt',
-    <BsNut />
+    <BsYinYang />
     ),
     getItem('TestCss', 'testcss',
-    <BsNut />
+    <BsRadioactive />
     )
   ], 'group'),
 ];
@@ -57,11 +58,10 @@ const App: React.FC = () => {
     console.log('click ', e);
     navigat(`/${e.key}`)
   };
-
   return (
     <Menu
       onClick={onClick}
-      style={{ width: 250 }}
+      className={`w-[250px]`}
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['paperjs']}
       mode="inline"

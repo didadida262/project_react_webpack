@@ -24,7 +24,6 @@ interface PropsType {
 export const ThemeContext = createContext({} as ThemeContext);
 
 export const ThemeProvider = (props: PropsType) => {
-  console.log('ThemeProvider>>>>>')
   const [currentTheme, setCurrentTheme] = useState<ThemeMode>(
     ThemeMode.DARK_MODE
   );

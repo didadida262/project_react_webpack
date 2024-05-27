@@ -1,9 +1,7 @@
-
 import { useEffect, useRef, useState } from 'react'
 import useSyncCallback from './test'
 import './index.scss'
 import paper from 'paper'
-// import imgUrl from '@/assets/test.png'
 import imgUrl from '../../../assets/test.webp'
 import React from 'react'
 
@@ -21,7 +19,7 @@ const ViewComponent = () => {
   const drawPic = () => {
     const raster = new paper.Raster(imgUrl)
     raster.onLoad = () => {
-      raster.fitBounds(paper.view.bounds, false)
+      raster.fitBounds(paper.view.bounds, true)
     }
   }
   const onMouseDown = (e) => {
@@ -42,7 +40,7 @@ const ViewComponent = () => {
   const onMouseUp = (e) => {
     
   }
-      // 初始化画布，并确认相关参数初始值
+  // 初始化画布，并确认相关参数初始值
   const init = () => {
     paper.setup(canvasRef.current)
     const project = paper.project as any

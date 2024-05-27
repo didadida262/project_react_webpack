@@ -1,4 +1,5 @@
 const pattern = {
+    flexCenter: 'flex justify-center items-center',
     // lineheight
     leading77:
       'leading-[46px] sm:leading-[77px] md:leading-[77px] lg:leading-[77px] xl:leading-[77px] 2xl:leading-[77px]',
@@ -8,8 +9,7 @@ const pattern = {
       'leading-[24px] sm:leading-[36px] md:leading-[36px] lg:leading-[36px] xl:leading-[36px] 2xl:leading-[36px]',
     leading27:
       'xs:[21px] sm:leading-[27px] md:leading-[27px] lg:leading-[27px] xl:leading-[27px] 2xl:leading-[27px]',
-    flexCenter: 'flex justify-center items-center',
-  
+
     // font
     fontOswald16:
       'font-Oswald xs:text-[16px] sm:text-[16px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px]',
@@ -35,7 +35,6 @@ const pattern = {
       'font-Poppins sm:text-[20px] md:text-[20px] lg:text-[20px] xl:text-[20px] 2xl:text-[20px]',
     fontPop24:
       'font-Poppins sm:text-[24px] md:text-[24px] lg:text-[24px] xl:text-[24px] 2xl:text-[24px]',
-  
     fontInter16:
       'font-Inter sm:text-[16px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px]',
   };

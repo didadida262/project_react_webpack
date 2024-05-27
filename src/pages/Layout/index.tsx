@@ -2,6 +2,7 @@ import './index.scss'
 import Menu from '../menu'
 import ContentComponent from '../Content'
 import HeaderComponent from '../Header'
+import LightDark from '../Botoperation'
 import React from 'react'
 
 export const TextContext = React.createContext('测试数据')
@@ -13,8 +14,9 @@ const LayoutComponent = () => {
       <HeaderComponent />
       </div>
       <div className='view flex-sb'>
-        <div className='menu'>
+        <div className='sidebar flex flex-col justify-between'>
           <Menu />
+          <LightDark />
         </div>
         <div className='content'>
           <ContentComponent />
