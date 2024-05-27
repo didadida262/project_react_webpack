@@ -6,10 +6,17 @@ export enum ThemeMode {
 }
 
 const darkModeStyles = [
-  { key: '--bg-card-color', value: '#2e353d' },
+  { key: '--bg-color', value: '#2e353d' },
+  { key: '--text-primary-color', value: '#d1d5da' },
+  { key: '--bg-primary-color', value: '#1e2428' },
+
+
 ];
 const lightModeStyles = [
-  { key: '--bg-card-color', value: '#ddeaf3' },
+  { key: '--bg-color', value: '#ddeaf3' },
+  { key: '--text-primary-color', value: '#525253' },
+  { key: '--bg-primary-color', value: '#F0F1F2' },
+
 ];
 
 interface ThemeContext {

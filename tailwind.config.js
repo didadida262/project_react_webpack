@@ -45,7 +45,6 @@ module.exports = {
     },
     extend: {
       color: {
-        // --bg-card-color
       }
     },
   },

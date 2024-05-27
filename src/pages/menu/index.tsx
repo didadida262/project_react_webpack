@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import {
   PieChartOutlined,
 } from '@ant-design/icons';
 import { BsNut,BsRocket, BsYinYang, BsRadioactive } from "react-icons/bs";
+import {ThemeContext, ThemeMode} from '../../components/themeProvider'
 
 
 
@@ -53,6 +54,8 @@ const items: MenuProps['items'] = [
 ];
 
 const App: React.FC = () => {
+  const { currentTheme } = useContext(ThemeContext)
+
   const navigat = useNavigate()
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('click ', e);
@@ -66,6 +69,7 @@ const App: React.FC = () => {
       defaultOpenKeys={['paperjs']}
       mode="inline"
       items={items}
+      theme={currentTheme === ThemeMode.LIGHT_MODE? 'light' : "dark"}
     />
   );
 };

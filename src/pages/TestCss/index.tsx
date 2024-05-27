@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: didadida262
+ * @Date: 2024-05-06 16:34:10
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-05-27 11:17:16
+ */
 import { Button } from 'antd'
 import React, { useEffect,useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo, useContext } from "react"
 import { ThemeContext,ThemeMode } from "../../components/themeProvider"
@@ -63,14 +70,6 @@ const TestCss = () => {
                     这是一段很长很长的文本
                     这是一段很长很长的文本
                     </p>
-                </div>
-                <div>
-                    <Button onClick={() =>setCurrentTheme(ThemeMode.DARK_MODE)}>黑夜</Button>
-                    <Button onClick={() =>setCurrentTheme(ThemeMode.LIGHT_MODE)}>白天</Button>
-                    <p>{currentTheme}</p>
-                    <div style={{width: '500px', height: '200px', border: '1px solid red'}} className="bg-[--bg-card-color]">
-                    测试注意
-                    </div>
                 </div>
             </div>
             <div className={`${pattern.fontOswald48}`}>测试字体</div>

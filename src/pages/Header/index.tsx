@@ -1,18 +1,20 @@
 /*
  * @Description: 
  * @Author: didadida262
- * @Date: 2024-03-14 00:47:07
+ * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-04-23 14:00:12
+ * @LastEditTime: 2024-05-27 11:19:32
  */
+
 import React from "react"
 import './index.scss'
 import TypeWriter from '../../components/TypeWriter';
 
+import pattern from "../../styles/pattern";
 
 const HeaderComponent = () => {
   return (
-    <div className="HeaderComponent flex-cc">
+    <div className={`HeaderComponent bg-[--bg-color] ${pattern.flexCenter}`}>
       {/* <TypeWriter text='犹豫，就会败北... --苇名一心' className={""}  /> */}
       <h1>犹豫，就会败北... --苇名一心</h1>
     </div>
