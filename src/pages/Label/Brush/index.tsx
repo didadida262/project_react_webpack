@@ -3,15 +3,19 @@
  * @Author: didadida262
  * @Date: 2024-03-21 02:14:12
  * @LastEditors: didadida262
- * @LastEditTime: 2024-05-26 20:46:11
+ * @LastEditTime: 2024-07-17 02:14:24
  */
-import './index.scss'
-import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
 import paper from 'paper'
-import { judeToolExisted } from '../../../utils/paperjsWeapon'
+import React, { useRef, useEffect} from 'react'
 import { BsBrush } from "react-icons/bs";
+
+import { ButtonCommon, EButtonType } from '@/components/ButtonCommon';
+
 import pattern from '../../../styles/pattern';
+import { judeToolExisted } from '../../../utils/paperjsWeapon'
+
+import './index.scss'
 
 const brushComponent = (props) => {
   const { activeTool, onClick } = props
@@ -71,12 +75,12 @@ const brushComponent = (props) => {
   }, [activeTool])
   return (
     <div className='brush mgb10'>
-      <Button
-        className={`w-[80px] ${pattern.flexCenter} ${activeTool === name ? 'active': ''}`}
-        style={{ width: 80}} 
+      <ButtonCommon
+        className={`w-[80px] ${pattern.flexCenter} ${activeTool === name ? 'bg-white-5': ''}`}
+        type={EButtonType.SIMPLE}
         onClick={ () => onClick(name) }>
          <BsBrush />
-       </Button>
+       </ButtonCommon>
     </div>
   )
 }

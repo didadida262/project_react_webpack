@@ -6,7 +6,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
     },
@@ -28,5 +28,7 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "extends": "./path.tsconfig.json",
+
 }

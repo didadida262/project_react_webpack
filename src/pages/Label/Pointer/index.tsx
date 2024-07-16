@@ -1,10 +1,21 @@
-import './index.scss'
-import React, { useRef, useEffect} from 'react'
+/*
+ * @Description: 
+ * @Author: didadida262
+ * @Date: 2024-03-19 12:13:47
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-07-17 02:14:11
+ */
 import { Button } from 'antd';
 import paper from 'paper'
-import { judeToolExisted } from '../../../utils/paperjsWeapon'
+import React, { useRef, useEffect} from 'react'
 import { BsCursor } from "react-icons/bs";
+
+import { ButtonCommon, EButtonType } from '@/components/ButtonCommon';
+
 import pattern from '../../../styles/pattern';
+import { judeToolExisted } from '../../../utils/paperjsWeapon'
+
+import './index.scss'
 
 const pointerComponent = (props) => {
   const { activeTool, onClick } = props
@@ -94,11 +105,13 @@ const pointerComponent = (props) => {
   }, [activeTool])
   return (
     <div className='pencil mgb10'>
-      <Button
-        className={`w-[80px] ${pattern.flexCenter} ${activeTool === name ? 'active': ''}`}
+
+       <ButtonCommon
+        className={`w-[80px] ${pattern.flexCenter} ${activeTool === name ? 'bg-white-5': ''}`}
+        type={EButtonType.SIMPLE}
         onClick={ () => onClick(name) }>
          <BsCursor />
-       </Button>
+       </ButtonCommon>
     </div>
   )
 }

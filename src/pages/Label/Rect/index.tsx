@@ -1,11 +1,15 @@
-import './index.scss'
-import React, { useRef, useEffect} from 'react'
 import { Button } from 'antd';
 import paper from 'paper'
+import React, { useRef, useEffect} from 'react'
+import { BsTextareaResize } from "react-icons/bs";
+
+import { ButtonCommon, EButtonType } from '@/components/ButtonCommon';
+
+import pattern from '../../../styles/pattern';
 import { getRandomColor } from '../../../utils/common_weapons';
 import { judeToolExisted } from '../../../utils/paperjsWeapon'
-import { BsTextareaResize } from "react-icons/bs";
-import pattern from '../../../styles/pattern';
+
+import './index.scss'
 
 const RectComponent = (props) => {
   const { activeTool, onClick, submitPath } = props
@@ -62,11 +66,14 @@ const RectComponent = (props) => {
   }, [activeTool])
   return (
     <div className='rect mgb10'>
-      <Button
-        className={`w-[80px] ${pattern.flexCenter} ${activeTool === name ? 'active': ''}`}
-        onClick={() => onClick(name)}>
+
+       <ButtonCommon
+        className={`w-[80px] ${pattern.flexCenter} ${activeTool === name ? 'bg-white-5': ''}`}
+        type={EButtonType.SIMPLE}
+        onClick={ () => onClick(name) }>
         <BsTextareaResize />
-       </Button>
+
+       </ButtonCommon>
     </div>
   )
 }
