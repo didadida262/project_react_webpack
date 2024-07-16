@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-16 19:48:25
+ * @LastEditTime: 2024-07-16 20:50:03
  */
 import React from 'react'
 
@@ -19,15 +19,15 @@ const LayoutComponent = () => {
   return (
     <TextContext.Provider value="dark">
     <div className='layout flex-col-sb'>
-      <div className='header'>
+      <div className='header w-full h-[80px] border-b-[1px] border-b-solid border-b-borderSecondColor'>
       <HeaderComponent />
       </div>
-      <div className='view flex-sb'>
+      <div className='view flex-sb h-[calc(100%_-_80px)] w-full'>
         <div className='sidebar flex flex-col justify-between'>
           <Menu />
           <LightDark />
         </div>
-        <div className='w-[calc(100%_-_260px)] border-[1px] border-solid border-borderSecondColor h-full'>
+        <div className='w-[calc(100%_-_260px)] h-full'>
           <ContentComponent />
         </div>
       </div>
