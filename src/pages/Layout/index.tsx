@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-16 21:13:56
+ * @LastEditTime: 2024-07-16 21:24:10
  */
 import React from 'react'
 
@@ -27,7 +27,7 @@ const LayoutComponent = () => {
           <Menu />
           <LightDark />
         </div>
-        <div className='w-[calc(100%_-_250px)] h-full  px-[16px] py-b-[16px]'>
+        <div className='w-[calc(100%_-_250px)] h-full'>
           <ContentComponent />
         </div>
       </div>

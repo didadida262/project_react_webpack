@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-16 19:43:13
+ * @LastEditTime: 2024-07-16 21:55:55
  */
 
 import React from 'react';
@@ -11,12 +11,20 @@ import { useState, memo, useEffect, useContext } from 'react';
 
 import {ButtonCommon, EButtonType} from '../../components/ButtonCommon'
 import {Card } from '../../components/Card'
+import {SelectorCommon} from '../../components/SelectorCommon'
 import TypeWriter from '../../components/TypeWriter';
 import pattern from '../../styles/pattern';
 
+export const pluginStatus = [
+  { value: 'all', label: 'All Status' },
+  { value: 'installed', label: 'Installed' },
+  { value: 'notInstalled', label: 'Uninstalled' }
+];
 // const MemoSon = memo(ChildComponent)
 
 const DiyComponents = () => {
+  const [sortByStatus, setSortByStatus] = useState(pluginStatus[0]);
+
   console.log('父组件渲染')
   let [name] = useState('hhvcg')
   useEffect(() => {
@@ -49,16 +57,14 @@ const DiyComponents = () => {
         <TypeWriter text='测试文本' className={" text-textFirstSize"}  />
       </Card>
       <Card>
-        <ButtonCommon
-          type={EButtonType.PRIMARY}
-          onClick={(e) => {
-            console.log('Click')
-            e.stopPropagation()
+        <SelectorCommon
+          value={sortByStatus}
+          setValue={(val: any) => {
+            setSortByStatus(val)
           }}
-          // className='markBorderG'
-          >
-            <span>测试按钮</span>
-          </ButtonCommon>
+          options={pluginStatus}
+          className=""
+        />
       </Card>
       <Card>
         <ButtonCommon
