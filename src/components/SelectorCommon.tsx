@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-07-16 21:48:47
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-16 21:53:21
+ * @LastEditTime: 2024-07-16 21:57:54
  */
 import cn from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
@@ -49,7 +49,7 @@ export function SelectorCommon(props: ISelectorProps) {
         onClick={() => {
           setShow(!show);
         }}
-        className="flex h-[36px] w-full shrink-0 cursor-pointer items-center justify-between whitespace-nowrap rounded-common border-[1px] border-solid border-borderUlColor bg-bgUlColor pl-4 pr-[10px]"
+        className="flex h-[36px] w-full shrink-0 cursor-pointer items-center justify-between whitespace-nowrap rounded-[4px] border-[1px] border-solid border-borderUlColor bg-bgUlColor pl-4 pr-[10px]"
       >
         <span className="w-[80px] text-textFifthSize text-textThirdColor line-clamp-1">
           {value.label}
