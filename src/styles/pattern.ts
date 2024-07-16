@@ -1,4 +1,6 @@
 const pattern = {
+  flexbet: 'flex justify-between items-center',
+
     flexCenter: 'flex justify-center items-center',
     // lineheight
     leading77:

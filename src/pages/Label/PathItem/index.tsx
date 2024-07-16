@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-19 12:36:19
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-17 02:26:26
+ * @LastEditTime: 2024-07-17 02:28:01
  */
 import React, { useEffect } from 'react'
 
@@ -25,7 +25,7 @@ const PathItemComponent = (props: any) => {
          
                     <ButtonCommon
                         type={EButtonType.SIMPLE}
-                        className='w-full mb-[5px]'
+                        className='w-full mb-[5px] rounded-[0px]'
                         onClick={() => handleClickPathItem(item)}>
                         { item.name }
                     </ButtonCommon>

@@ -3,10 +3,12 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:32:06
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-17 02:19:35
+ * @LastEditTime: 2024-07-17 02:55:59
  */
 import { message } from 'antd'
 import React, { useEffect, useState } from 'react'
+
+import pattern from '@/styles/pattern'
 
 import Brush from './Brush'
 import DrawComponent from './Draw'
@@ -15,8 +17,6 @@ import Pencil from './Pencil'
 import Pointer from './Pointer'
 import Rect from './Rect'
 // import ToolsComponent from './Tools'
-
-import './index.scss'
 
 const LabelComponent = () => {
   const [activeTool, setactiveTool] = useState('pencil')
@@ -44,8 +44,8 @@ const LabelComponent = () => {
     setcurrentPath(data)
   }
   return (
-    <div className='label flex-sb px-[10px] py-[10px]'>
-      <div className='tools-container'>
+    <div className={`w-full h-full label px-[10px] py-[10px]  ${pattern.flexbet}`}>
+      <div className='tools-container h-full w-[100px] '>
         <Pointer
          activeTool={activeTool}
          onClick={handleClickTool}
@@ -66,12 +66,12 @@ const LabelComponent = () => {
           submitPath={submitPath}
          />
       </div>
-      <div className='h-full w-[calc(100%_-_310px)] rounded-[4px] border-[1px] border-solid border-borderSecondColor'>
+      <div className='h-full max-w-[calc(100%_-_320px)] flex-1 rounded-[4px] border-[1px] border-solid border-borderSecondColor '>
         <DrawComponent
           activeTool={activeTool}
           />
       </div>
-      <div className='h-full w-[200px] rounded-[4px] border-[1px] border-solid border-borderSecondColor'>
+      <div className='w-[200px] h-full rounded-[4px] border-[1px] border-solid border-borderSecondColor '>
         <PathItem data={categories}/>
       </div>
     </div>
