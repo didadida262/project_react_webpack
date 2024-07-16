@@ -1,4 +1,14 @@
+/*
+ * @Description: 
+ * @Author: didadida262
+ * @Date: 2024-03-19 12:36:19
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-07-17 02:26:26
+ */
 import React, { useEffect } from 'react'
+
+import { ButtonCommon, EButtonType } from '@/components/ButtonCommon'
+
 import './index.scss'
 
 const PathItemComponent = (props: any) => {
@@ -12,12 +22,13 @@ const PathItemComponent = (props: any) => {
         <div className='PathItemComponent pd5'>
             { data.map((item, index) => {
                 return (
-                    <div
-                     className='PathItemComponent-item flex-cc mgb5' 
-                     key={index}
-                     onClick={() => handleClickPathItem(item)}>
+         
+                    <ButtonCommon
+                        type={EButtonType.SIMPLE}
+                        className='w-full mb-[5px]'
+                        onClick={() => handleClickPathItem(item)}>
                         { item.name }
-                    </div>
+                    </ButtonCommon>
                 )
             })}
         </div>

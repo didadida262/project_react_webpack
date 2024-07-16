@@ -1,13 +1,22 @@
-import './index.scss'
-import React, { useEffect, useState } from 'react'
-// import ToolsComponent from './Tools'
-import DrawComponent from './Draw'
-import Pencil from './Pencil'
-import Rect from './Rect'
-import Pointer from './Pointer'
-import PathItem from './PathItem'
+/*
+ * @Description: 
+ * @Author: didadida262
+ * @Date: 2024-03-14 00:32:06
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-07-17 02:19:35
+ */
 import { message } from 'antd'
+import React, { useEffect, useState } from 'react'
+
 import Brush from './Brush'
+import DrawComponent from './Draw'
+import PathItem from './PathItem'
+import Pencil from './Pencil'
+import Pointer from './Pointer'
+import Rect from './Rect'
+// import ToolsComponent from './Tools'
+
+import './index.scss'
 
 const LabelComponent = () => {
   const [activeTool, setactiveTool] = useState('pencil')
@@ -35,8 +44,8 @@ const LabelComponent = () => {
     setcurrentPath(data)
   }
   return (
-    <div className='label flex-sb'>
-      <div className='tools-container pd10'>
+    <div className='label flex-sb px-[10px] py-[10px]'>
+      <div className='tools-container'>
         <Pointer
          activeTool={activeTool}
          onClick={handleClickTool}
@@ -57,12 +66,12 @@ const LabelComponent = () => {
           submitPath={submitPath}
          />
       </div>
-      <div className='view-container'>
+      <div className='h-full w-[calc(100%_-_310px)] rounded-[4px] border-[1px] border-solid border-borderSecondColor'>
         <DrawComponent
           activeTool={activeTool}
           />
       </div>
-      <div className='category-container'>
+      <div className='h-full w-[200px] rounded-[4px] border-[1px] border-solid border-borderSecondColor'>
         <PathItem data={categories}/>
       </div>
     </div>

@@ -1,8 +1,17 @@
-import './index.scss'
-import React from 'react'
+/*
+ * @Description: 
+ * @Author: didadida262
+ * @Date: 2024-03-14 02:04:27
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-07-17 02:23:07
+ */
 import paper from 'paper'
+import React from 'react'
 import { useState, useEffect, useRef } from 'react'
+
 import imgurl from '../../../assets/只狼.jpeg'
+
+import './index.scss'
 
 const DrawComponent = (props) => {
   const { activeTool }  = props
@@ -54,7 +63,7 @@ const DrawComponent = (props) => {
   }, [activeTool])
   return (
     <div className='draw'>
-      <canvas ref={ canvasRef } className="main_canvas" />
+      <canvas ref={ canvasRef } className="w-full h-full" />
     </div>
   )
 }

@@ -10,7 +10,8 @@ import { useContext } from "react"
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { useDispatch, useSelector  } from 'react-redux';
 
-import { ButtonCommon, EButtonType } from '../../components/ButtonCommon'
+import { ButtonCommon, EButtonType } from '@/components/ButtonCommon'
+
 import {ThemeContext, ThemeMode} from '../../components/themeProvider'
 
 const LightDark = () => {
