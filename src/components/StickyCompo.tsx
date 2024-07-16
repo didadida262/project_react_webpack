@@ -1,8 +1,16 @@
+/*
+ * @Description: 
+ * @Author: didadida262
+ * @Date: 2024-05-08 13:40:03
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-07-16 22:03:15
+ */
 
 "use client";
-import React from "react";
-import { StickyScroll } from "../../components/sticky-scroll-reveal";
 // import Image from "next/image";
+import React from "react";
+
+import { StickyScroll } from "./sticky-scroll-reveal";
 
 const content = [
   {

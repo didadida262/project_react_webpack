@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-16 21:55:55
+ * @LastEditTime: 2024-07-16 22:03:47
  */
 
 import React from 'react';
@@ -12,6 +12,7 @@ import { useState, memo, useEffect, useContext } from 'react';
 import {ButtonCommon, EButtonType} from '../../components/ButtonCommon'
 import {Card } from '../../components/Card'
 import {SelectorCommon} from '../../components/SelectorCommon'
+import { StickyScrollRevealDemo } from '../../components/StickyCompo'
 import TypeWriter from '../../components/TypeWriter';
 import pattern from '../../styles/pattern';
 
@@ -67,16 +68,7 @@ const DiyComponents = () => {
         />
       </Card>
       <Card>
-        <ButtonCommon
-          type={EButtonType.PRIMARY}
-          onClick={(e) => {
-            console.log('Click')
-            e.stopPropagation()
-          }}
-          // className='markBorderG'
-          >
-            <span>测试按钮</span>
-          </ButtonCommon>
+        <StickyScrollRevealDemo/>
       </Card>
 
       </div>

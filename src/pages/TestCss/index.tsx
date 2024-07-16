@@ -3,13 +3,14 @@
  * @Author: didadida262
  * @Date: 2024-05-06 16:34:10
  * @LastEditors: didadida262
- * @LastEditTime: 2024-05-27 11:17:16
+ * @LastEditTime: 2024-07-16 22:02:35
  */
 import { Button } from 'antd'
 import React, { useEffect,useCallback,useRef, forwardRef, useImperativeHandle, useState, useMemo, memo, useContext } from "react"
+
 import { ThemeContext,ThemeMode } from "../../components/themeProvider"
 import pattern from '../../styles/pattern';
-import {StickyScrollRevealDemo} from './StickyCompo'
+import {StickyScrollRevealDemo} from '../../components/StickyCompo'
 
 const TestCss = () => {
   const { currentTheme, setCurrentTheme } = useContext(ThemeContext);
@@ -82,7 +83,6 @@ const TestCss = () => {
             <div>
                 <span>测试滚动高亮</span>
                 <div>
-                    <StickyScrollRevealDemo/>
                 </div>
             </div>
             <div>
