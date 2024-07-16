@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-16 20:50:03
+ * @LastEditTime: 2024-07-16 21:13:56
  */
 import React from 'react'
 
@@ -23,11 +23,11 @@ const LayoutComponent = () => {
       <HeaderComponent />
       </div>
       <div className='view flex-sb h-[calc(100%_-_80px)] w-full'>
-        <div className='sidebar flex flex-col justify-between'>
+        <div className='sidebar flex flex-col justify-between border-r-[1px] border-r-solid border-r-borderSecondColor'>
           <Menu />
           <LightDark />
         </div>
-        <div className='w-[calc(100%_-_260px)] h-full'>
+        <div className='w-[calc(100%_-_250px)] h-full  px-[16px] py-b-[16px]'>
           <ContentComponent />
         </div>
       </div>
