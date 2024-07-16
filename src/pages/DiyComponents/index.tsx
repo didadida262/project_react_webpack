@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-16 22:03:47
+ * @LastEditTime: 2024-07-17 01:49:27
  */
 
 import React from 'react';
@@ -24,6 +24,7 @@ export const pluginStatus = [
 // const MemoSon = memo(ChildComponent)
 
 const DiyComponents = () => {
+  const [loading, setLoading] = useState(false)
   const [sortByStatus, setSortByStatus] = useState(pluginStatus[0]);
 
   console.log('父组件渲染')
@@ -45,9 +46,15 @@ const DiyComponents = () => {
       <Card>
         <ButtonCommon
           type={EButtonType.PRIMARY}
+          loading={loading}
           onClick={(e) => {
+            setLoading(true)
             console.log('Click')
             e.stopPropagation()
+            setTimeout(() => {
+              setLoading(false)
+            }, 2000);
+
           }}
           // className='markBorderG'
           >

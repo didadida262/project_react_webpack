@@ -1,8 +1,10 @@
 
 import cn from 'classnames';
 import React, { MouseEvent, ReactNode, useMemo, useState } from 'react';
+import { AiOutlineLoading } from "react-icons/ai";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-import LoadingSvg from '@/assets/images/common/loading.inline.svg';
+import LoadingSvg from '../assets/images/common/loading.inline.svg';
 
 export enum EButtonType {
   PRIMARY = 'PRIMARY',
@@ -38,8 +40,7 @@ export function ButtonCommon(props: IButtonProps) {
     const popBg = ['border-t-[#333c4a]'];
     switch (type) {
       case EButtonType.PRIMARY:
-        resultArray.push('bg-bgFourthColor bg-btnPrimaryHover');
-        // resultArray.push('bg-bgFourthColor');
+        resultArray.push('bg-bgFourthColor bg-btnPrimaryHover hover:opacity-75');
         break;
       case EButtonType.GHOST:
         resultArray.push('bg-[#475062] hover:opacity-75');
@@ -78,15 +79,13 @@ export function ButtonCommon(props: IButtonProps) {
           
           cls,
           'fontBtn',
-          // 'bg-bgCardBtnColor',
           ' whitespace-nowrap',
           disable ? 'cursor-not-allowed opacity-75' : 'opacity-100',
           className
         )}
       >
         {children}
-        {/* {loading && <LoadingSvg className="ml-2 animate-spin" width={24} />} */}
-        {/* {loading && <LoadingSvg width={24} />} */}
+          {loading && <AiOutlineLoading3Quarters className='ml-2 animate-spin w-[24px]'/>}
       </button>
       {isHover && title && (
         <div className="absolute right-[50%] -top-[30px] z-[200] translate-x-[50%] whitespace-nowrap rounded-[4px] bg-[#333c4a] px-3 py-1">

@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-25 15:13:17
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-16 21:10:01
+ * @LastEditTime: 2024-07-17 01:41:05
  */
 import {
   AppstoreOutlined,
@@ -73,7 +73,7 @@ const App: React.FC = () => {
   return (
     <Menu
       onClick={onClick}
-      className={`w-[250px] bg-[--bg-color] `}
+      className={`w-[250px] bg-[--bg-color]`}
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['paperjs']}
       mode="inline"
