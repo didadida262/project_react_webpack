@@ -1,18 +1,27 @@
+/*
+ * @Description: 
+ * @Author: didadida262
+ * @Date: 2024-03-25 15:13:17
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-07-16 18:27:40
+ */
 
-import { createBrowserRouter } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
-import LoginComponent from '../pages/Login'
-import LayoutComponent from '../pages/Layout'
-import HomeComponent from '../pages/Home'
-import NotfoundComponent from '../pages/Notfound'
-import AuthRoute from '../components/AuthRoute'
-import LabelComponent from '../pages/Label'
-import TadpolesComponent from '../pages/Tadpoles'
 import React from 'react'
-import TankComponent from '../pages/Tank'
-import ThreejsComponent from '../pages/Threejs'
+import { createBrowserRouter } from 'react-router-dom'
+
+import AuthRoute from '../components/AuthRoute'
 import ChatGpt from '../pages/ChatGpt'
+import DiyComponents from '../pages/DiyComponents'
+import HomeComponent from '../pages/Home'
+import LabelComponent from '../pages/Label'
+import LayoutComponent from '../pages/Layout'
+import LoginComponent from '../pages/Login'
+import NotfoundComponent from '../pages/Notfound'
+import TadpolesComponent from '../pages/Tadpoles'
+import TankComponent from '../pages/Tank'
 import TestCss from '../pages/TestCss'
+import ThreejsComponent from '../pages/Threejs'
 
 // 路由懒加载
 const About = lazy(() => import('../pages/About'))
@@ -30,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'home',
         element: <HomeComponent/>
+      },
+      {
+        path: 'diycomponent',
+        element: <DiyComponents />
       },
       {
         path: 'about',

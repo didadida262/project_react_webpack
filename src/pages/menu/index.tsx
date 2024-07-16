@@ -1,16 +1,22 @@
-import React, {useContext} from 'react';
-import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
-import { useNavigate } from 'react-router-dom';
+/*
+ * @Description: 
+ * @Author: didadida262
+ * @Date: 2024-03-25 15:13:17
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-07-16 18:31:44
+ */
 import {
   AppstoreOutlined,
   ContainerOutlined,
   PieChartOutlined,
 } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
+import { Menu } from 'antd';
+import React, {useContext} from 'react';
 import { BsNut,BsRocket, BsYinYang, BsRadioactive } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
+
 import {ThemeContext, ThemeMode} from '../../components/themeProvider'
-
-
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -40,7 +46,7 @@ const items: MenuProps['items'] = [
     <BsRocket />
 )
   ], 'group'),
-  getItem('', 'grp', null, [
+  getItem('other', 'grp', null, [
     getItem('Test', 'about', 
     <BsNut />
 ),
@@ -48,6 +54,9 @@ const items: MenuProps['items'] = [
     <BsYinYang />
     ),
     getItem('TestCss', 'testcss',
+    <BsRadioactive />
+    ),
+    getItem('DiyComponents', 'diycomponent',
     <BsRadioactive />
     )
   ], 'group'),

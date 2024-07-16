@@ -33,7 +33,7 @@ export function ButtonCommon(props: IButtonProps) {
   } = props;
   const [cls, bpopbg] = useMemo(() => {
     const resultArray = [
-      'rounded-[2px] flex items-center justify-center focus:outline-none px-[16px] py-[8px]'
+      'rounded-[4px] flex items-center justify-center focus:outline-none px-[16px] py-[8px]'
     ];
     const popBg = ['border-t-[#333c4a]'];
     switch (type) {
