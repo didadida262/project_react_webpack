@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-17 01:49:27
+ * @LastEditTime: 2024-07-17 20:51:59
  */
 
 import React from 'react';
@@ -77,6 +77,13 @@ const DiyComponents = () => {
       <Card>
         <StickyScrollRevealDemo/>
       </Card>
+      <Card>
+        <span className="bg-gradient-to-r  from-yellow-200 to-violet-500 bg-clip-text text-transparent">
+                  这是一段测试文本
+                </span>
+      </Card>
+
+
 
       </div>
 

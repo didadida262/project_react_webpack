@@ -28,7 +28,6 @@
   },
   "include": [
     "src"
-  ],
-  "extends": "./path.tsconfig.json",
+  ]
 
 }
