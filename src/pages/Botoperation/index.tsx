@@ -28,12 +28,13 @@ const LightDark = ({ className }) => {
       </Button> */}
       <ButtonCommon
         type={EButtonType.SIMPLE}
-        onClick={() =>
-          setCurrentTheme(
-            currentTheme === 'Dark Mode'
-              ? ThemeMode.LIGHT_MODE
-              : ThemeMode.DARK_MODE,
-          )
+        onClick={
+          () => console.log('clike')
+          // setCurrentTheme(
+          //   currentTheme === 'Dark Mode'
+          //     ? ThemeMode.LIGHT_MODE
+          //     : ThemeMode.DARK_MODE,
+          // )
         }>
         {currentTheme === 'Dark Mode' ? <BsFillMoonFill /> : <BsFillSunFill />}
         <span className='ml-[8px]'>{currentTheme}</span>
