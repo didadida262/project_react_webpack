@@ -1,27 +1,26 @@
 const {
-  default: flattenColorPalette
+  default: flattenColorPalette,
 } = require('tailwindcss/lib/util/flattenColorPalette');
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
 function addVariablesForColors({ addBase, theme }) {
   const allColors = flattenColorPalette(theme('colors'));
   const newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
   );
 
   addBase({
-    ':root': newVars
+    ':root': newVars,
   });
 }
 
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
+  darkMode: 'class',
   content: [
     './src/pages/**/*.{js,jsx,ts,tsx}',
     './src/components/**/*.{js,jsx,ts,tsx}',
-    './src/styles/**/*.{html,js,ts,jsx,tsx}'
+    './src/styles/**/*.{html,js,ts,jsx,tsx}',
   ],
   theme: {
     fontSize: {
@@ -30,13 +29,13 @@ module.exports = {
       textThirdSize: '16px',
       textFourthSize: '14px',
       textFifthSize: '13px',
-      textSixSize: '12px'
+      textSixSize: '12px',
     },
     extend: {
       fontFamily: {
         IBMPlexSans: ['Segoe UI'],
         Poppins: ['Poppins'],
-        outfit: ['Outfit']
+        outfit: ['Outfit'],
       },
       colors: {
         // 文本
@@ -100,6 +99,8 @@ module.exports = {
         bgNineColor: 'var(--bg-nine-color)',
         // #141519
         bgTenColor: 'var(--bg-ten-color)',
+        // #000000
+        bgElevenColor: 'var(--bg-eleven-color)',
 
         // ==========
         // ==========
@@ -154,10 +155,10 @@ module.exports = {
         borderProjectCardStatusTemplateColor:
           'var(--border-projectcard-status-template-color)',
         borderHoverCardColor: 'var(--border-hover-card-color)',
-        borderBtnSecondColor: 'var(--border-btn-second-color)'
+        borderBtnSecondColor: 'var(--border-btn-second-color)',
       },
       borderRadius: {
-        common: 'var(--radius-common)'
+        common: 'var(--radius-common)',
       },
       screens: {
         xs: '300px',
@@ -182,14 +183,13 @@ module.exports = {
         '3xl': '1920px',
         // '3xl': '1920x1080'
         // => @media (min-width: 1920px) { ... }
-        '4xl': '3840px'
+        '4xl': '3840px',
         // => @media (min-width: 3840x2160px) { ... }
       },
       boxShadow: {
-        common: '0px 0px 10px 0px rgba(0,0,0,0.30)'
-      }
-    }
+        common: '0px 0px 10px 0px rgba(0,0,0,0.30)',
+      },
+    },
   },
-  plugins: [addVariablesForColors]
-}
-
+  plugins: [addVariablesForColors],
+};

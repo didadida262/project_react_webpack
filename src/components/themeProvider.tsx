@@ -1,15 +1,15 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: didadida262
  * @Date: 2024-04-23 11:19:35
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-16 17:54:31
+ * @LastEditTime: 2024-07-18 15:09:47
  */
 import React, { createContext, useEffect, useState } from 'react';
 
 export enum ThemeMode {
   DARK_MODE = 'Dark Mode',
-  LIGHT_MODE = 'Light Mode'
+  LIGHT_MODE = 'Light Mode',
 }
 
 const darkModeStyles = [
@@ -51,6 +51,7 @@ const darkModeStyles = [
   { key: '--bg-eight-color', value: '#25272D' },
   { key: '--bg-nine-color', value: '#D779150D' },
   { key: '--bg-ten-color', value: '#141519' },
+  { key: '--bg-eleven-color', value: '#000000' },
 
   { key: '--bg-gray-black-color', value: '#212931' },
   { key: '--bg-primary-color', value: '#121416' },
@@ -90,7 +91,7 @@ const darkModeStyles = [
   { key: '--project-card-border-color', value: '#23252A' },
   { key: '--header-border-color', value: '#cccccc21' },
   { key: '--template-card-border-color', value: '#2E3844' },
-  { key: '--ul-card-border-color', value: '#2c3243' }
+  { key: '--ul-card-border-color', value: '#2c3243' },
 ];
 const lightModeStyles = [
   // 通用色彩
@@ -132,6 +133,7 @@ const lightModeStyles = [
   { key: '--bg-eight-color', value: '#25272D' },
   { key: '--bg-nine-color', value: '#D779150D' },
   { key: '--bg-ten-color', value: '#141519' },
+  { key: '--bg-eleven-color', value: '#FFFFFF' },
 
   { key: '--bg-gray-black-color', value: '#E4E7E9' },
   { key: '--bg-primary-color', value: '#F0F1F2' },
@@ -166,7 +168,7 @@ const lightModeStyles = [
   { key: '--project-card-border-color', value: '#23252A' },
   { key: '--header-border-color', value: '#D0D8DE' },
   { key: '--template-card-border-color', value: '#C9CFD7' },
-  { key: '--ul-card-border-color', value: 'ghostwhite' }
+  { key: '--ul-card-border-color', value: 'ghostwhite' },
 ];
 
 interface ThemeContext {
@@ -182,19 +184,19 @@ export const ThemeContext = createContext({} as ThemeContext);
 
 export const ThemeProvider = (props: PropsType) => {
   const [currentTheme, setCurrentTheme] = useState<ThemeMode>(
-    ThemeMode.DARK_MODE
+    ThemeMode.DARK_MODE,
   );
 
   useEffect(() => {
     console.log({ currentTheme });
     if (currentTheme === ThemeMode.LIGHT_MODE) {
       lightModeStyles.forEach((item) =>
-        document.documentElement.style.setProperty(item.key, item.value)
+        document.documentElement.style.setProperty(item.key, item.value),
       );
     }
     if (currentTheme === ThemeMode.DARK_MODE) {
       darkModeStyles.forEach((item) =>
-        document.documentElement.style.setProperty(item.key, item.value)
+        document.documentElement.style.setProperty(item.key, item.value),
       );
     }
   }, [currentTheme]);
@@ -203,9 +205,8 @@ export const ThemeProvider = (props: PropsType) => {
     <ThemeContext.Provider
       value={{
         currentTheme,
-        setCurrentTheme
-      }}
-    >
+        setCurrentTheme,
+      }}>
       {props.children}
     </ThemeContext.Provider>
   );

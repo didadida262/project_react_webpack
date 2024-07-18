@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-18 15:02:59
+ * @LastEditTime: 2024-07-18 15:10:01
  */
 import React from 'react';
 
@@ -23,11 +23,11 @@ const LayoutComponent = () => {
           <HeaderComponent />
         </div>
         <div className={`view h-[calc(100%_-_60px)] w-full ${pattern.flexbet}`}>
-          <div className='w-[220px] h-full border-r-[1px] border-solid border-borderSecondColor'>
+          <div className='w-[220px] h-full border-r-[1px] border-solid border-borderSecondColor relative'>
             <Nav className='w-full' />
-            {/* <LightDark /> */}
+            <LightDark className='absolute bottom-[0px] left-[10px]' />
           </div>
-          <div className='w-[calc(100%_-_220px)] h-full bg-[#000000] pt-[10px] px-[20px]'>
+          <div className='w-[calc(100%_-_220px)] h-full bg-bgElevenColor pt-[10px] px-[20px]'>
             <ContentComponent />
           </div>
         </div>
