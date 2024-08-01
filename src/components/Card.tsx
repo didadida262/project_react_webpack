@@ -1,9 +1,9 @@
 /*
- * @Description: 
+ * @Description:
  * @Author: didadida262
  * @Date: 2024-07-16 19:30:39
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-17 00:58:41
+ * @LastEditTime: 2024-08-01 10:33:34
  */
 import cn from 'classnames';
 import React, { ReactNode } from 'react';
@@ -23,9 +23,8 @@ export function Card(props: ICardLayoutProps) {
       onClick={onClick}
       className={cn(
         className,
-        `h-[196px] w-full cursor-pointer rounded-[4px] border-[1px] border-solid border-borderSecondColor ${pattern.flexCenter} `
-      )}
-    >
+        ` h-[196px] w-full cursor-pointer rounded-[4px] border-[1px] border-solid border-borderSecondColor ${pattern.flexCenter} `,
+      )}>
       {children}
     </div>
   );
