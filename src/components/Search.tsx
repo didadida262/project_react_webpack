@@ -3,33 +3,20 @@
  * @Author: didadida262
  * @Date: 2024-08-01 10:19:31
  * @LastEditors: didadida262
- * @LastEditTime: 2024-08-01 10:43:13
+ * @LastEditTime: 2024-08-01 10:44:41
  */
 import cn from 'classnames';
-import { useCallback, useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useDebounce } from 'react-use';
-
-import { SearchParams } from '@/utils/const';
-import { useRouterChange } from '@/utils/hooks/useRouterChange';
-import { useSearchUpdate } from '@/utils/hooks/useSearchUpdate';
 
 interface SearchProps {
   className?: string;
-  onSearch: (val) => void;
+  onSearch: (val: string) => void;
 }
-
-const hotSearchKeyWords = ['Ethereum', 'Solidity'];
 
 export function Search(props: SearchProps) {
   const { className, onSearch } = props;
   const [value, setValue] = useState('');
-
-  useRouterChange(() => {
-    const query = new URLSearchParams(window.location.search);
-    const queryValue = query.get(SearchParams.QUERY);
-
-    setValue(queryValue || '');
-  });
 
   useDebounce(
     () => {
