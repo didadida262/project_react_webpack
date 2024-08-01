@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-08-01 10:33:58
+ * @LastEditTime: 2024-08-01 10:42:48
  */
 
 import React from 'react';
@@ -86,7 +86,12 @@ const DiyComponents = () => {
         </Card>
         <Card className=''>
           <div className=''>
-            <Search className='' />
+            <Search
+              className=''
+              onSearch={(val) => {
+                console.log('seaerch>>>', val);
+              }}
+            />
           </div>
         </Card>
       </div>
