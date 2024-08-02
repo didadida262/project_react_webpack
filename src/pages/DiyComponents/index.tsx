@@ -3,13 +3,15 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-08-01 10:42:48
+ * @LastEditTime: 2024-08-02 10:56:13
  */
 
 import React from 'react';
 import { useState, memo, useEffect, useContext } from 'react';
 
 import { Search } from '@/components/Search';
+import { LottieInView } from '@/components/LottieInView';
+import BlockChainLottie from '@/assets/lottie/Blockchains.json';
 
 import { ButtonCommon, EButtonType } from '../../components/ButtonCommon';
 import { Card } from '../../components/Card';
@@ -93,6 +95,9 @@ const DiyComponents = () => {
               }}
             />
           </div>
+        </Card>
+        <Card>
+          <LottieInView animationData={BlockChainLottie} />
         </Card>
       </div>
     </div>
