@@ -1,25 +1,6 @@
-
-// localStorage.setItem('data', 123, expires)
-// localStorage.getItem('data')
-
-class newLocal {
-    constructor() {
-        this.expires = null
-        this.obj = {}
-
-    }
-    getItem(key) {
-        return this.obj[key]
-    }
-    setItem(key, data, time) {
-        this.obj[key] = data
-        setTimeout(() => {
-            this.obj[key] = null
-        }, time)
-        
-    }
-}
-
-const test = new newLocal()
-test.setItem('data', 123, 1000)
-test.getItem('data')
+const x = Array(10)
+  .fill([])
+  .map(() => Array(10).fill(0));
+console.log('x>>>1', x);
+x[0][0] = 100;
+console.log('x>>>2', x);

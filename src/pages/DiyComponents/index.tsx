@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-08-02 11:02:58
+ * @LastEditTime: 2024-08-12 16:40:53
  */
 
 import React from 'react';
@@ -11,13 +11,17 @@ import { useState, memo, useEffect, useContext } from 'react';
 
 import { Search } from '@/components/Search';
 import { LottieInView } from '@/components/LottieInView';
+import { TypeWriterV2 } from '@/components/ui/TypeWriterV2';
+import { TypeWriterV3 } from '@/components/ui/TypeWriterV3';
+import { TypeWriterV4 } from '@/components/ui/TypeWriterV4';
+import { TypeWriterV7 } from '@/components/ui/TypeWriterV7';
 import BlockChainLottie from '@/assets/lottie/Blockchains.json';
 
+import TypeWriter from '../../components/ui/TypeWriter';
 import { ButtonCommon, EButtonType } from '../../components/ButtonCommon';
 import { Card } from '../../components/Card';
 import { SelectorCommon } from '../../components/SelectorCommon';
 import { StickyScrollRevealDemo } from '../../components/StickyCompo';
-import TypeWriter from '../../components/TypeWriter';
 import pattern from '../../styles/pattern';
 
 export const pluginStatus = [
@@ -47,7 +51,6 @@ const DiyComponents = () => {
       </div>
       <div
         className={`px-[16px] w-full h-[calc(100%_-_80px)]  grid gap-[22px] grid-cols-[repeat(auto-fill,minmax(270px,1fr))]`}>
-        {/* <MemoSon name={name}/> */}
         <Card>
           <ButtonCommon
             type={EButtonType.PRIMARY}
@@ -65,8 +68,16 @@ const DiyComponents = () => {
             <span>测试按钮</span>
           </ButtonCommon>
         </Card>
-        <Card>
+        <Card className='flex flex-col gap-y-[5px]'>
           <TypeWriter text='测试文本' className={' text-textFirstSize'} />
+          <TypeWriterV2
+            className='bg-gradient-to-r from-[#CBD5FB] to-[#1E70F5] bg-clip-text text-transparent'
+            words='This is a test paragraph!!'
+          />
+          <TypeWriterV3 className='' words='This is a test paragraph!!' />
+          <span className='bg-gradient-to-r  from-yellow-200 to-violet-500 bg-clip-text text-transparent'>
+            这是一段测试文本
+          </span>
         </Card>
         <Card>
           <SelectorCommon
@@ -78,14 +89,7 @@ const DiyComponents = () => {
             className=''
           />
         </Card>
-        <Card>
-          <StickyScrollRevealDemo />
-        </Card>
-        <Card>
-          <span className='bg-gradient-to-r  from-yellow-200 to-violet-500 bg-clip-text text-transparent'>
-            这是一段测试文本
-          </span>
-        </Card>
+
         <Card className=''>
           <div className=''>
             <Search
@@ -98,6 +102,14 @@ const DiyComponents = () => {
         </Card>
         <Card>
           <LottieInView animationData={BlockChainLottie} />
+        </Card>
+        <Card className='flex flex-col gap-y-[10px]'>
+          <TypeWriterV4>
+            <div className=' w-full h-full markBorderR'>测试文本</div>
+          </TypeWriterV4>
+          <TypeWriterV7>
+            <div className='markBorderR'>测试文本</div>
+          </TypeWriterV7>
         </Card>
       </div>
     </div>
