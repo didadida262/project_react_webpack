@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-29 14:43:26
+ * @LastEditTime: 2024-08-12 17:10:59
  */
 
 import { Button } from 'antd';
@@ -26,6 +26,7 @@ import { Sparkles } from '../../components/Sparkles';
 import { ThemeContext, ThemeMode } from '../../components/themeProvider';
 import Child from './Child';
 import RenderComponents from './RenderProps';
+import {dotData, dotClass} from '@/server/circleData'
 
 import './index.scss';
 
@@ -35,8 +36,6 @@ const HOC = (ChildComponent) => {
     return (
       <div>
         <ChildComponent {...props}></ChildComponent>
-        border-image-source: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%,
-        #6B6B6B 50.5%, rgba(255, 255, 255, 0) 100%);
         <div className='h-[1px] w-64 bg-gradient-to-r from-transparent via-white to-transparent'></div>
       </div>
     );
@@ -64,7 +63,6 @@ const AboutComponent = function () {
 
   return (
     <div>
-      <span>测试</span>
       {/* <Child count={count} /> */}
       <MemoSon count={count} />
       <span>count: {count.name}</span>
@@ -79,13 +77,8 @@ const AboutComponent = function () {
         改变子数据
       </Button>
       <Button onClick={() => setcount2(count2 + 1)}>改变其他数据</Button>
-
       <TT />
-
-      {/* <div style={{ width: '500px', height: '500px', border: '1px solid red', backgroundColor: 'black'}}>
-        <Sparkles />
-      </div> */}
-      <div>asdasd</div>
+      <div className='w-full h-[300px] markBorderG mt-[20px]'>测试虚拟列表</div>
     </div>
   );
 };
