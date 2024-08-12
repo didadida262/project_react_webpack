@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-08-12 17:10:59
+ * @LastEditTime: 2024-08-12 17:41:22
  */
 
 import { Button } from 'antd';
@@ -19,6 +19,7 @@ import React, {
   useMemo,
   memo,
   useContext,
+  useEffect,
 } from 'react';
 import { Observable } from 'rxjs';
 
@@ -26,7 +27,7 @@ import { Sparkles } from '../../components/Sparkles';
 import { ThemeContext, ThemeMode } from '../../components/themeProvider';
 import Child from './Child';
 import RenderComponents from './RenderProps';
-import {dotData, dotClass} from '@/server/circleData'
+import { dotData, dotClass } from '@/server/circleData';
 
 import './index.scss';
 
@@ -60,6 +61,9 @@ const AboutComponent = function () {
   });
   const [count2, setcount2] = useState(0);
   console.log('父组件渲染');
+  useEffect(() => {
+    console.log('dotData>>>', dotData);
+  }, []);
 
   return (
     <div>
@@ -78,7 +82,11 @@ const AboutComponent = function () {
       </Button>
       <Button onClick={() => setcount2(count2 + 1)}>改变其他数据</Button>
       <TT />
-      <div className='w-full h-[300px] markBorderG mt-[20px]'>测试虚拟列表</div>
+      <div className='w-full h-[300px] markBorderG mt-[20px] overflow-auto'>
+        {dotData.map((item) => (
+          <div className='w-full h-[40px] markBorderR'>{item.id}</div>
+        ))}
+      </div>
     </div>
   );
 };
