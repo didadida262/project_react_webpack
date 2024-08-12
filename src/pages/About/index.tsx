@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-08-12 17:41:22
+ * @LastEditTime: 2024-08-12 23:31:06
  */
 
 import { Button } from 'antd';
@@ -28,7 +28,8 @@ import { ThemeContext, ThemeMode } from '../../components/themeProvider';
 import Child from './Child';
 import RenderComponents from './RenderProps';
 import { dotData, dotClass } from '@/server/circleData';
-
+import { List } from 'react-virtualized';
+import 'react-virtualized/styles.css'; // 引入样式
 import './index.scss';
 
 const MemoSon = memo(Child);
@@ -64,7 +65,13 @@ const AboutComponent = function () {
   useEffect(() => {
     console.log('dotData>>>', dotData);
   }, []);
-
+  const rowRenderer = ({ index, key, style }) => {
+    return (
+      <div key={key} style={style}>
+        {dotData[index].id}
+      </div>
+    );
+  };
   return (
     <div>
       {/* <Child count={count} /> */}
@@ -83,9 +90,18 @@ const AboutComponent = function () {
       <Button onClick={() => setcount2(count2 + 1)}>改变其他数据</Button>
       <TT />
       <div className='w-full h-[300px] markBorderG mt-[20px] overflow-auto'>
-        {dotData.map((item) => (
+        <span>虚拟列表</span>
+        {/* {dotData.map((item) => (
           <div className='w-full h-[40px] markBorderR'>{item.id}</div>
-        ))}
+        ))} */}
+        <List
+          className='markBorderG'
+          width={300}
+          height={400}
+          rowCount={dotData.length}
+          rowHeight={50}
+          rowRenderer={rowRenderer}
+        />
       </div>
     </div>
   );
