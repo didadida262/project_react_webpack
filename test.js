@@ -1,6 +1,22 @@
-const x = Array(10)
-  .fill([])
-  .map(() => Array(10).fill(0));
-console.log('x>>>1', x);
-x[0][0] = 100;
-console.log('x>>>2', x);
+/*
+ * @Description:
+ * @Author: didadida262
+ * @Date: 2024-07-31 10:32:27
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-08-13 16:16:29
+ */
+console.log(1);
+
+setTimeout(() => {
+  console.log(2);
+}, 0);
+
+Promise.resolve()
+  .then(() => {
+    console.log(3);
+  })
+  .then(() => {
+    console.log(4);
+  });
+
+console.log(5);
