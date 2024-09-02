@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-02 10:49:31
+ * @LastEditTime: 2024-09-02 10:52:02
  */
 
 import React from "react";
@@ -132,6 +132,9 @@ const DiyComponents = () => {
               rowRenderer={rowRenderer}
             />
           </div>
+        </Card>
+        <Card>
+          <div className="h-[1px] w-64 bg-gradient-to-r from-transparent via-white to-transparent" />
         </Card>
       </div>
     </div>

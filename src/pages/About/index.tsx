@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-08-21 14:00:07
+ * @LastEditTime: 2024-09-02 10:51:58
  */
 
 import { Button } from "antd";
@@ -29,7 +29,6 @@ import { Sparkles } from "../../components/Sparkles";
 import { ThemeContext, ThemeMode } from "../../components/themeProvider";
 import Child from "./Child";
 import RenderComponents from "./RenderProps";
-import { dotData, dotClass } from "@/server/circleData";
 import { List } from "react-virtualized";
 import "react-virtualized/styles.css"; // 引入样式
 import "./index.scss";
@@ -42,7 +41,6 @@ const HOC = ChildComponent => {
     return (
       <div>
         <ChildComponent {...props} />
-        <div className="h-[1px] w-64 bg-gradient-to-r from-transparent via-white to-transparent" />
       </div>
     );
   };
@@ -66,16 +64,7 @@ const AboutComponent = function() {
   });
   const [count2, setcount2] = useState(0);
   console.log("父组件渲染");
-  useEffect(() => {
-    console.log("dotData>>>", dotData);
-  }, []);
-  const rowRenderer = ({ index, key, style }) => {
-    return (
-      <div key={key} style={style}>
-        {dotData[index].id}
-      </div>
-    );
-  };
+
   // const [test] = useAsync(async () => {
   //   const p = new Promise((resolve, reject) => {
   //     setTimeout(() => {
@@ -117,21 +106,6 @@ const AboutComponent = function() {
         改变子数据
       </Button>
       <Button onClick={() => setcount2(count2 + 1)}>改变其他数据</Button>
-      <TT />
-      <div className="w-full h-[300px] markBorderG mt-[20px] overflow-auto">
-        <span>虚拟列表</span>
-        {/* {dotData.map((item) => (
-          <div className='w-full h-[40px] markBorderR'>{item.id}</div>
-        ))} */}
-        <List
-          className="markBorderG"
-          width={300}
-          height={400}
-          rowCount={dotData.length}
-          rowHeight={50}
-          rowRenderer={rowRenderer}
-        />
-      </div>
       <ButtonCommon onClick={test} type={EButtonType.PRIMARY}>
         测试hook:
         <p>{loading.loading}</p>
