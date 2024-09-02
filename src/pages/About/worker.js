@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-02 10:53:16
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-02 10:53:19
+ * @LastEditTime: 2024-09-02 11:21:53
  */
 let canvasB = null;
 let ctxWorker = null;
@@ -19,7 +19,7 @@ let frameCount = 0;
 function drawCanvas() {
   frameCount++;
   ctxWorker.clearRect(0, 0, ctxWorker.canvas.width, ctxWorker.canvas.height);
-  ctxWorker.fillStyle = "#000000";
+  ctxWorker.fillStyle = "#FFFFFF";
   ctxWorker.beginPath();
   ctxWorker.arc(
     150,

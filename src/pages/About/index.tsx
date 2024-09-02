@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-02 11:18:55
+ * @LastEditTime: 2024-09-02 11:22:26
  */
 
 import { Button } from "antd";
@@ -61,7 +61,7 @@ const AboutComponent = function() {
       const render = () => {
           frameCount++;
           ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-          ctx.fillStyle = '#000000';
+          ctx.fillStyle = '#FFFFFF';
           ctx.beginPath();
           ctx.arc(150, 150, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
           ctx.fill();
@@ -89,7 +89,7 @@ const AboutComponent = function() {
             <canvas ref={canvasTwoRef} width={300} height={200} />
             <span>离屏渲染Canvas</span>
       </div>
-      <ButtonCommon
+      {/* <ButtonCommon
         type={EButtonType.PRIMARY}
         onClick={
           () => {
@@ -99,7 +99,7 @@ const AboutComponent = function() {
         }>
         <span>求解斐波那契数列</span>
         
-      </ButtonCommon>
+      </ButtonCommon> */}
     </div>
 )
 
