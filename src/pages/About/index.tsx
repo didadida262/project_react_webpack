@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-02 11:11:16
+ * @LastEditTime: 2024-09-02 11:18:55
  */
 
 import { Button } from "antd";
@@ -80,13 +80,13 @@ const AboutComponent = function() {
       alert(fib(40));
   }
   return (
-    <div className="container flex justify-between items-center">
+    <div className="container flex justify-between items-center w-full h-full">
         <div>
-            <canvas ref={canvasOneRef} width={300} height={300} />
+            <canvas ref={canvasOneRef} width={300} height={200} />
             <span>正常渲染Canvas</span>
         </div>
         <div>
-            <canvas ref={canvasTwoRef} width={300} height={300} />
+            <canvas ref={canvasTwoRef} width={300} height={200} />
             <span>离屏渲染Canvas</span>
       </div>
       <ButtonCommon
