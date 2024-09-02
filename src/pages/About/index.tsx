@@ -3,12 +3,21 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-02 10:51:58
+ * @LastEditTime: 2024-09-02 11:11:16
  */
 
 import { Button } from "antd";
 import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { getRandomColor } from "miles_common_weapons";
+
+import "./index.scss";
+
+const fib = n => {
+  if (n <= 1) {
+    return 1;
+  }
+  return fib(n - 1) + fib(n - 2);
+};
 
 import { ButtonCommon, EButtonType } from "@/components/ButtonCommon";
 
@@ -35,83 +44,65 @@ import "./index.scss";
 import { useAsync, useAsyncFn } from "react-use";
 import { resolve } from "path";
 
-const MemoSon = memo(Child);
-const HOC = ChildComponent => {
-  const res = props => {
-    return (
-      <div>
-        <ChildComponent {...props} />
-      </div>
-    );
-  };
-  return res;
-};
-const TT = HOC(Child);
 
+const canvasWorker = new Worker(new URL("./worker.js", import.meta.url));
 const AboutComponent = function() {
-  const { currentTheme, setCurrentTheme } = useContext(ThemeContext);
-  let Ob1 = new Observable(observer => {
-    observer.next("observable");
-  });
-  Ob1.subscribe(value => {
-    console.log(value);
-  });
-  console.log("Ob1>>", Ob1);
+  const canvasOneRef = useRef() as any;
+  const canvasTwoRef = useRef() as any;
 
-  const [count, setcount] = useState({
-    name: 1,
-    old: 2
-  });
-  const [count2, setcount2] = useState(0);
-  console.log("父组件渲染");
+  useEffect(() => {
+    if (!canvasOneRef.current || !canvasTwoRef.current) return
+    const canvas:HTMLCanvasElement = canvasOneRef.current
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return
+      let frameCount = 0;
+      let animationFrameId;
 
-  // const [test] = useAsync(async () => {
-  //   const p = new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       resolve("1");
-  //     }, 3000);
-  //   });
-  //   p.then(res => {
-  //     console.log("res>>", res);
-  //   });
-  // }, []);
-  const [loading, test] = useAsyncFn(async () => {
-    const p = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve("1");
-      }, 3000);
-    });
-    p.then(res => {
-      console.log("res>>", res);
-    });
-  }, []);
+      const render = () => {
+          frameCount++;
+          ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+          ctx.fillStyle = '#000000';
+          ctx.beginPath();
+          ctx.arc(150, 150, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
+          ctx.fill();
+          animationFrameId = window.requestAnimationFrame(render);
+      }
+      render();
+      const transfercanvasWorker = canvasTwoRef.current.transferControlToOffscreen();
+      canvasWorker.postMessage({ canvas: transfercanvasWorker }, [transfercanvasWorker]);
 
+      return () => {
+          window.cancelAnimationFrame(animationFrameId);
+      }
+  }, [])
+
+  const alertFib = () => {
+      alert(fib(40));
+  }
   return (
-    <div>
-      {/* <Child count={count} /> */}
-      <MemoSon count={count} />
-      <span>
-        count: {count.name}
-      </span>
-      <span>
-        count2: {count2}
-      </span>
-      <Button
-        onClick={() =>
-          setcount({
-            ...count,
-            name: count.name + 1
-          })}
-      >
-        改变子数据
-      </Button>
-      <Button onClick={() => setcount2(count2 + 1)}>改变其他数据</Button>
-      <ButtonCommon onClick={test} type={EButtonType.PRIMARY}>
-        测试hook:
-        <p>{loading.loading}</p>
+    <div className="container flex justify-between items-center">
+        <div>
+            <canvas ref={canvasOneRef} width={300} height={300} />
+            <span>正常渲染Canvas</span>
+        </div>
+        <div>
+            <canvas ref={canvasTwoRef} width={300} height={300} />
+            <span>离屏渲染Canvas</span>
+      </div>
+      <ButtonCommon
+        type={EButtonType.PRIMARY}
+        onClick={
+          () => {
+            alertFib()
+
+          }
+        }>
+        <span>求解斐波那契数列</span>
+        
       </ButtonCommon>
     </div>
-  );
+)
+
 };
 
 export default AboutComponent;
