@@ -3,20 +3,23 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-10 18:10:07
+ * @LastEditTime: 2024-09-10 18:17:57
  */
 
 import React from "react";
 import { useState, memo, useEffect, useContext } from "react";
 import { List } from "react-virtualized";
 
+import { modelListBitCoinMock } from "@/mock/data";
 import { Search } from "@/components/Search";
+import { TableCommon } from "@/components/TableCommon";
 import { LottieInView } from "@/components/LottieInView";
 import { TypeWriterV2 } from "@/components/ui/TypeWriterV2";
 import { TypeWriterV3 } from "@/components/ui/TypeWriterV3";
 import { TypeWriterV4 } from "@/components/ui/TypeWriterV4";
 import { TypeWriterV7 } from "@/components/ui/TypeWriterV7";
 import { dotData, dotClass } from "@/server/circleData";
+import { columns } from "@/mock/columns";
 import BlockChainLottie from "@/assets/lottie/Blockchains.json";
 
 import TypeWriter from "../../components/ui/TypeWriter";
@@ -61,7 +64,7 @@ const DiyComponents = () => {
         <span className="text-textFirstSize">公共组件库</span>
       </div>
       <div
-        className={`px-[16px] w-full h-[calc(100%_-_80px)]  grid gap-[22px] grid-cols-[repeat(auto-fill,minmax(270px,1fr))]`}
+        className={`overflow-scroll px-[16px] w-full h-[calc(100%_-_80px)]  grid gap-[22px] grid-cols-[repeat(auto-fill,minmax(270px,1fr))]`}
       >
         <Card>
           <ButtonCommon
@@ -137,6 +140,13 @@ const DiyComponents = () => {
         </Card>
         <Card>
           <div className="h-[1px] w-64 bg-gradient-to-r from-transparent via-white to-transparent" />
+        </Card>
+        <Card className="w-[800px] px-6">
+          <TableCommon
+            columns={columns}
+            data={modelListBitCoinMock}
+            className="w-full"
+          />
         </Card>
       </div>
     </div>
