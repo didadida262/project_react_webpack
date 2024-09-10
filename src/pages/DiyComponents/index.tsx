@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-10 18:19:45
+ * @LastEditTime: 2024-09-10 18:42:32
  */
 
 import React from "react";
@@ -64,7 +64,7 @@ const DiyComponents = () => {
         <span className="text-textFirstSize">公共组件库</span>
       </div>
       <div
-        className={`overflow-scroll px-[16px] w-full h-[calc(100%_-_80px)]  grid gap-[22px] grid-cols-[repeat(auto-fill,minmax(270px,1fr))]`}
+        className={`pb-4 overflow-scroll px-[16px] w-full h-[calc(100%_-_80px)] flex flex-wrap justify-start gap-x-3`}
       >
         <Card>
           <ButtonCommon
@@ -115,8 +115,8 @@ const DiyComponents = () => {
             />
           </div>
         </Card>
-        <Card>
-          <LottieInView animationData={BlockChainLottie} />
+        <Card className="">
+          <LottieInView animationData={BlockChainLottie} className="" />
         </Card>
         <Card className="flex flex-col gap-y-[10px]">
           <TypeWriterV4>
@@ -127,7 +127,7 @@ const DiyComponents = () => {
           </TypeWriterV7>
         </Card>
         <Card>
-          <div className="w-full h-full   overflow-auto">
+          <div className="w-full h-full overflow-auto">
             <List
               className=""
               width={300}
@@ -141,12 +141,18 @@ const DiyComponents = () => {
         <Card>
           <div className="h-[1px] w-64 bg-gradient-to-r from-transparent via-white to-transparent" />
         </Card>
-        <Card className="w-[800px] px-6">
+        <Card className=" px-6">
           <TableCommon
             columns={columns}
             data={modelListBitCoinMock}
             className="w-full"
           />
+        </Card>
+        <Card className="">
+          <p className="test SingleLineTextOverflow bg-[black] text-[green]">
+            这是一段很长很长的文本 这是一段很长很长的文本 这是一段很长很长的文本 这是一段很长很长的文本 这是一段很长很长的文本
+            这是一段很长很长的文本 这是一段很长很长的文本
+          </p>
         </Card>
       </div>
     </div>
