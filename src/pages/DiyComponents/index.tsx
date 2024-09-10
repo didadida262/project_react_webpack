@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-10 18:17:57
+ * @LastEditTime: 2024-09-10 18:19:45
  */
 
 import React from "react";
@@ -120,10 +120,10 @@ const DiyComponents = () => {
         </Card>
         <Card className="flex flex-col gap-y-[10px]">
           <TypeWriterV4>
-            <div className=" w-full h-full markBorderR">测试文本</div>
+            <div className=" w-full h-full ">测试文本</div>
           </TypeWriterV4>
           <TypeWriterV7>
-            <div className="markBorderR">测试文本</div>
+            <div className="">测试文本</div>
           </TypeWriterV7>
         </Card>
         <Card>
