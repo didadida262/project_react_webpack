@@ -3,23 +3,16 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-02 11:22:26
+ * @LastEditTime: 2024-09-02 11:24:41
  */
 
 import { Button } from "antd";
 import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { getRandomColor } from "miles_common_weapons";
 
-import "./index.scss";
-
-const fib = n => {
-  if (n <= 1) {
-    return 1;
-  }
-  return fib(n - 1) + fib(n - 2);
-};
-
 import { ButtonCommon, EButtonType } from "@/components/ButtonCommon";
+
+import "./index.scss";
 
 import React, {
   useCallback,
@@ -39,7 +32,6 @@ import { ThemeContext, ThemeMode } from "../../components/themeProvider";
 import Child from "./Child";
 import RenderComponents from "./RenderProps";
 import { List } from "react-virtualized";
-import "react-virtualized/styles.css"; // 引入样式
 import "./index.scss";
 import { useAsync, useAsyncFn } from "react-use";
 import { resolve } from "path";
@@ -57,7 +49,6 @@ const AboutComponent = function() {
     if (!ctx) return
       let frameCount = 0;
       let animationFrameId;
-
       const render = () => {
           frameCount++;
           ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -76,9 +67,7 @@ const AboutComponent = function() {
       }
   }, [])
 
-  const alertFib = () => {
-      alert(fib(40));
-  }
+
   return (
     <div className="container flex justify-between items-center w-full h-full">
         <div>
@@ -89,17 +78,16 @@ const AboutComponent = function() {
             <canvas ref={canvasTwoRef} width={300} height={200} />
             <span>离屏渲染Canvas</span>
       </div>
-      {/* <ButtonCommon
+      <ButtonCommon
         type={EButtonType.PRIMARY}
         onClick={
           () => {
-            alertFib()
-
+            alert('弹框......')
           }
         }>
-        <span>求解斐波那契数列</span>
+        <span>测试按钮</span>
         
-      </ButtonCommon> */}
+      </ButtonCommon>
     </div>
 )
 

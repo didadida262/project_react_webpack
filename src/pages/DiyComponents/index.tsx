@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-02 10:52:02
+ * @LastEditTime: 2024-09-10 18:10:07
  */
 
 import React from "react";
@@ -25,6 +25,8 @@ import { Card } from "../../components/Card";
 import { SelectorCommon } from "../../components/SelectorCommon";
 import { StickyScrollRevealDemo } from "../../components/StickyCompo";
 import pattern from "../../styles/pattern";
+
+import "react-virtualized/styles.css"; // 引入样式
 
 export const pluginStatus = [
   { value: "all", label: "All Status" },
@@ -101,7 +103,7 @@ const DiyComponents = () => {
         </Card>
 
         <Card className="">
-          <div className="">
+          <div className=" w-[120px] ">
             <Search
               className=""
               onSearch={val => {

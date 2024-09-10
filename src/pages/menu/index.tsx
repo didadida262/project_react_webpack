@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-25 15:13:17
  * @LastEditors: didadida262
- * @LastEditTime: 2024-07-18 14:51:42
+ * @LastEditTime: 2024-09-10 01:01:43
  */
 import {
   AppstoreOutlined,
@@ -64,6 +64,7 @@ const items: MenuProps['items'] = [
       getItem('Test', 'about', <BsNut />),
       getItem('ChatGpt', 'ChatGpt', <BsYinYang />),
       getItem('TestCss', 'testcss', <BsRadioactive />),
+      getItem('Earth', 'earth', <BsRadioactive />),
       getItem('DiyComponents', 'diycomponent', <BsRadioactive />),
     ],
     'group',
