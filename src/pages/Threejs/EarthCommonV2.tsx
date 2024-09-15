@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-15 23:41:23
+ * @LastEditTime: 2024-09-16 00:03:41
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { setOrbit, setAxes } from "@/utils/threejsWeapon";
 import earth_bg from "@/assets/earth_bg.png";
 
-const radius = 32;
+const radius = 3;
 
 export function EarthCommonV2() {
   let renderer = null as any;
@@ -62,24 +62,32 @@ export function EarthCommonV2() {
     });
     earth = new THREE.Mesh(geometry, material);
     scene.add(earth);
-    // 添加外边框光晕
-    const glowMaterial = new THREE.MeshBasicMaterial({
-      color: 0xffffff,
-      side: THREE.BackSide
-    });
-    // const glowGeometry = new THREE.SphereGeometry(2.001, 32, 32);
-    // const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-    // scene.add(glow);
-    // scene.add(new THREE.AmbientLight(0xbbbbbb, 0.3));
+
     // 添加光源
-    const light = new THREE.DirectionalLight(0xffffff, 20);
-    light.position.set(5, 8, 8);
-    scene.add(light);
+    // const light = new THREE.DirectionalLight(0xffffff, 20);
+    // light.position.set(5, 8, 8);
+    // scene.add(light);
+    // 环境光
+    // const envLight = new THREE.AmbientLight("white", 20);
+    // scene.add(envLight);
+    // 灯光配置
+    const pointLight = new THREE.PointLight(0xffffff, 300, 100);
+    pointLight.position.set(5, 5, 4);
+    pointLight.castShadow = true;
+    scene.add(pointLight);
+    const sphereSize = 1;
+    const pointLightHelper = new THREE.PointLightHelper(
+      pointLight,
+      sphereSize,
+      "white"
+    );
+    scene.add(pointLightHelper);
+    // 添加光晕
 
     // 添加阴影效果
-    renderer.shadowMap.enabled = true;
-    earth.castShadow = true;
-    earth.receiveShadow = true;
+    // renderer.shadowMap.enabled = true;
+    // earth.castShadow = true;
+    // earth.receiveShadow = true;
 
     // 添加鼠标交互控制
     // const controls = new THREE.OrbitControls(camera, renderer.domElement);
