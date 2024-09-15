@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-16 00:03:41
+ * @LastEditTime: 2024-09-16 00:33:31
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
@@ -12,6 +12,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import { setOrbit, setAxes } from "@/utils/threejsWeapon";
 import earth_bg from "@/assets/earth_bg.png";
+import earth_bg_2 from "@/assets/earth_bg2.jpg";
+import earth_dot from "@/assets/earth_dot.png";
 
 const radius = 3;
 
@@ -53,12 +55,14 @@ export function EarthCommonV2() {
     container.appendChild(renderer.domElement);
     // window.addEventListener('resize', () => this.handleWindowResize())
     // 地球
+    // 方案一
     const geometry = new THREE.SphereGeometry(3, 32, 32);
+
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load(earth_bg);
+    const texture = textureLoader.load(earth_bg_2);
     const material = new THREE.MeshPhongMaterial({
-      map: texture,
-      color: "#181d8c"
+      map: texture
+      // color: "#181d8c"
     });
     earth = new THREE.Mesh(geometry, material);
     scene.add(earth);
@@ -71,7 +75,7 @@ export function EarthCommonV2() {
     // const envLight = new THREE.AmbientLight("white", 20);
     // scene.add(envLight);
     // 灯光配置
-    const pointLight = new THREE.PointLight(0xffffff, 300, 100);
+    const pointLight = new THREE.PointLight(0xffffff, 100, 100);
     pointLight.position.set(5, 5, 4);
     pointLight.castShadow = true;
     scene.add(pointLight);
@@ -81,6 +85,7 @@ export function EarthCommonV2() {
       sphereSize,
       "white"
     );
+
     scene.add(pointLightHelper);
     // 添加光晕
 
