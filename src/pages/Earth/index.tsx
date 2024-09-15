@@ -3,13 +3,15 @@
  * @Author: didadida262
  * @Date: 2024-09-10 00:59:43
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-10 18:04:29
+ * @LastEditTime: 2024-09-15 13:36:03
  */
 
 import earthFlyLine from "earth-flyline";
 import { useEffect, useRef } from "react";
 
 import geojson from "@/data/globe.json";
+
+import { EarthCommon } from "./diyEarth/EarthCommon";
 
 export default function Earth() {
   const containerRef = useRef<HTMLDivElement>();
@@ -26,8 +28,10 @@ export default function Earth() {
   //   });
   // }, []);
   return (
-    <div id="container" />
-    // <div className="w-full h-full markBorderR">
+    <div id="container" className="w-full h-full markBorderR">
+      <EarthCommon />
+    </div>
+    // <div className="">
     //   <span>Earth</span>
     //   <div ref={containerRef} />
     // </div>

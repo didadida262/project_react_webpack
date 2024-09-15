@@ -1,9 +1,8 @@
 /*
  * @Description: 
  * @Author: didadida262
- * @Date: 2024-07-31 10:32:27
+ * @Date: 2024-09-15 16:26:57
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-15 16:27:55
+ * @LastEditTime: 2024-09-15 16:27:05
  */
-declare module "@lucky-canvas/react";
 declare module "three-glow-mesh";
