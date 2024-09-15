@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-15 22:27:04
+ * @LastEditTime: 2024-09-15 23:41:23
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
@@ -12,6 +12,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import { setOrbit, setAxes } from "@/utils/threejsWeapon";
 import earth_bg from "@/assets/earth_bg.png";
+
+const radius = 32;
 
 export function EarthCommonV2() {
   let renderer = null as any;
@@ -32,17 +34,18 @@ export function EarthCommonV2() {
       width: containerWidth,
       height: containerHeight
     });
-
     // // 舞台
     scene = new THREE.Scene();
     // 相机
     camera = new THREE.PerspectiveCamera(
       75,
       containerWidth / containerHeight,
-      0.1,
-      1000
+      1,
+      100
     );
-    camera.position.z = 5;
+    camera.position.x = 5;
+    camera.position.y = 3;
+    camera.position.z = 0;
     // // 渲染器
     renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true }); // 抗锯齿
     renderer.setSize(containerWidth, containerHeight);
@@ -50,27 +53,27 @@ export function EarthCommonV2() {
     container.appendChild(renderer.domElement);
     // window.addEventListener('resize', () => this.handleWindowResize())
     // 地球
-    const geometry = new THREE.SphereGeometry(2, 32, 32);
+    const geometry = new THREE.SphereGeometry(3, 32, 32);
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load(earth_bg);
     const material = new THREE.MeshPhongMaterial({
       map: texture,
-      color: "#7de4ff"
+      color: "#181d8c"
     });
     earth = new THREE.Mesh(geometry, material);
     scene.add(earth);
     // 添加外边框光晕
     const glowMaterial = new THREE.MeshBasicMaterial({
-      color: 0x00ff00,
+      color: 0xffffff,
       side: THREE.BackSide
     });
-    const glowGeometry = new THREE.SphereGeometry(2.2, 32, 32);
-    const glow = new THREE.Mesh(glowGeometry, glowMaterial);
+    // const glowGeometry = new THREE.SphereGeometry(2.001, 32, 32);
+    // const glow = new THREE.Mesh(glowGeometry, glowMaterial);
     // scene.add(glow);
-
+    // scene.add(new THREE.AmbientLight(0xbbbbbb, 0.3));
     // 添加光源
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(5, 5, 5);
+    const light = new THREE.DirectionalLight(0xffffff, 20);
+    light.position.set(5, 8, 8);
     scene.add(light);
 
     // 添加阴影效果
@@ -91,11 +94,11 @@ export function EarthCommonV2() {
   useEffect(() => {
     initCanvas();
     setOrbit(camera, renderer);
-    // setAxes(scene);
+    setAxes(scene);
     animate();
   }, []);
   return (
-    <div className="earth-container h-full w-full markBorderR ">
+    <div className="earth-container h-full w-full ">
       <div id="screen" className="h-full w-full" />
     </div>
   );
