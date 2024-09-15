@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-16 00:33:31
+ * @LastEditTime: 2024-09-16 00:55:29
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
@@ -16,6 +16,44 @@ import earth_bg_2 from "@/assets/earth_bg2.jpg";
 import earth_dot from "@/assets/earth_dot.png";
 
 const radius = 3;
+
+const fs = `
+// 纹理
+uniform sampler2D u_texture;
+varying vec2 v_uv;
+
+float snoise(vec3 v);
+void main() {
+    vec3 color = texture2D(u_texture,v_uv).xyz;
+    color = normalize(color);
+    if(color.x<=0.5) {
+        color = vec3(0.6f, 0.22f, 0.71f);
+    } else {
+        color = vec3(0.93f, 0.72f, 0.98f);
+    };
+
+    gl_FragColor = vec4(color, 1.0);
+}
+`;
+const vs = `
+uniform sampler2D u_texture;
+varying vec3 v_position;
+varying vec3 v_normal;
+varying vec2 v_uv;
+void main() {
+    v_position = position;
+    v_normal = normal;
+    v_uv = uv;
+    
+    vec3 color = texture2D(u_texture, uv).xyz;
+
+    vec3 new_position = position + (normal * color) * 0.2;
+    
+    vec4 modelViewPosition = modelViewMatrix * vec4(new_position, 1.0);
+    vec4 projectPosition = projectionMatrix * modelViewPosition;
+    gl_Position = projectPosition;
+}
+`;
 
 export function EarthCommonV2() {
   let renderer = null as any;
@@ -55,18 +93,31 @@ export function EarthCommonV2() {
     container.appendChild(renderer.domElement);
     // window.addEventListener('resize', () => this.handleWindowResize())
     // 地球
-    // 方案一
     const geometry = new THREE.SphereGeometry(3, 32, 32);
+    // 方案一
 
-    const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load(earth_bg_2);
-    const material = new THREE.MeshPhongMaterial({
-      map: texture
-      // color: "#181d8c"
+    // const textureLoader = new THREE.TextureLoader();
+    // const texture = textureLoader.load(earth_bg_2);
+    // const material = new THREE.MeshPhongMaterial({
+    //   map: texture
+    //   // color: "#181d8c"
+    // });
+    // earth = new THREE.Mesh(geometry, material);
+    // scene.add(earth);
+    // 方案2
+    const material = new THREE.ShaderMaterial({
+      uniforms: {
+        u_texture: {
+          value: new THREE.TextureLoader().load(
+            earth_bg // 图片路径
+          )
+        }
+      },
+      fragmentShader: fs,
+      vertexShader: vs
     });
     earth = new THREE.Mesh(geometry, material);
     scene.add(earth);
-
     // 添加光源
     // const light = new THREE.DirectionalLight(0xffffff, 20);
     // light.position.set(5, 8, 8);
