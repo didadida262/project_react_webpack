@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "three-glow-mesh": "^0.1.2",
+    "3d-earth": "^1.0.8",
     "@babel/core": "^7.16.0",
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
@@ -88,6 +88,7 @@
     "terser-webpack-plugin": "^5.2.5",
     "three": "^0.168.0",
     "three-globe": "^2.31.1",
+    "three-glow-mesh": "^0.1.2",
     "typescript": "^5.4.3",
     "web-vitals": "^2.1.4",
     "webpack": "^5.64.4",
@@ -102,7 +103,11 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "browserslist": {
-    "production": [">0.2%", "not dead", "not op_mini all"],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
@@ -123,10 +128,19 @@
     "tailwindcss-line-clamp": "^1.0.5"
   },
   "jest": {
-    "roots": ["<rootDir>/src"],
-    "collectCoverageFrom": ["src/**/*.{js,jsx,ts,tsx}", "!src/**/*.d.ts"],
-    "setupFiles": ["react-app-polyfill/jsdom"],
-    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.ts"],
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.d.ts"
+    ],
+    "setupFiles": [
+      "react-app-polyfill/jsdom"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ],
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
       "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
@@ -166,6 +180,8 @@
     "resetMocks": true
   },
   "babel": {
-    "presets": ["react-app"]
+    "presets": [
+      "react-app"
+    ]
   }
 }

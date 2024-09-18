@@ -1,9 +1,9 @@
 /*
- * @Description: 
+ * @Description: 自研地球-黑白版
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-16 00:55:29
+ * @LastEditTime: 2024-09-18 15:36:28
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
@@ -12,7 +12,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import { setOrbit, setAxes } from "@/utils/threejsWeapon";
 import earth_bg from "@/assets/earth_bg.png";
-import earth_bg_2 from "@/assets/earth_bg2.jpg";
+import earth_bg_2 from "@/assets/earth_bg2.png";
+import earth_bg_3 from "@/assets/earth_bg3.jpg";
 import earth_dot from "@/assets/earth_dot.png";
 
 const radius = 3;
@@ -36,22 +37,14 @@ void main() {
 }
 `;
 const vs = `
-uniform sampler2D u_texture;
-varying vec3 v_position;
-varying vec3 v_normal;
-varying vec2 v_uv;
-void main() {
-    v_position = position;
-    v_normal = normal;
-    v_uv = uv;
-    
-    vec3 color = texture2D(u_texture, uv).xyz;
+uniform mat4 modelViewMatrix; // 模型视图矩阵
+uniform mat4 viewMatrix; // 投影矩阵
+uniform mat4 projectionMatrix; // 投影矩阵
 
-    vec3 new_position = position + (normal * color) * 0.2;
-    
-    vec4 modelViewPosition = modelViewMatrix * vec4(new_position, 1.0);
-    vec4 projectPosition = projectionMatrix * modelViewPosition;
-    gl_Position = projectPosition;
+attribute vec3 position; // 顶点位置
+
+void main() {
+  gl_Position = projectionMatrix * viewMatrix * modelViewMatrix * vec4(position, 1.0); // 计算顶点在视图空间中的位置
 }
 `;
 
@@ -104,20 +97,17 @@ export function EarthCommonV2() {
     // });
     // earth = new THREE.Mesh(geometry, material);
     // scene.add(earth);
+
     // 方案2
-    const material = new THREE.ShaderMaterial({
-      uniforms: {
-        u_texture: {
-          value: new THREE.TextureLoader().load(
-            earth_bg // 图片路径
-          )
-        }
-      },
-      fragmentShader: fs,
-      vertexShader: vs
+    const textureLoader = new THREE.TextureLoader();
+    const texture = textureLoader.load(earth_bg);
+    const material = new THREE.MeshPhongMaterial({
+      map: texture
+      // color: "#181d8c"
     });
     earth = new THREE.Mesh(geometry, material);
     scene.add(earth);
+
     // 添加光源
     // const light = new THREE.DirectionalLight(0xffffff, 20);
     // light.position.set(5, 8, 8);

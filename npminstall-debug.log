@@ -3,7 +3,7 @@
   registry: 'https://registry.npmmirror.com',
   pkgs: [
     {
-      name: 'three-globe-mesh',
+      name: '@types/three-globe-mesh',
       version: 'latest',
       type: 'tag',
       alias: undefined,
@@ -15,7 +15,7 @@
   cacheDir: '/Users/hhvcg/.npminstall_tarball',
   env: {
     npm_config_registry: 'https://registry.npmmirror.com',
-    npm_config_argv: '{"remain":[],"cooked":["--fix-bug-versions","--china","--userconfig=/Users/hhvcg/.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","three-globe-mesh","-S"],"original":["--fix-bug-versions","--china","--userconfig=/Users/hhvcg/.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","three-globe-mesh","-S"]}',
+    npm_config_argv: '{"remain":[],"cooked":["--fix-bug-versions","--china","--userconfig=/Users/hhvcg/.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","@types/three-globe-mesh","-D"],"original":["--fix-bug-versions","--china","--userconfig=/Users/hhvcg/.cnpmrc","--disturl=https://cdn.npmmirror.com/binaries/node","--registry=https://registry.npmmirror.com","@types/three-globe-mesh","-D"]}',
     npm_config_user_agent: 'npminstall/7.12.0 npm/? node/v18.18.2 darwin x64',
     npm_config_cache: '/Users/hhvcg/.npminstall_tarball',
     NODE: '/Users/hhvcg/.nvm/versions/node/v18.18.2/bin/node',
