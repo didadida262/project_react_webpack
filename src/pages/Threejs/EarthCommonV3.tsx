@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-18 15:36:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-18 16:12:04
+ * @LastEditTime: 2024-09-18 16:51:15
  */
 import { useEffect } from "react";
 import * as THREE from "three";
@@ -151,7 +151,7 @@ export function EarthCommonV3() {
     // camera.position.y += (-mouseY / 2 - camera.position.y) * 0.005;
     // camera.lookAt(scene.position);
     // controls.update();
-    // renderer.render(scene, camera);
+    renderer.render(scene, camera);
     // requestAnimationFrame(animate);
   };
   useEffect(() => {

@@ -3,13 +3,13 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-14 10:17:36
+ * @LastEditTime: 2024-09-19 18:19:31
  */
-
 import React from "react";
 import { useState, memo, useEffect, useContext } from "react";
 import { List } from "react-virtualized";
 
+import { cn } from "@/lib/utils";
 import { modelListBitCoinMock } from "@/mock/data";
 import { Search } from "@/components/Search";
 import { TableCommon } from "@/components/TableCommon";
@@ -141,12 +141,16 @@ const DiyComponents = () => {
         <Card>
           <div className="h-[1px] w-64 bg-gradient-to-r from-transparent via-white to-transparent" />
         </Card>
-        <Card className=" px-6">
-          <TableCommon
-            columns={columns}
-            data={modelListBitCoinMock}
-            className="w-full"
-          />
+        <Card className="">
+          <div
+            className={cn(`flex justify-center items-center w-full h-full"`)}
+          >
+            <TableCommon
+              columns={columns}
+              data={modelListBitCoinMock}
+              className="w-full h-[150px]"
+            />
+          </div>
         </Card>
         <Card className="">
           <p className="test SingleLineTextOverflow bg-[black] text-[green]">
