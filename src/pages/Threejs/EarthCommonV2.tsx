@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-18 15:36:28
+ * @LastEditTime: 2024-09-20 10:04:09
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
@@ -11,10 +11,11 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import { setOrbit, setAxes } from "@/utils/threejsWeapon";
-import earth_bg from "@/assets/earth_bg.png";
-import earth_bg_2 from "@/assets/earth_bg2.png";
-import earth_bg_3 from "@/assets/earth_bg3.jpg";
-import earth_dot from "@/assets/earth_dot.png";
+import earth_bg from "@/assets/threejs/earth_bg1.png";
+import earth_bg_2 from "@/assets/threejs/earth_bg2.png";
+import earth_bg_3 from "@/assets/threejs/earth_bg3.jpg";
+import earth_bg_5 from "@/assets/threejs/earth_bg5.jpg";
+import earth_dot from "@/assets/threejs/earth_dot.png";
 
 const radius = 3;
 
@@ -100,7 +101,7 @@ export function EarthCommonV2() {
 
     // 方案2
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load(earth_bg);
+    const texture = textureLoader.load(earth_bg_5);
     const material = new THREE.MeshPhongMaterial({
       map: texture
       // color: "#181d8c"

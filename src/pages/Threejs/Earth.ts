@@ -3,12 +3,12 @@
  * @Author: didadida262
  * @Date: 2024-09-15 14:18:39
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-15 16:08:04
+ * @LastEditTime: 2024-09-20 10:03:06
  */
 import * as THREE from "three";
 
-import dotImg from '@/assets/earth_dot.png'
-import earthBg from '@/assets/earth_bg.png'
+import dotImg from '@/assets/threejs/earth_dot.png'
+import earthBg from '@/assets/threejs/earth_bg1.png'
 
 const EARTH_COLOR = "#1a66ff";
 const EARTH_PARTICLE_COLOR = 'red'
