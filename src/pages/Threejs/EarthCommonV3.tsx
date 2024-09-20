@@ -3,12 +3,14 @@
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-20 11:16:18
+ * @LastEditTime: 2024-09-20 11:56:24
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass";
 
 import { setOrbit, setAxes } from "@/utils/threejsWeapon";
 import { countries } from "@/assets/threejs/files/countries";
@@ -23,6 +25,7 @@ import earth_env from "@/assets/threejs/earth_bg_env.jpg";
 
 import City from "./Geometry/City";
 import Earth from "./Geometry/Earth";
+import { UnrealBloomPass } from "./lib/bloomPass";
 
 const radius = 3;
 
@@ -31,6 +34,8 @@ export function EarthCommonV3() {
   let camera = null as any;
   let scene = null as any;
   let earth = null as any;
+  let composer = null as any;
+
   const [withAndHeight, setwithAndHeight] = useState({
     width: 0,
     height: 0
@@ -61,25 +66,11 @@ export function EarthCommonV3() {
     // // 渲染器
 
     renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true }); // 抗锯齿
-
     renderer.setClearColor(0xffffff, 0);
     renderer.autoClear = false;
     renderer.setSize(containerWidth, containerHeight);
     renderer.toneMappingExposure = Math.pow(1, 4.0);
     container.appendChild(renderer.domElement);
-
-    // 灯光配置
-    const pointLight = new THREE.PointLight(0xffffff, 100, 100);
-    pointLight.position.set(5, 5, 4);
-    pointLight.castShadow = true;
-    scene.add(pointLight);
-    const sphereSize = 1;
-    const pointLightHelper = new THREE.PointLightHelper(
-      pointLight,
-      sphereSize,
-      "white"
-    );
-    scene.add(pointLightHelper);
 
     // 地球
     const theEarth = new Earth(100);
@@ -93,11 +84,39 @@ export function EarthCommonV3() {
 
     earthGroup.add(shanghai.getMesh());
     scene.add(earthGroup);
+
+    // Set up an effect composer
+    // composer = new EffectComposer(renderer);
+    // composer.setSize(containerWidth, containerHeight);
+
+    // const renderScene = new RenderPass(scene, camera);
+    // const bloomPass = new UnrealBloomPass(
+    //   new THREE.Vector2(containerWidth, containerHeight),
+    //   1.5,
+    //   -0.8,
+    //   0.5
+    // ); // strength, radius, threshold
+    // renderScene.clear = false;
+    // bloomPass.clear = false;
+    // composer.addPass(renderScene);
+    // composer.addPass(bloomPass);
+
+    // Tells composer that second pass gets rendered to screen
+    // bloomPass.renderToScreen = true;
+
+    // 光源
+    const spotLight = new THREE.SpotLight(0x404040, 2.5);
+    spotLight.target = earth;
+    scene.add(spotLight);
+
+    const light = new THREE.AmbientLight(0xffffff, 0.25); // soft white light
+    scene.add(light);
   };
   // 渲染场景
   function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
+    // composer.render();
   }
 
   useEffect(() => {
