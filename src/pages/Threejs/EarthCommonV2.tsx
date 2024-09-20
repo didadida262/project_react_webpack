@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-20 10:11:08
+ * @LastEditTime: 2024-09-20 10:43:01
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
@@ -11,15 +11,42 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 import { setOrbit, setAxes } from "@/utils/threejsWeapon";
-import earth_bg from "@/assets/threejs/earth_bg1.png";
+import earth_bg_1 from "@/assets/threejs/earth_bg1.png";
 import earth_bg_2 from "@/assets/threejs/earth_bg2.png";
 import earth_bg_3 from "@/assets/threejs/earth_bg3.jpg";
+import earth_bg_4 from "@/assets/threejs/earth_bg4.png";
 import earth_bg_5 from "@/assets/threejs/earth_bg5.jpg";
 import earth_bg_6 from "@/assets/threejs/earth_bg6.jpg";
 import earth_dot from "@/assets/threejs/earth_dot.png";
 import earth_env from "@/assets/threejs/earth_bg_env.jpg";
 
 const radius = 3;
+// 城市之间的连线，可以定义颜色（数据来自业务系统）
+const bizLines = [
+  {
+    from: "北京",
+    to: [
+      "上海",
+      "西安",
+      "成都",
+      "乌鲁木齐",
+      "拉萨",
+      "广州",
+      "哈尔滨",
+      "沈阳",
+      "武汉",
+      "海口",
+      "纽约",
+      "伦敦",
+      "巴黎",
+      "开普敦",
+      "悉尼",
+      "东京",
+      "里约热内卢"
+    ],
+    color: `rgba(255, 147, 0, 1)`
+  }
+];
 
 const fs = `
 // 纹理
@@ -72,9 +99,8 @@ export function EarthCommonV2() {
     });
     // // 舞台
     scene = new THREE.Scene();
-    const textureLoaderEnv = new THREE.TextureLoader();
-
-    scene.background = textureLoaderEnv.load(earth_env);
+    // const textureLoaderEnv = new THREE.TextureLoader();
+    // scene.background = textureLoaderEnv.load(earth_env);
     // 相机
     camera = new THREE.PerspectiveCamera(
       75,
@@ -92,7 +118,7 @@ export function EarthCommonV2() {
     container.appendChild(renderer.domElement);
     // window.addEventListener('resize', () => this.handleWindowResize())
     // 地球
-    const geometry = new THREE.SphereGeometry(3, 32, 32);
+    const geometry = new THREE.SphereGeometry(radius, 32, 32);
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load(earth_bg_5);
     const material = new THREE.MeshPhongMaterial({
@@ -101,6 +127,18 @@ export function EarthCommonV2() {
     });
     earth = new THREE.Mesh(geometry, material);
     scene.add(earth);
+
+    // 创建北京到东京的带弧度的线条
+    const curve = new THREE.QuadraticBezierCurve3(
+      new THREE.Vector3(1, 1, 1), // 北京的坐标
+      new THREE.Vector3(3, 3, 3), // 控制点坐标
+      new THREE.Vector3(5, 1, 1) // 东京的坐标
+    );
+    const points = curve.getPoints(50);
+    const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+    const lineMaterial = new THREE.LineBasicMaterial({ color: 0xff0000 });
+    const line = new THREE.Line(lineGeometry, lineMaterial);
+    scene.add(line);
 
     // 添加光源
     // const light = new THREE.DirectionalLight(0xffffff, 20);
@@ -135,7 +173,6 @@ export function EarthCommonV2() {
   // 渲染场景
   function animate() {
     requestAnimationFrame(animate);
-    earth.rotation.y += 0.01;
     renderer.render(scene, camera);
   }
 
