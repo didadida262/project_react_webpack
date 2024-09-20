@@ -125,7 +125,8 @@
     "react-icons": "^5.2.1",
     "react-intersection-observer": "^9.13.0",
     "sass": "^1.71.1",
-    "tailwindcss-line-clamp": "^1.0.5"
+    "tailwindcss-line-clamp": "^1.0.5",
+    "three.meshline": "^1.4.0"
   },
   "jest": {
     "roots": [

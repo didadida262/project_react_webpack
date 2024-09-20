@@ -1,163 +1,114 @@
 /*
- * @Description: 
+ * @Description: github globe 模拟
  * @Author: didadida262
- * @Date: 2024-09-18 15:36:49
+ * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-18 16:51:15
+ * @LastEditTime: 2024-09-20 11:16:18
  */
-import { useEffect } from "react";
+import cn from "classnames";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
-import { Scene, WebGLRenderer } from "three";
-import ThreeGlobe from "three-globe";
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControl.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-import countries from "./files/globe-data-min.json";
-import airportHistory from "./files/my-airports.json";
-import travelHistory from "./files/my-flights.json";
-import { createGlowMesh } from "./three-glow-mesh";
+import { setOrbit, setAxes } from "@/utils/threejsWeapon";
+import { countries } from "@/assets/threejs/files/countries";
+import earth_bg_1 from "@/assets/threejs/earth_bg1.png";
+import earth_bg_2 from "@/assets/threejs/earth_bg2.png";
+import earth_bg_3 from "@/assets/threejs/earth_bg3.jpg";
+import earth_bg_4 from "@/assets/threejs/earth_bg4.png";
+import earth_bg_5 from "@/assets/threejs/earth_bg5.jpg";
+import earth_bg_6 from "@/assets/threejs/earth_bg6.jpg";
+import earth_dot from "@/assets/threejs/earth_dot.png";
+import earth_env from "@/assets/threejs/earth_bg_env.jpg";
+
+import City from "./Geometry/City";
+import Earth from "./Geometry/Earth";
+
+const radius = 3;
 
 export function EarthCommonV3() {
-  let scene = null as any;
   let renderer = null as any;
-  let controls = null as any;
   let camera = null as any;
-  scene = new THREE.Scene();
-  const init = () => {
+  let scene = null as any;
+  let earth = null as any;
+  const [withAndHeight, setwithAndHeight] = useState({
+    width: 0,
+    height: 0
+  });
+  const initCanvas = () => {
     const container = document.getElementById("screen");
     if (!container) return;
-    renderer = new WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    // renderer.setSize(window.innerWidth, window.innerHeight);
+    // // 长宽
+    const containerWidth = container.clientWidth;
+    const containerHeight = container.clientHeight;
+    setwithAndHeight({
+      width: containerWidth,
+      height: containerHeight
+    });
+    // 舞台
+    scene = new THREE.Scene();
 
+    // 相机
+    camera = new THREE.PerspectiveCamera(
+      45,
+      containerWidth / containerHeight,
+      1,
+      1500
+    );
+    camera.position.set(-150, 100, -200);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
+
+    // // 渲染器
+
+    renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true }); // 抗锯齿
+
+    renderer.setClearColor(0xffffff, 0);
+    renderer.autoClear = false;
+    renderer.setSize(containerWidth, containerHeight);
+    renderer.toneMappingExposure = Math.pow(1, 4.0);
     container.appendChild(renderer.domElement);
 
-    scene = new Scene();
-    scene.add(new THREE.AmbientLight(0xbbbbbb, 0.3));
-    scene.background = new THREE.Color(0x04d21);
-
-    camera = new THREE.PerspectiveCamera();
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-
-    var dLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    dLight.position.set(-800, 2000, 400);
-    camera.add(dLight);
-
-    var dLight1 = new THREE.DirectionalLight(0x7982f6, 1);
-    dLight1.position.set(-200, 500, 200);
-    camera.add(dLight1);
-
-    var dLight2 = new THREE.PointLight(0x8566cc, 0.5);
-    dLight2.position.set(-200, 500, 200);
-    camera.add(dLight2);
-
-    camera.position.z = 400;
-    camera.position.x = 0;
-    camera.position.y = 0;
-
-    scene.add(camera);
-
-    scene.fog = new THREE.Fog(0x545ef3, 400, 2000);
-
-    controls = new OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.dynamicDampingFactor = 0.01;
-    controls.enablePan = false;
-    controls.minDistance = 200;
-    controls.maxDistance = 500;
-    controls.rotateSpeed = 0.8;
-    controls.zoomSpeed = 1;
-    controls.autoRotate = false;
-
-    controls.minPolarAngle = Math.PI / 3.5;
-    controls.maxPolarAngle = Math.PI - Math.PI / 3;
-
-    // window.addEventListener("resize", onWindowResize, false);
-    // window.addEventListener("mousemove", onMouseMove);
-  };
-  const initGlobe = () => {
-    const Globe = new ThreeGlobe()
-      .arcsData(travelHistory.flights)
-      .arcColor(e => {
-        return e.status ? "#9cff00" : "#ff4000";
-      })
-      .arcAltitude((e: any) => {
-        return e.arcAlt;
-      })
-      .arcStroke((e: any) => {
-        return e.status ? 0.5 : 0.3;
-      })
-      .arcDashLength(0.9)
-      .arcDashGap(4)
-      .arcDashAnimateTime(1000)
-      .arcsTransitionDuration(1000)
-      .arcDashInitialGap((e: any) => e.order * 1)
-      .labelsData(airportHistory.airports)
-      .labelColor(() => "#ffcb21")
-      .labelDotOrientation((e: any) => {
-        return e.text === "ALA" ? "top" : "right";
-      })
-      .labelDotRadius(0.3)
-      .labelSize((e: any) => e.size)
-      .labelText("City")
-      .labelResolution(6)
-      .labelAltitude(0.01)
-      .pointsData(airportHistory.airports)
-      .pointColor(() => "#ffffff")
-      .pointsMerge(true)
-      .pointAltitude(0.07)
-      .pointRadius(0.05)
-      .hexPolygonsData(countries.features)
-      .hexPolygonResolution(3)
-      .hexPolygonMargin(0.7)
-      .showAtmosphere(false)
-      .hexPolygonColor((e: any) => {
-        if (
-          ["KGZ", "KOR", "THA", "RUS", "UZB", "IDN", "KAZ", "MYS"].includes(
-            e.properties.ISO_A3
-          )
-        ) {
-          return "rgba(255,255,255,1)";
-        } else return "rgba(255,255,255,0.7)";
-      });
-    Globe.rotateY(-Math.PI * (5 / 9));
-    Globe.rotateX(-Math.PI * 6);
-    const globeMaterial: any = Globe.globeMaterial();
-    globeMaterial.color = 0x3a228a;
-    globeMaterial.emissive = 0x220038;
-    globeMaterial.emissiveIntensity = 0.1;
-    globeMaterial.shininess = 0.7;
-
-    const options = {
-      backside: true,
-      color: "#3a228a",
-      size: 100 * 0.25,
-      power: 6,
-      coefficient: 0.3
-    };
-    const glowMesh = createGlowMesh(
-      new THREE.SphereGeometry(100, 75, 75),
-      options
+    // 灯光配置
+    const pointLight = new THREE.PointLight(0xffffff, 100, 100);
+    pointLight.position.set(5, 5, 4);
+    pointLight.castShadow = true;
+    scene.add(pointLight);
+    const sphereSize = 1;
+    const pointLightHelper = new THREE.PointLightHelper(
+      pointLight,
+      sphereSize,
+      "white"
     );
-    Globe.add(glowMesh);
-    scene.add(Globe);
+    scene.add(pointLightHelper);
+
+    // 地球
+    const theEarth = new Earth(100);
+    const earth = theEarth.getMesh();
+    const earthGlow = theEarth.getGlowMesh();
+    const earthParticles = theEarth.getParticleMesh();
+    const earthGroup = new THREE.Group();
+    earthGroup.add(earth);
+    earthGroup.add(earthParticles);
+    const shanghai = new City(countries[0].position);
+
+    earthGroup.add(shanghai.getMesh());
+    scene.add(earthGroup);
   };
-  const animate = () => {
-    // camera.position.x +=
-    //   Math.abs(mouseX) <= windowHalfX / 2
-    //     ? (mouseX / 2 - camera.position.x) * 0.005
-    //     : 0;
-    // camera.position.y += (-mouseY / 2 - camera.position.y) * 0.005;
-    // camera.lookAt(scene.position);
-    // controls.update();
+  // 渲染场景
+  function animate() {
+    requestAnimationFrame(animate);
     renderer.render(scene, camera);
-    // requestAnimationFrame(animate);
-  };
+  }
+
   useEffect(() => {
-    init();
-    initGlobe();
+    initCanvas();
+    setOrbit(camera, renderer);
+    setAxes(scene);
     animate();
   }, []);
-  return <div className="w-full h-full markBorderG">diqiu</div>;
+  return (
+    <div className="earth-container h-full w-full ">
+      <div id="screen" className="h-full w-full" />
+    </div>
+  );
 }
