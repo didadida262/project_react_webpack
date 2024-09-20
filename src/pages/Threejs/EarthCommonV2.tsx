@@ -1,9 +1,9 @@
 /*
- * @Description: 自研地球-黑白版
+ * @Description: 自研地球
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-20 10:04:09
+ * @LastEditTime: 2024-09-20 10:11:08
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
@@ -15,7 +15,9 @@ import earth_bg from "@/assets/threejs/earth_bg1.png";
 import earth_bg_2 from "@/assets/threejs/earth_bg2.png";
 import earth_bg_3 from "@/assets/threejs/earth_bg3.jpg";
 import earth_bg_5 from "@/assets/threejs/earth_bg5.jpg";
+import earth_bg_6 from "@/assets/threejs/earth_bg6.jpg";
 import earth_dot from "@/assets/threejs/earth_dot.png";
+import earth_env from "@/assets/threejs/earth_bg_env.jpg";
 
 const radius = 3;
 
@@ -70,6 +72,9 @@ export function EarthCommonV2() {
     });
     // // 舞台
     scene = new THREE.Scene();
+    const textureLoaderEnv = new THREE.TextureLoader();
+
+    scene.background = textureLoaderEnv.load(earth_env);
     // 相机
     camera = new THREE.PerspectiveCamera(
       75,
@@ -88,18 +93,6 @@ export function EarthCommonV2() {
     // window.addEventListener('resize', () => this.handleWindowResize())
     // 地球
     const geometry = new THREE.SphereGeometry(3, 32, 32);
-    // 方案一
-
-    // const textureLoader = new THREE.TextureLoader();
-    // const texture = textureLoader.load(earth_bg_2);
-    // const material = new THREE.MeshPhongMaterial({
-    //   map: texture
-    //   // color: "#181d8c"
-    // });
-    // earth = new THREE.Mesh(geometry, material);
-    // scene.add(earth);
-
-    // 方案2
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load(earth_bg_5);
     const material = new THREE.MeshPhongMaterial({
