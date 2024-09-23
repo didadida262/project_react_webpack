@@ -1,19 +1,27 @@
 /*
  * @Author: hhvcg 719713496@qq.com
  * @Date: 2023-10-19 15:52:00
- * @LastEditors: hhvcg 719713496@qq.com
+ * @LastEditors: didadida262
  * @Description: 
  * 
  */
 
+export function waitTime(time: number) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve("wonimamamam>>>>");
+    }, time);
+  });
+}
+
 export const getRandomColor = () => {
   // rgba(x,y,z,透明度)
-  const r = Math.floor(Math.random() * 256)
-  const g = Math.floor(Math.random() * 256)
-  const b = Math.floor(Math.random() * 256)
-  const t = Math.random().toFixed(1)
-  return `rgba(${r}, ${g}, ${b}, ${t})`
-}
+  const r = Math.floor(Math.random() * 256);
+  const g = Math.floor(Math.random() * 256);
+  const b = Math.floor(Math.random() * 256);
+  const t = Math.random().toFixed(1);
+  return `rgba(${r}, ${g}, ${b}, ${t})`;
+};
 
 /**
  * @description: 比特转换器
@@ -22,12 +30,12 @@ export const getRandomColor = () => {
  * @return {*} MB单位值
  */
 export const formatBytes = (name, bytes) => {
-  return name + ': ' + (bytes / 1024 / 1024).toFixed(2) + ' MB '
-}
+  return name + ": " + (bytes / 1024 / 1024).toFixed(2) + " MB ";
+};
 
 export const formatTime = (name, time) => {
-  return time / 1000 + 's'
-}
+  return time / 1000 + "s";
+};
 
 /**
    * @description: 程序耗时检测器
@@ -36,14 +44,14 @@ export const formatTime = (name, time) => {
    * @return {*} 输出程序用时
    */
 export const costTime = (name, fn) => {
-  console.time(name)
-  fn()
-  console.timeEnd(name)
-}
+  console.time(name);
+  fn();
+  console.timeEnd(name);
+};
 
 export const generateAtoZ = () => {
   // 'a'.charCodeAt()
-}
+};
 
 /**
   * @description: 万能字符获取器

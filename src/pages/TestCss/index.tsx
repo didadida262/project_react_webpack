@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-05-06 16:34:10
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-09 18:28:57
+ * @LastEditTime: 2024-09-23 15:31:34
  */
 import { Button } from "antd";
 
@@ -22,6 +22,8 @@ import React, {
 import { StickyScrollRevealDemo } from "../../components/StickyCompo";
 import { ThemeContext, ThemeMode } from "../../components/themeProvider";
 import pattern from "../../styles/pattern";
+import { waitTime } from "@/utils/common_weapons";
+import { ButtonCommon } from "@/components/ButtonCommon";
 
 const TestCss = () => {
   const { currentTheme, setCurrentTheme } = useContext(ThemeContext);
@@ -87,27 +89,14 @@ const TestCss = () => {
         <span>测试滚动高亮</span>
         <div />
       </div>
-      <div className="w-[200px] h-[30px] markBorderR line-clamp-1 ">
-        啥玩意儿啊啥玩意儿啊啥玩意儿啊啥玩意儿啊啥玩意儿啊
-      </div>
-      <div className="w-[200px] h-[30px] markBorderR truncate ">
-        asdasdasdasdasdasdasdasdasdasdasdasd
-      </div>
-      <div className="w-full h-[30px] flex justify-between items-center markBorderR gap-x-3">
-        <div className="w-[500px] h-full markBorderG flex-shrink-0">1</div>
-        <div className="w-[500px] h-full markBorderG flex-shrink-0">2</div>
-        <div className="flex-1 h-full markBorderG truncate">
-          asdasdasdasdasdasdasdasdasdasdasdasd
-        </div>
-      </div>
-      {/* <div>
-        <span>测试交叉</span>
-        <div className="w-[300px] h-[200px] markBorderG flex justify-center items-center">
-          <div className="w-[100px] h-[100px] markBorderR" ref={myRef}>
-            内容去
-          </div>
-        </div>
-      </div> */}
+      <ButtonCommon
+        onClick={async () => {
+          const data = await waitTime(2000);
+          console.log("我尼玛", data);
+        }}
+      >
+        测试promise
+      </ButtonCommon>
     </div>
   );
 };
