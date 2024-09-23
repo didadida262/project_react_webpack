@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-20 11:56:24
+ * @LastEditTime: 2024-09-23 11:27:52
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
@@ -22,9 +22,11 @@ import earth_bg_5 from "@/assets/threejs/earth_bg5.jpg";
 import earth_bg_6 from "@/assets/threejs/earth_bg6.jpg";
 import earth_dot from "@/assets/threejs/earth_dot.png";
 import earth_env from "@/assets/threejs/earth_bg_env.jpg";
+import earth_env2 from "@/assets/threejs/earth_bg_env2.png";
 
 import City from "./Geometry/City";
 import Earth from "./Geometry/Earth";
+import Link from "./Geometry/Link";
 import { UnrealBloomPass } from "./lib/bloomPass";
 
 const radius = 3;
@@ -33,13 +35,38 @@ export function EarthCommonV3() {
   let renderer = null as any;
   let camera = null as any;
   let scene = null as any;
-  let earth = null as any;
+  let earthGroup = null as any;
   let composer = null as any;
+  let shanghai = null as any;
+  const cities = [] as any;
 
   const [withAndHeight, setwithAndHeight] = useState({
     width: 0,
     height: 0
   });
+  const createActivity = () => {
+    console.log("createActivity>>>>>>>");
+    const length = countries.length;
+    const index = Math.floor(Math.random() * length);
+
+    const fromCity = new City(countries[index].position);
+    console.log("fromCity>>>>>>", fromCity);
+
+    const link = new Link(fromCity, shanghai);
+    console.log("link", link);
+
+    earthGroup.add(fromCity.getMesh());
+    earthGroup.add(link.getMesh());
+
+    cities.push({ city: fromCity, link });
+    if (cities.length > 5) {
+      const drop = cities.shift();
+      earthGroup.remove(drop.city.getMesh());
+      earthGroup.remove(drop.link.getMesh());
+      drop.city.destroy();
+      drop.link.destroy();
+    }
+  };
   const initCanvas = () => {
     const container = document.getElementById("screen");
     if (!container) return;
@@ -50,8 +77,11 @@ export function EarthCommonV3() {
       width: containerWidth,
       height: containerHeight
     });
+
     // 舞台
     scene = new THREE.Scene();
+    const textureLoaderEnv = new THREE.TextureLoader();
+    // scene.background = textureLoaderEnv.load(earth_env2);
 
     // 相机
     camera = new THREE.PerspectiveCamera(
@@ -63,13 +93,28 @@ export function EarthCommonV3() {
     camera.position.set(-150, 100, -200);
     camera.lookAt(new THREE.Vector3(0, 0, 0));
 
-    // // 渲染器
+    // 灯光
+    const pointLight = new THREE.PointLight(0xffffff, 50000, 100);
+    pointLight.position.set(-110, 80, -100);
+    pointLight.castShadow = true;
+    scene.add(pointLight);
+    const sphereSize = 1;
+    const pointLightHelper = new THREE.PointLightHelper(
+      pointLight,
+      sphereSize,
+      "white"
+    );
+    scene.add(pointLightHelper);
+    // 环境光
+    const envLight = new THREE.AmbientLight("white", 1);
+    scene.add(envLight);
 
+    // // 渲染器
     renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true }); // 抗锯齿
-    renderer.setClearColor(0xffffff, 0);
-    renderer.autoClear = false;
+    // renderer.setClearColor(0xffffff, 0);
+    // renderer.autoClear = false;
     renderer.setSize(containerWidth, containerHeight);
-    renderer.toneMappingExposure = Math.pow(1, 4.0);
+    // renderer.toneMappingExposure = Math.pow(1, 4.0);
     container.appendChild(renderer.domElement);
 
     // 地球
@@ -77,45 +122,40 @@ export function EarthCommonV3() {
     const earth = theEarth.getMesh();
     const earthGlow = theEarth.getGlowMesh();
     const earthParticles = theEarth.getParticleMesh();
-    const earthGroup = new THREE.Group();
+    earthGroup = new THREE.Group();
     earthGroup.add(earth);
     earthGroup.add(earthParticles);
-    const shanghai = new City(countries[0].position);
-
-    earthGroup.add(shanghai.getMesh());
+    shanghai = new City(countries[0].position);
+    // earthGroup.add(shanghai.getMesh());
     scene.add(earthGroup);
 
-    // Set up an effect composer
-    // composer = new EffectComposer(renderer);
-    // composer.setSize(containerWidth, containerHeight);
+    window.setInterval(() => createActivity(), 4000);
 
-    // const renderScene = new RenderPass(scene, camera);
-    // const bloomPass = new UnrealBloomPass(
-    //   new THREE.Vector2(containerWidth, containerHeight),
-    //   1.5,
-    //   -0.8,
-    //   0.5
-    // ); // strength, radius, threshold
-    // renderScene.clear = false;
-    // bloomPass.clear = false;
-    // composer.addPass(renderScene);
-    // composer.addPass(bloomPass);
+    // const light = new THREE.AmbientLight(0xffffff, 0.25); // soft white light
+    // scene.add(light);
 
-    // Tells composer that second pass gets rendered to screen
-    // bloomPass.renderToScreen = true;
+    // 灯光配置
+    // const pointLight = new THREE.PointLight(0xffffff, 100, 100);
+    // pointLight.position.set(5, 5, 4);
+    // pointLight.castShadow = true;
+    // scene.add(pointLight);
+    // const sphereSize = 1;
+    // const pointLightHelper = new THREE.PointLightHelper(
+    //   pointLight,
+    //   sphereSize,
+    //   "white"
+    // );
 
-    // 光源
-    const spotLight = new THREE.SpotLight(0x404040, 2.5);
-    spotLight.target = earth;
-    scene.add(spotLight);
-
-    const light = new THREE.AmbientLight(0xffffff, 0.25); // soft white light
-    scene.add(light);
+    // scene.add(pointLightHelper);
   };
   // 渲染场景
   function animate() {
     requestAnimationFrame(animate);
+    if (earthGroup) {
+      earthGroup.rotation.y += 0.003;
+    }
     renderer.render(scene, camera);
+
     // composer.render();
   }
 

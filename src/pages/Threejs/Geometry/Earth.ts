@@ -3,8 +3,9 @@ import * as THREE from "three";
 import dotImg from "@/assets/threejs/dot.png";
 import earthBg from "@/assets/threejs/earth_bg1.png";
 
-const EARTH_COLOR = 0x0689c9;
-const EARTH_PARTICLE_COLOR = 0xa9effc;
+const EARTH_COLOR = 0x004ca8;
+// const EARTH_PARTICLE_COLOR = 0xa9effc;
+const EARTH_PARTICLE_COLOR = 'white';
 
 export default class Earth {
   private earth: THREE.Mesh;
@@ -84,9 +85,9 @@ export default class Earth {
     material.map = new THREE.TextureLoader().load(dotImg);
     material.depthWrite = false;
     material.transparent = true;
-    material.opacity = 0.7;
+    material.opacity = 1;
     material.side = THREE.FrontSide;
-    material.blending = THREE.AdditiveBlending;
+    // material.blending = THREE.AdditiveBlending;
     const spherical = new THREE.Spherical();
     spherical.radius = 100;
     const step = 250;

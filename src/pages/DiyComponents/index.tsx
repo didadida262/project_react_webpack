@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-19 18:19:31
+ * @LastEditTime: 2024-09-20 15:12:12
  */
 import React from "react";
 import { useState, memo, useEffect, useContext } from "react";
@@ -157,6 +157,11 @@ const DiyComponents = () => {
             这是一段很长很长的文本 这是一段很长很长的文本 这是一段很长很长的文本 这是一段很长很长的文本 这是一段很长很长的文本
             这是一段很长很长的文本 这是一段很长很长的文本
           </p>
+        </Card>
+        <Card>
+          <span className="text-[36px] bg-gradient-to-b from-[#FFFFFF] to-[#97CDFF] bg-clip-text text-transparent">
+            2024年3月22日
+          </span>
         </Card>
       </div>
     </div>

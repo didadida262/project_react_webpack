@@ -39,13 +39,13 @@ export default class Link {
     }
 
     const curvePoints = curve.getPoints(100);
-    const material: any = new MeshLineMaterial({
+    const material: any = new THREE.LineBasicMaterial({
       color: LINK_COLOR,
       opacity: 0.7,
       transparent: true
     });
     const lineLength = { value: 0 };
-    const line: any = new MeshLine();
+    const line: any = new THREE.Line();
     const drawLineTween = new TWEEN.Tween(lineLength).to({ value: 100 }, 3000);
     drawLineTween.onUpdate(function() {
       line.setPoints(
