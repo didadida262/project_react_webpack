@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-14 16:46:48
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-23 11:27:52
+ * @LastEditTime: 2024-09-24 04:11:56
  */
 import cn from "classnames";
 import { useEffect, useState } from "react";
@@ -26,7 +26,7 @@ import earth_env2 from "@/assets/threejs/earth_bg_env2.png";
 
 import City from "./Geometry/City";
 import Earth from "./Geometry/Earth";
-import Link from "./Geometry/Link";
+import LinkCommon from "./Geometry/LinkCommon";
 import { UnrealBloomPass } from "./lib/bloomPass";
 
 const radius = 3;
@@ -45,21 +45,18 @@ export function EarthCommonV3() {
     height: 0
   });
   const createActivity = () => {
-    console.log("createActivity>>>>>>>");
     const length = countries.length;
     const index = Math.floor(Math.random() * length);
 
     const fromCity = new City(countries[index].position);
-    console.log("fromCity>>>>>>", fromCity);
 
-    const link = new Link(fromCity, shanghai);
-    console.log("link", link);
+    const link = new LinkCommon(fromCity, shanghai);
 
     earthGroup.add(fromCity.getMesh());
     earthGroup.add(link.getMesh());
 
     cities.push({ city: fromCity, link });
-    if (cities.length > 5) {
+    if (cities.length > 35) {
       const drop = cities.shift();
       earthGroup.remove(drop.city.getMesh());
       earthGroup.remove(drop.link.getMesh());
@@ -162,7 +159,7 @@ export function EarthCommonV3() {
   useEffect(() => {
     initCanvas();
     setOrbit(camera, renderer);
-    setAxes(scene);
+    // setAxes(scene);
     animate();
   }, []);
   return (

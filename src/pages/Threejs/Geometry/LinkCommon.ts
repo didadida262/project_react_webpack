@@ -1,14 +1,15 @@
 import * as THREE from "three";
 // import { MeshLine, MeshLineMaterial } from "three.meshline";
 
+import { getRandomColor } from "@/utils/common_weapons";
 import * as TWEEN from "@tweenjs/tween.js";
 
 import City from "./City";
 // import { MeshLine, MeshLineMaterial } from "./THREE.MeshLine";
 
-const LINK_COLOR = 0x24e5ff;
+const LINK_COLOR = getRandomColor();
 
-export default class Link {
+export default class LinkCommon {
   private city1: City;
   private city2: City;
   private linkGroup: THREE.Group;
@@ -40,37 +41,63 @@ export default class Link {
 
     const curvePoints = curve.getPoints(100);
     const material: any = new THREE.LineBasicMaterial({
-      color: LINK_COLOR,
-      opacity: 0.7,
+      color: getRandomColor(),
+      opacity: 1,
       transparent: true
     });
     const lineLength = { value: 0 };
-    const line: any = new THREE.Line();
+    const line = new THREE.BufferGeometry();
 
     const drawLineTween = new TWEEN.Tween(lineLength).to({ value: 100 }, 3000);
     drawLineTween.onUpdate(function() {
-      line.setPoints(
-        curvePoints.slice(0, lineLength.value + 1),
-        (p: number) => 0.2 + p / 2
+      line.setFromPoints(
+        curvePoints.slice(0, lineLength.value + 1)
+        // (p: number) => 0.2 + p / 2
       );
     });
 
     const eraseLineTween = new TWEEN.Tween(lineLength).to({ value: 0 }, 3000);
     eraseLineTween.onUpdate(function() {
-      line.setPoints(
+      line.setFromPoints(
         curvePoints.slice(
           curvePoints.length - lineLength.value,
           curvePoints.length
-        ),
-        (p: number) => 0.2 + p / 2
+        )
+        // (p: number) => 0.2 + p / 2
       );
     });
 
     drawLineTween.start();
-    setTimeout(() => eraseLineTween.start(), 6000);
+    setInterval(() => {
+      drawLineTween.update();
+      eraseLineTween.update();
+    }, 50);
+    setTimeout(() => eraseLineTween.start(), 4000);
 
-    const mesh = new THREE.Mesh(line, material);
+    const mesh = new THREE.Line(line, material);
+    // 创建一个几何体并将其形状设置为线
+    // const geometry2 = new THREE.BoxGeometry();
+    // const material2 = new THREE.MeshBasicMaterial({ color: "green" });
+    // const cube2 = new THREE.Mesh(geometry2, material2);
+    // // 使用 Tween.js 创建动画
+    // const tween = new TWEEN.Tween({ t: 0 })
+    //   .to({ t: 100 }, 5000) // 动画持续时间为 5000 毫秒
+    //   .onUpdate(() => {
+    //     console.log("我尼玛>>>", this.t);
+    //     const position = curvePoints[this.t++];
+    //     cube2.position.copy(position);
+    //   })
+    //   .start();
+    // setInterval(() => {
+    //   tween.update();
+    // }, 100);
+    // const geometry1 = new THREE.BufferGeometry();
+    // geometry1.setFromPoints(curve.getPoints(100)); // 参数决定曲线的细节程度
+
+    // const material1 = new THREE.LineBasicMaterial({ color: 0xff0000 });
+    // const mesh = new THREE.Line(geometry1, material1);
     this.linkGroup.add(mesh);
+    // this.linkGroup.add(cube2);
   };
 
   drawRing() {
