@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-20 15:12:12
+ * @LastEditTime: 2024-09-29 15:18:45
  */
 import React from "react";
 import { useState, memo, useEffect, useContext } from "react";
@@ -59,13 +59,11 @@ const DiyComponents = () => {
   };
 
   return (
-    <div className="h-full">
+    <div className="h-full overflow-scroll ">
       <div className={`w-full ${pattern.flexCenter} h-[80px]`}>
         <span className="text-textFirstSize">公共组件库</span>
       </div>
-      <div
-        className={`pb-4 overflow-scroll px-[16px] w-full h-[calc(100%_-_80px)] flex flex-wrap justify-start gap-x-3`}
-      >
+      <div className={`pb-4 px-[16px] w-full  flex flex-wrap gap-x-5 gap-y-5`}>
         <Card>
           <ButtonCommon
             type={EButtonType.PRIMARY}

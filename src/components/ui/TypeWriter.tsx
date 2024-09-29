@@ -6,9 +6,9 @@
  * @LastEditTime: 2024-08-12 16:30:31
  */
 
-import cn from 'classnames';
-import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import cn from "classnames";
+import { animate, motion, useMotionValue, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export interface Props {
   text: string;
@@ -21,9 +21,8 @@ export default function TypeWriter({ text, className }: Props) {
 
   const baseText = useTransform(textIndex, () => text);
   const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) => Math.round(latest));
-  const displayText = useTransform(rounded, (latest) => {
-    console.log('...', latest);
+  const rounded = useTransform(count, latest => Math.round(latest));
+  const displayText = useTransform(rounded, latest => {
     if (latest === text.length && !done) {
       setDone(true);
     }
@@ -32,10 +31,10 @@ export default function TypeWriter({ text, className }: Props) {
   const updatedThisRound = useMotionValue(true);
   useEffect(() => {
     animate(count, 60, {
-      type: 'tween',
+      type: "tween",
       delay: 1,
       duration: 5,
-      ease: 'easeIn',
+      ease: "easeIn",
       repeat: Infinity,
       repeatDelay: 2,
       onUpdate(latest) {
@@ -46,12 +45,12 @@ export default function TypeWriter({ text, className }: Props) {
           console.warn(2);
           updatedThisRound.set(true);
         }
-      },
+      }
     });
   }, []);
 
   return (
-    <motion.span className={cn(className, done ? '' : 'test')}>
+    <motion.span className={cn(className, done ? "" : "test")}>
       {displayText}
     </motion.span>
   );
