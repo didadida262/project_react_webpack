@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-29 15:18:45
+ * @LastEditTime: 2024-09-29 15:22:36
  */
 import React from "react";
 import { useState, memo, useEffect, useContext } from "react";
@@ -20,6 +20,7 @@ import { TypeWriterV4 } from "@/components/ui/TypeWriterV4";
 import { TypeWriterV7 } from "@/components/ui/TypeWriterV7";
 import { dotData, dotClass } from "@/server/circleData";
 import { columns } from "@/mock/columns";
+import { EarthCommonV3 } from "@/components/Earth/EarthCommonV3";
 import BlockChainLottie from "@/assets/lottie/Blockchains.json";
 
 import TypeWriter from "../../components/ui/TypeWriter";
@@ -160,6 +161,9 @@ const DiyComponents = () => {
           <span className="text-[36px] bg-gradient-to-b from-[#FFFFFF] to-[#97CDFF] bg-clip-text text-transparent">
             2024年3月22日
           </span>
+        </Card>
+        <Card className="earth">
+          <EarthCommonV3 />
         </Card>
       </div>
     </div>

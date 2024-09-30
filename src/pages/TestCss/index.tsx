@@ -3,9 +3,10 @@
  * @Author: didadida262
  * @Date: 2024-05-06 16:34:10
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-23 15:31:34
+ * @LastEditTime: 2024-09-29 16:38:59
  */
 import { Button } from "antd";
+import cn from "classnames";
 
 import React, {
   useEffect,
@@ -97,6 +98,16 @@ const TestCss = () => {
       >
         测试promise
       </ButtonCommon>
+      <div
+        className={cn(
+          "w-0 h-0",
+          // "absolute top-[-10px] left-[2px]",
+          "border-r-[20px] border-r-solid border-r-[#0D2963]",
+          "border-t-[20px] border-r-solid border-t-transparent",
+          "border-l-[20px] border-r-solid border-l-transparent",
+          "border-b-[20px] border-r-solid border-b-transparent"
+        )}
+      />
     </div>
   );
 };

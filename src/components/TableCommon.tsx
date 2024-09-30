@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-08-29 13:47:01
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-19 18:14:12
+ * @LastEditTime: 2024-09-29 16:46:26
  */
 import { notification } from "antd";
 import cn from "classnames";
@@ -94,7 +94,7 @@ export function TableCommon(props: IProps) {
                           curretnColWidth
                     }
                     className={cn(
-                      `flex-shrink-0 px-3 flex items-center justify-start  text-[15px] text-[#ffffff]`,
+                      `flex-shrink-0 px-3 flex items-center justify-start  text-[15px] text-[#ffffff] relative group`,
                       col.copy ? "cursor-pointer" : ""
                     )}
                     key={index + "_" + colkey}
@@ -105,6 +105,22 @@ export function TableCommon(props: IProps) {
                     <span className="w-full h-full truncate leading-[40px]">
                       {col.dataIndex ? item[col.dataIndex] : index + 1}
                     </span>
+                    <div className="markBorderR z-[10] hidden group-hover:block text-[#ffffff] w-full max-h-[254px]  absolute top-[35px] left-0 px-[10px] py-[5px]">
+                      <div
+                        className={cn(
+                          "w-0 h-0",
+                          // "absolute top-[40px] left-[5px]",
+                          "absolute top-[-10px] left-[2px]",
+                          "border-r-[10px] border-r-solid border-r-transparent",
+                          "border-t-[10px] border-r-solid border-t-transparent",
+                          "border-l-[10px] border-r-solid border-l-transparent",
+                          "border-b-[10px] border-r-solid border-b-red"
+                        )}
+                      />
+                      <div className="rounded-[5px] z-[10] hidden group-hover:block text-[#ffffff] w-full h-full bg-[#0D2963] overflow-scroll">
+                        {col.dataIndex ? item[col.dataIndex] : index + 1}
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
