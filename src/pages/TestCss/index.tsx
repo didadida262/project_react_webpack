@@ -3,10 +3,12 @@
  * @Author: didadida262
  * @Date: 2024-05-06 16:34:10
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-29 16:38:59
+ * @LastEditTime: 2024-09-30 14:56:05
  */
 import { Button } from "antd";
 import cn from "classnames";
+
+import { Graph } from "@/components/Graph";
 
 import React, {
   useEffect,
@@ -70,7 +72,6 @@ const TestCss = () => {
 
   return (
     <div>
-      测试css
       <div>
         <div className="fadeIn">
           <p className="test SingleLineTextOverflow bg-[black] text-[green]">
@@ -79,35 +80,9 @@ const TestCss = () => {
           </p>
         </div>
       </div>
-      <div className={`${pattern.fontOswald48}`}>测试字体</div>
-      <div className={`${pattern.fontOswald48}`}>测试字体</div>
-      <div className={`${pattern.fontOswald48}`}>测试字体</div>
-      <div className={`${pattern.fontOswald48}`}>测试字体</div>
-      <div className={`${pattern.fontOswald48}`}>测试字体</div>
-      <div className={`${pattern.fontOswald48}`}>测试字体</div>
-      <div className={`${pattern.fontOswald48}`}>测试字体</div>
-      <div>
-        <span>测试滚动高亮</span>
-        <div />
+      <div className="w-full h-[900px] ">
+        <Graph />
       </div>
-      <ButtonCommon
-        onClick={async () => {
-          const data = await waitTime(2000);
-          console.log("我尼玛", data);
-        }}
-      >
-        测试promise
-      </ButtonCommon>
-      <div
-        className={cn(
-          "w-0 h-0",
-          // "absolute top-[-10px] left-[2px]",
-          "border-r-[20px] border-r-solid border-r-[#0D2963]",
-          "border-t-[20px] border-r-solid border-t-transparent",
-          "border-l-[20px] border-r-solid border-l-transparent",
-          "border-b-[20px] border-r-solid border-b-transparent"
-        )}
-      />
     </div>
   );
 };
