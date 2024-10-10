@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-09-30 11:17:31
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-30 18:14:03
+ * @LastEditTime: 2024-10-10 15:09:32
  */
 interface IProps {}
 /* eslint-disable no-undef */
@@ -206,20 +206,11 @@ export function Graph(props: IProps) {
     setLayout(value);
   };
 
-  // const layout = layouts.find(item => item.type === type);
-  const graphinDefaultConfig = {
-    layout: {
-      type: "random"
-      // rankdir: "LR" // 可选，默认为图的中心,
-    },
-    theme: { background: "#e5e8ee33" },
-    fitCenter: true
-  };
+  const layout = layouts.find(item => item.type === type);
   return (
-    <div className="w-full h-full markBorderR">
-      {/* <Card
+    <div className="w-full h-full">
+      <Card
         title="布局切换"
-        bodyStyle={{ width: "100%", height: "100%" }}
         extra={
           <LayoutSelector
             options={layouts}
@@ -227,13 +218,13 @@ export function Graph(props: IProps) {
             onChange={handleChange}
           />
         }
-      > */}
-      <Graphin
-        data={data}
-        layout={graphinDefaultConfig.layout}
-        style={{ width: "100%", height: "100%" }}
-      />
-      {/* </Card> */}
+      >
+        <Graphin
+          data={data}
+          layout={layout}
+          style={{ width: "100%", height: "100%" }}
+        />
+      </Card>
     </div>
   );
 }
