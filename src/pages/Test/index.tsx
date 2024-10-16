@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-16 09:59:27
+ * @LastEditTime: 2024-10-16 10:13:34
  */
 
 import { Button } from "antd";
@@ -41,30 +41,34 @@ const canvasWorker = new Worker(new URL("./worker.js", import.meta.url));
 const TestComponent = function() {
   const canvasOneRef = useRef() as any;
   const canvasTwoRef = useRef() as any;
-
-  useEffect(() => {
+  let animationFrameId
+  const drawCanvasOne = () => {
     if (!canvasOneRef.current || !canvasTwoRef.current) return
     const canvas:HTMLCanvasElement = canvasOneRef.current
     const ctx = canvas.getContext('2d');
     if (!ctx) return
-      let frameCount = 0;
-      let animationFrameId;
-      const render = () => {
-          frameCount++;
-          ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-          ctx.fillStyle = '#FFFFFF';
-          ctx.beginPath();
-          ctx.arc(150, 150, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
-          ctx.fill();
-          animationFrameId = window.requestAnimationFrame(render);
-      }
-      render();
-      const transfercanvasWorker = canvasTwoRef.current.transferControlToOffscreen();
-      canvasWorker.postMessage({ canvas: transfercanvasWorker }, [transfercanvasWorker]);
-
-      return () => {
-          window.cancelAnimationFrame(animationFrameId);
-      }
+    let frameCount = 0;
+    const render = () => {
+      frameCount++;
+      ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.arc(150, 150, 20 * Math.sin(frameCount * 0.05) ** 2, 0, 2 * Math.PI);
+      ctx.fill();
+      animationFrameId = window.requestAnimationFrame(render);
+    }
+    render();
+  }
+  const drawCanvasTwo = () => {
+    const transfercanvasWorker = canvasTwoRef.current.transferControlToOffscreen();
+    canvasWorker.postMessage({ canvas: transfercanvasWorker }, [transfercanvasWorker]);
+  }
+  useEffect(() => {
+    drawCanvasOne()
+    drawCanvasTwo()
+    return () => {
+        window.cancelAnimationFrame(animationFrameId);
+    }
   }, [])
 
 
