@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-02 11:24:41
+ * @LastEditTime: 2024-10-16 09:59:27
  */
 
 import { Button } from "antd";
@@ -38,7 +38,7 @@ import { resolve } from "path";
 
 
 const canvasWorker = new Worker(new URL("./worker.js", import.meta.url));
-const AboutComponent = function() {
+const TestComponent = function() {
   const canvasOneRef = useRef() as any;
   const canvasTwoRef = useRef() as any;
 
@@ -93,4 +93,4 @@ const AboutComponent = function() {
 
 };
 
-export default AboutComponent;
+export default TestComponent;

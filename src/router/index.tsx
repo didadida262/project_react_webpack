@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-25 15:13:17
  * @LastEditors: didadida262
- * @LastEditTime: 2024-09-10 16:46:41
+ * @LastEditTime: 2024-10-16 10:00:48
  */
 
 import { Suspense, lazy } from "react";
@@ -26,7 +26,7 @@ import TestCss from "../pages/TestCss";
 import ThreejsComponent from "../pages/Threejs";
 
 // 路由懒加载
-const About = lazy(() => import("../pages/About"));
+const Test = lazy(() => import("../pages/Test"));
 
 const router = createBrowserRouter([
   {
@@ -50,10 +50,10 @@ const router = createBrowserRouter([
         element: <DiyComponents />
       },
       {
-        path: "about",
+        path: "test",
         element: (
           <Suspense fallback={"加载中"}>
-            <About />
+            <Test />
           </Suspense>
         )
       },
