@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-25 15:13:17
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-16 10:02:27
+ * @LastEditTime: 2024-10-16 14:45:10
  */
 
 import { Suspense, lazy } from "react";
@@ -11,6 +11,7 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 import Earth from "@/pages/Earth";
+import WaferComponent from "@/pages/WaferComponent";
 
 import AuthRoute from "../components/AuthRoute";
 import ChatGpt from "../pages/ChatGpt";
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "diycomponent",
         element: <DiyComponents />
+      },
+      {
+        path: "wafer",
+        element: <WaferComponent />
       },
       {
         path: "test",
