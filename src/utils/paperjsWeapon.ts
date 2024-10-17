@@ -1,6 +1,14 @@
 // 基于paperjs的游戏引擎0.1版本库
 
-import paper from 'paper';
+import paper from "paper";
+
+export const showPoint = (point, color) => {
+  const p = new paper.Path.Circle({
+    center: point,
+    radius: 8,
+    fillColor: color
+  });
+};
 
 // tools相关
 
@@ -8,7 +16,7 @@ import paper from 'paper';
 
 export const judeToolExisted = (paper, name) => {
   const tools: Array<any> = paper.tools;
-  const existedCurretnTool = tools.filter((item) => item.name === name)[0];
+  const existedCurretnTool = tools.filter(item => item.name === name)[0];
   if (existedCurretnTool) {
     existedCurretnTool.activate();
     return true;
@@ -31,51 +39,48 @@ export const getRandomDirection = (position: paper.Point, range: number) => {
 // 删除指定project的某一层
 export const removeLayer = (
   currentProject: paper.Project,
-  layerName: String,
+  layerName: String
 ) => {
-  console.log('removeLayer--currentProject', currentProject);
+  console.log("removeLayer--currentProject", currentProject);
 
   let target = currentProject.layers.filter(
-    (layer) => layer.name === layerName,
+    layer => layer.name === layerName
   )[0] as paper.Layer;
   if (target) {
     target.remove();
   }
 };
-// // 指定项目绘制坐标层次
-export const drawXY = (currentProject: paper.Project) => {
-  console.log('drawXY>>>');
-  if (!currentProject) {
-    // throw "project null"
-    return;
-  }
+// // 指定项目、层，绘制坐标图形
+export const drawXY = (currentProject, layerName) => {
+  if (!currentProject) return;
   const WIDTH = currentProject.view.bounds.width;
   const HEIGHT = currentProject.view.bounds.height;
   currentProject.activate();
-  removeLayer(currentProject, 'layerXY');
+  removeLayer(currentProject, layerName);
   const layerXY = new paper.Layer();
-  layerXY.name = 'layerXY';
+  layerXY.name = layerName;
   const currentCenter = currentProject.view.center;
-  new paper.Path.Line({
+  const X = new paper.Path.Line({
     from: new paper.Point(currentCenter.x - WIDTH / 2, currentCenter.y),
     to: new paper.Point(currentCenter.x + WIDTH / 2, currentCenter.y),
-    strokeColor: 'red',
-    strokeWidth: getViewBorderSize(currentProject),
+    strokeColor: "red",
+    strokeWidth: getViewBorderSize(currentProject)
   });
-  new paper.Path.Line({
+  const Y = new paper.Path.Line({
     from: new paper.Point(currentCenter.x, currentCenter.y - HEIGHT / 2),
     to: new paper.Point(currentCenter.x, currentCenter.y + HEIGHT / 2),
-    strokeColor: 'red',
-    strokeWidth: getViewBorderSize(currentProject),
+    strokeColor: "red",
+    strokeWidth: getViewBorderSize(currentProject)
   });
-  new paper.PointText({
-    point: currentCenter.add(2),
+  const coordinateData = new paper.PointText({
+    point: currentCenter.add(2, -5),
     content: `(${currentCenter.x.toFixed(2)} , ${currentCenter.y.toFixed(2)})`,
-    fillColor: 'red',
-    justification: 'left',
-    fontWeight: 'bold',
-    fontSize: getViewFontSize(currentProject),
+    fillColor: "red",
+    justification: "left",
+    fontWeight: "bold",
+    fontSize: getViewFontSize(currentProject)
   });
+  // modifyDirection(coordinateData)
 };
 // 获取视图级别的字体大小
 export const getViewFontSize = (currentProject: paper.Project) => {
@@ -224,11 +229,3 @@ export const getViewBorderSize = (currentProject: paper.Project) => {
 //   c1.remove()
 //   c2.remove()
 // }
-
-export const showPoint = (point, color) => {
-  const p = new paper.Path.Circle({
-    center: point,
-    radius: 8,
-    fillColor: color,
-  });
-};

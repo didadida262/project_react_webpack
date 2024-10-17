@@ -3,13 +3,14 @@
  * @Author: didadida262
  * @Date: 2024-10-16 14:51:56
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-16 15:12:08
+ * @LastEditTime: 2024-10-17 11:15:43
  */
 import cn from "classnames";
 import paper from "paper";
 import { useEffect, useRef, useState } from "react";
 
 import { dotData } from "@/server/circleData";
+import { showPoint, drawXY } from "@/utils/paperjsWeapon";
 
 const waferInfo = {
   radius: 70,
@@ -19,9 +20,13 @@ export const ReviewWafer = () => {
   // const canvasRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef() as any;
   const [radius, setRadius] = useState(0);
+  let initPoint = new paper.Point(0, 0);
+
+  let tool = null as any;
+
   const [WH, setWH] = useState({
     width: "",
-    heigth: ""
+    height: ""
   });
   const init = () => {
     const canvas = canvasRef.current;
@@ -32,10 +37,23 @@ export const ReviewWafer = () => {
     const ratio = Number(radius / realRadius);
     const innerRadius = radius - waferInfo.edge_exclusion * ratio;
     paper.setup(canvas);
-    paper.view.center = new paper.Point(0, 0);
+    console.log("paper>>>", paper);
+    // paper.view.center = new paper.Point(0, 0);
     setRadius(radius);
     console.log("radius>>>1", radius);
+    console.log("WIDTH>>>1", WIDTH);
+    console.log("HEIGHT>>>1", HEIGHT);
+    // // 计算视图的中心点坐标
+    // const centerX = WIDTH / 2;
+    // const centerY = HEIGHT / 2;
+    // // 将坐标原点设置为视图的中心点
+    // paper.view.translate({ x: centerX, y: centerY });
+    paper.view.center = paper.view.bounds.center;
     // paper.project.name = "circle";
+    setWH({
+      width: WIDTH,
+      height: HEIGHT
+    });
   };
   const drawCircle = () => {
     const layerCircleOut = new paper.Layer();
@@ -60,11 +78,31 @@ export const ReviewWafer = () => {
       }
     });
   };
+  const initTool = () => {
+    tool = new paper.Tool();
+    tool.name = name;
+    tool.onMouseDown = e => {
+      initPoint = e.point;
+    };
+    tool.onMouseDrag = e => {
+      const delta = initPoint.subtract(e.point);
+      const currentProject: paper.Project = paper.project;
+      const currentCenter = currentProject.view.center;
+      currentProject.view.center = currentCenter.add(delta);
+      drawXY(paper.project, "layer-xy");
+    };
+    tool.onMouseUp = e => {};
+  };
+
   useEffect(
     () => {
       if (!canvasRef.current) return;
       init();
-      drawCircle();
+      initTool();
+      console.log("paper.view.center>>>", paper.view.center);
+      showPoint(paper.view.center, "green");
+      drawXY(paper.project, "layer-xy");
+      // drawCircle();
     },
     [canvasRef.current]
   );
