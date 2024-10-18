@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-10-16 14:51:56
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-17 11:15:43
+ * @LastEditTime: 2024-10-18 09:17:01
  */
 import cn from "classnames";
 import paper from "paper";
@@ -40,15 +40,20 @@ export const ReviewWafer = () => {
     console.log("paper>>>", paper);
     // paper.view.center = new paper.Point(0, 0);
     setRadius(radius);
+    // paper.project.view.center = new paper.Point(0, 0);
+
     console.log("radius>>>1", radius);
     console.log("WIDTH>>>1", WIDTH);
     console.log("HEIGHT>>>1", HEIGHT);
+    // paper.view.center = new paper.Point(
+    //   paper.view.size.width / 2,
+    //   paper.view.size.height / 2
+    // );
     // // 计算视图的中心点坐标
     // const centerX = WIDTH / 2;
     // const centerY = HEIGHT / 2;
     // // 将坐标原点设置为视图的中心点
     // paper.view.translate({ x: centerX, y: centerY });
-    paper.view.center = paper.view.bounds.center;
     // paper.project.name = "circle";
     setWH({
       width: WIDTH,
@@ -97,17 +102,21 @@ export const ReviewWafer = () => {
   useEffect(
     () => {
       if (!canvasRef.current) return;
+      window.devicePixelRatio = 1;
       init();
       initTool();
       console.log("paper.view.center>>>", paper.view.center);
-      showPoint(paper.view.center, "green");
-      drawXY(paper.project, "layer-xy");
+      showPoint(new paper.Point(0, 0), "red");
+      showPoint(paper.project.view.center, "green");
+      // drawXY(paper.project, "layer-xy");
       // drawCircle();
     },
     [canvasRef.current]
   );
   useEffect(() => {
     console.log("dotData>>>", dotData);
+
+    console.log(">>>", window.devicePixelRatio);
   }, []);
 
   return (
