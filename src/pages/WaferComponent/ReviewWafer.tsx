@@ -3,13 +3,13 @@
  * @Author: didadida262
  * @Date: 2024-10-16 14:51:56
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-18 15:25:50
+ * @LastEditTime: 2024-10-24 10:27:24
  */
 import cn from "classnames";
 import paper from "paper";
 import { useEffect, useRef, useState } from "react";
 
-import { dotData, waferInfo, dotClass } from "@/server/circleData";
+import { dotClass } from "@/server/circleData";
 import { showPoint, drawXY } from "@/utils/paperjsWeapon";
 
 const colorsMap = {};
@@ -19,7 +19,8 @@ dotClass.forEach((item: any) => {
 
 console.log("colorsMap>>", colorsMap);
 
-export const ReviewWafer = () => {
+export const ReviewWafer = (props: { waferInfo; dotData }) => {
+  const { waferInfo, dotData } = props;
   // const canvasRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef() as any;
   const [radius, setRadius] = useState(0);
