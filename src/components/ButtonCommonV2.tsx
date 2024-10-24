@@ -1,14 +1,9 @@
-/*
- * @Description: 
- * @Author: didadida262
- * @Date: 2024-07-31 10:32:27
- * @LastEditors: didadida262
- * @LastEditTime: 2024-10-24 10:22:40
- */
 import cn from "classnames";
 import React, { MouseEvent, ReactNode, useMemo, useState } from "react";
 import { AiOutlineLoading } from "react-icons/ai";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
+import LoadingSvg from "../assets/images/common/loading.inline.svg";
 
 export enum EButtonType {
   PRIMARY = "PRIMARY",
@@ -26,7 +21,7 @@ interface IButtonProps {
   disable?: boolean;
   buttonType?: "submit" | "reset" | "button";
 }
-export function ButtonCommon(props: IButtonProps) {
+export function ButtonCommonV2(props: IButtonProps) {
   const {
     className,
     children,
@@ -96,6 +91,17 @@ export function ButtonCommon(props: IButtonProps) {
         {loading &&
           <AiOutlineLoading3Quarters className="ml-2 animate-spin w-[24px]" />}
       </button>
+      {isHover &&
+        title &&
+        <div className="absolute right-[50%] -top-[30px] z-[200] translate-x-[50%] whitespace-nowrap rounded-[4px] bg-[#333c4a] px-3 py-1">
+          <div
+            className={cn(
+              bpopbg,
+              "absolute right-[50%] bottom-0 h-0 w-0 translate-y-[100%] border-[5px] border-solid border-x-transparent  border-b-transparent opacity-75"
+            )}
+          />
+          {title}
+        </div>}
     </div>
   );
 }

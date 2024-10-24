@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-04-23 11:12:49
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-16 10:13:34
+ * @LastEditTime: 2024-10-24 10:22:03
  */
 
 import { Button } from "antd";
@@ -35,10 +35,13 @@ import { List } from "react-virtualized";
 import "./index.scss";
 import { useAsync, useAsyncFn } from "react-use";
 import { resolve } from "path";
+import { ConsoleSqlOutlined } from "@ant-design/icons";
+import {getInfo} from '@/server/testpageAPI'
 
 
 const canvasWorker = new Worker(new URL("./worker.js", import.meta.url));
-const TestComponent = function() {
+const TestComponent = function () {
+  const [loading, setloading] = useState(false)
   const canvasOneRef = useRef() as any;
   const canvasTwoRef = useRef() as any;
   let animationFrameId
@@ -63,6 +66,16 @@ const TestComponent = function() {
     const transfercanvasWorker = canvasTwoRef.current.transferControlToOffscreen();
     canvasWorker.postMessage({ canvas: transfercanvasWorker }, [transfercanvasWorker]);
   }
+  const handleClick = async () => {
+    setloading(true)
+    setTimeout(async () => {
+      const response = await getInfo()
+      console.log('response>>>', response)
+      setloading(false)
+
+    }, 3000)
+
+  }
   useEffect(() => {
     drawCanvasOne()
     drawCanvasTwo()
@@ -70,6 +83,7 @@ const TestComponent = function() {
         window.cancelAnimationFrame(animationFrameId);
     }
   }, [])
+  
 
 
   return (
@@ -84,13 +98,13 @@ const TestComponent = function() {
       </div>
       <ButtonCommon
         type={EButtonType.PRIMARY}
+        loading={loading}
         onClick={
           () => {
-            alert('弹框......')
+            handleClick()
           }
         }>
         <span>测试按钮</span>
-        
       </ButtonCommon>
     </div>
 )

@@ -1,19 +1,28 @@
-import axios from 'axios';
-import { getToken } from '../utils/token';
+/*
+ * @Description: 
+ * @Author: didadida262
+ * @Date: 2024-07-31 10:32:27
+ * @LastEditors: didadida262
+ * @LastEditTime: 2024-10-24 10:10:54
+ */
+import axios from "axios";
+
+import { getToken } from "@/utils/token";
+
 // 创建axios实例
 const instance = axios.create({
-  baseURL: 'http://localhost:3001', // 基础URL
-  timeout: 1000, // 请求超时时间
+  baseURL: "http://localhost:3001", // 基础URL
+  timeout: 1000 // 请求超时时间
   // 其他配置...
 });
- 
+
 // 请求拦截器
 instance.interceptors.request.use(
   config => {
     // 可以在这里添加例如token等请求头
-    const token = getToken() 
+    const token = getToken();
     if (token) {
-      config.headers['Authorization'] = token;
+      config.headers["Authorization"] = token;
     }
     return config;
   },
@@ -22,7 +31,7 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   }
 );
- 
+
 // 响应拦截器
 instance.interceptors.response.use(
   response => {
@@ -34,6 +43,6 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
- 
+
 // 导出封装后的axios实例
 export default instance;
