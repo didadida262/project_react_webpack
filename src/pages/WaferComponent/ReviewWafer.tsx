@@ -3,11 +3,12 @@
  * @Author: didadida262
  * @Date: 2024-10-16 14:51:56
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-24 10:27:24
+ * @LastEditTime: 2024-10-24 16:32:22
  */
 import cn from "classnames";
 import paper from "paper";
 import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import { dotClass } from "@/server/circleData";
 import { showPoint, drawXY } from "@/utils/paperjsWeapon";
@@ -19,8 +20,11 @@ dotClass.forEach((item: any) => {
 
 console.log("colorsMap>>", colorsMap);
 
-export const ReviewWafer = (props: { waferInfo; dotData }) => {
-  const { waferInfo, dotData } = props;
+export const ReviewWafer = () => {
+  const { waferInfo, status, dotData } = useSelector(
+    (state: any) => state.wafer
+  );
+
   // const canvasRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef() as any;
   const [radius, setRadius] = useState(0);
@@ -92,6 +96,8 @@ export const ReviewWafer = (props: { waferInfo; dotData }) => {
   // 先批量处理点数据坐标信息，再绘制数据点
   // 内圆同数据处于同一图层
   const drawDot = () => {
+    if (!dotData || !dotData.length) return;
+
     // 基于当前晶圆大小，处理数据点信息
     const layerDot = new paper.Layer();
     layerDot.name = "layerDot";
@@ -105,8 +111,6 @@ export const ReviewWafer = (props: { waferInfo; dotData }) => {
         channel: item.channel
       };
     });
-    console.log("dotData>>", dotData);
-    console.log("data>>", data);
     data.forEach(item => {
       const p: any = new paper.Path.Circle({
         center: new paper.Point(item.pos_x, item.pos_y),
@@ -131,18 +135,19 @@ export const ReviewWafer = (props: { waferInfo; dotData }) => {
       if (!canvasRef.current) return;
       window.devicePixelRatio = 1;
       init();
-      initTool();
-      drawCircle();
-      drawDot();
-      drawXY(paper.project, "layer-xy");
+      // initTool();
+      // drawCircle();
+      // drawXY(paper.project, "layer-xy");
     },
     [canvasRef.current]
   );
-  useEffect(() => {
-    console.log("dotData>>>", dotData);
-
-    console.log(">>>", window.devicePixelRatio);
-  }, []);
+  useEffect(
+    () => {
+      // drawDot();
+      console.log("paper>>>", paper);
+    },
+    [dotData]
+  );
 
   return (
     <div className="w-full h-full ">
