@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-16 09:55:52
+ * @LastEditTime: 2024-10-25 16:40:38
  */
 import React from "react";
 import { useState, memo, useEffect, useContext } from "react";
@@ -22,6 +22,7 @@ import { dotData, dotClass } from "@/server/circleData";
 import { columns } from "@/mock/columns";
 import { EarthCommonV3 } from "@/components/Earth/EarthCommonV3";
 import { Graph } from "@/components/Graph";
+import { Card3dComponent } from "@/components/ui/Card3dComponent";
 import BlockChainLottie from "@/assets/lottie/Blockchains.json";
 
 import TypeWriter from "../../components/ui/TypeWriter";
@@ -167,6 +168,9 @@ const DiyComponents = () => {
         </Card>
         <Card className="graph w-[500px]">
           <Graph />
+        </Card>
+        <Card className="w-[500px] h-[600px]">
+          <Card3dComponent />
         </Card>
       </div>
     </div>

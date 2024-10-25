@@ -89,7 +89,20 @@ h6 {
   padding: 0;
   margin: 0;
 }
-
+.featureCardBg {
+  background: linear-gradient(
+    180deg,
+    rgba(45, 25, 77, 0.4) 7.65%,
+    rgba(51, 24, 78, 0.271579) 91.29%,
+    rgba(29, 15, 42, 0) 152.91%
+  );
+  border: 1px solid;
+  border-image-source: linear-gradient(
+    180deg,
+    #35347a 0%,
+    rgba(72, 40, 102, 0) 124.86%
+  );
+}
 .markBorderG {
   border: 1px solid green;
 }
