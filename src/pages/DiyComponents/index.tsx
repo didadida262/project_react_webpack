@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-25 16:40:38
+ * @LastEditTime: 2024-10-28 10:54:17
  */
 import React from "react";
 import { useState, memo, useEffect, useContext } from "react";
@@ -166,7 +166,7 @@ const DiyComponents = () => {
         <Card className="earth">
           <EarthCommonV3 />
         </Card>
-        <Card className="graph w-[500px]">
+        <Card className="graph w-[500px] h-[600px]">
           <Graph />
         </Card>
         <Card className="w-[500px] h-[600px]">

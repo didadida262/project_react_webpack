@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-10-16 14:51:56
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-24 16:32:22
+ * @LastEditTime: 2024-10-28 11:29:51
  */
 import cn from "classnames";
 import paper from "paper";
@@ -135,15 +135,15 @@ export const ReviewWafer = () => {
       if (!canvasRef.current) return;
       window.devicePixelRatio = 1;
       init();
-      // initTool();
-      // drawCircle();
-      // drawXY(paper.project, "layer-xy");
+      initTool();
+      drawCircle();
+      drawXY(paper.project, "layer-xy");
     },
     [canvasRef.current]
   );
   useEffect(
     () => {
-      // drawDot();
+      drawDot();
       console.log("paper>>>", paper);
     },
     [dotData]
