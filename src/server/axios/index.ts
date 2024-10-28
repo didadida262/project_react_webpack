@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-07-31 10:32:27
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-28 15:07:41
+ * @LastEditTime: 2024-10-28 16:03:42
  */
 import axios from "axios";
 
@@ -11,7 +11,7 @@ import { getToken } from "@/utils/token";
 
 // 创建axios实例
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:3001", // 基础URL
+  baseURL: process.env.REACT_APP_API_URL, // 基础URL
   timeout: 1000 // 请求超时时间
   // 其他配置...
 });
