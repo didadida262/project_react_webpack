@@ -36,6 +36,19 @@ export const formatBytes = (name, bytes) => {
 export const formatTime = (name, time) => {
   return time / 1000 + "s";
 };
+// 年月日时分秒
+export const timestampToDateTime = timestamp => {
+  var date = new Date(timestamp); // 转换为Date对象
+  var year = date.getFullYear(); // 获取年份
+  var month = ("0" + (date.getMonth() + 1)).slice(-2); // 获取月份，转为两位数
+  var day = ("0" + date.getDate()).slice(-2); // 获取日，转为两位数
+  var hours = ("0" + date.getHours()).slice(-2); // 获取小时，转为两位数
+  var minutes = ("0" + date.getMinutes()).slice(-2); // 获取分钟，转为两位数
+  var seconds = ("0" + date.getSeconds()).slice(-2); // 获取秒，转为两位数
+
+  // 拼接字符串
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+};
 
 /**
    * @description: 程序耗时检测器
