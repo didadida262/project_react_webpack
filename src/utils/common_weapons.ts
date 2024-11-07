@@ -5,7 +5,10 @@
  * @Description: 
  * 
  */
-
+export const getTablePagination = (page = 1, itemsPerPage = 10): any => ({
+  pageIndex: page - 1,
+  pageSize: itemsPerPage
+});
 export function waitTime(time: number) {
   return new Promise(resolve => {
     setTimeout(() => {

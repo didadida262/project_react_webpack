@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-14 00:47:07
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-28 10:54:17
+ * @LastEditTime: 2024-11-08 01:25:32
  */
 import React from "react";
 import { useState, memo, useEffect, useContext } from "react";
@@ -24,6 +24,7 @@ import { EarthCommonV3 } from "@/components/Earth/EarthCommonV3";
 import { Graph } from "@/components/Graph";
 import { Card3dComponent } from "@/components/ui/Card3dComponent";
 import BlockChainLottie from "@/assets/lottie/Blockchains.json";
+import Table from "@/components/Table";
 
 import TypeWriter from "../../components/ui/TypeWriter";
 import { ButtonCommon, EButtonType } from "../../components/ButtonCommon";
@@ -44,6 +45,22 @@ export const pluginStatus = [
 const DiyComponents = () => {
   const [loading, setLoading] = useState(false);
   const [sortByStatus, setSortByStatus] = useState(pluginStatus[0]);
+  const activeTab = "test";
+  const [tableData, settableData] = useState({
+    dataList: [
+      {
+        key: "key1",
+        name: "key1",
+        col1: "col1",
+        col2: "col2",
+        col3: "col3"
+      }
+    ],
+    total: 1
+  });
+  const [currPage, setCurrPage] = useState(1);
+  const [isTableLoading, setisTableLoading] = useState(false);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   console.log("父组件渲染");
   let [name] = useState("hhvcg");
@@ -171,6 +188,20 @@ const DiyComponents = () => {
         </Card>
         <Card className="w-[500px] h-[600px]">
           <Card3dComponent />
+        </Card>
+        <Card className="w-full h-[600px]">
+          <Table
+            type={activeTab}
+            data={tableData}
+            isLoading={isTableLoading}
+            currPage={currPage}
+            itemsPerPage={itemsPerPage}
+            setCurrPage={setCurrPage}
+            setItemsPerPage={setItemsPerPage}
+            className="mt-4 w-full"
+            headerRowClassName="bg-[#0f0713]"
+            bodyRowClassName="bg-[#0f0713]"
+          />
         </Card>
       </div>
     </div>
