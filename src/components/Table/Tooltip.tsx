@@ -1,18 +1,3 @@
-/*
- * @Description: 
- * @Author: didadida262
- * @Date: 2024-11-08 01:07:53
- * @LastEditors: didadida262
- * @LastEditTime: 2024-11-08 01:17:34
- */
-/*
- * @Description: 
- * @Author: didadida262
- * @Date: 2024-11-08 01:07:53
- * @LastEditors: didadida262
- * @LastEditTime: 2024-11-08 01:15:40
- */
-"use client";
 import React, { ReactNode } from "react";
 
 import { Arrow } from "@radix-ui/react-tooltip";
