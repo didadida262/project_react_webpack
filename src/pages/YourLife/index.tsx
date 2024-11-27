@@ -18,7 +18,7 @@ export default function YourLife() {
     };
   }, []);
   return (
-    <div className="w-full h-3/5 flex tems-center flex-col gap-y-9">
+    <div className="w-full h-3/5 flex tems-center flex-col gap-y-9 px-5 py-5">
       <span className="font-Oswald text-[72px] leading-[107px] text-[#FFFFFF]">
         You have walking the Road
       </span>
