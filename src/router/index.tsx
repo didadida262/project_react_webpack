@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-25 15:13:17
  * @LastEditors: didadida262
- * @LastEditTime: 2024-10-16 14:45:10
+ * @LastEditTime: 2024-11-27 15:29:05
  */
 
 import { Suspense, lazy } from "react";
@@ -25,6 +25,7 @@ import TadpolesComponent from "../pages/Tadpoles";
 import TankComponent from "../pages/Tank";
 import TestCss from "../pages/TestCss";
 import ThreejsComponent from "../pages/Threejs";
+import YourLife from "../pages/YourLife";
 
 // 路由懒加载
 const Test = lazy(() => import("../pages/Test"));
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <HomeComponent />
+      },
+      {
+        path: "yourlife",
+        element: <YourLife />
       },
       {
         path: "home",

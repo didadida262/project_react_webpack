@@ -69,6 +69,21 @@ export const generateAtoZ = () => {
   // 'a'.charCodeAt()
 };
 
+export function generateyourLifeTime() {
+  // 获取当前时间
+  const now = new Date();
+  // 设置截止日期为 2025 年 1 月 1 日
+  const deadline = new Date("1995-12-16");
+  // 计算时间间隔（单位：毫秒）
+  const timeDiff = now.getTime() - deadline.getTime();
+  // 计算天数、小时、分钟和秒数
+  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(timeDiff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+  const minutes = Math.floor(timeDiff % (1000 * 60 * 60) / (1000 * 60));
+  const seconds = Math.floor(timeDiff % (1000 * 60) / 1000);
+  return `${days}天 : ${hours}时 : ${minutes}分 : ${seconds}秒`;
+}
+
 /**
   * @description: 万能字符获取器
   * @param {*} type small、big、num、any
