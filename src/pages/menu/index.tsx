@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-25 15:13:17
  * @LastEditors: didadida262
- * @LastEditTime: 2024-11-27 15:30:38
+ * @LastEditTime: 2024-12-02 17:42:56
  */
 import {
   AppstoreOutlined,
@@ -68,6 +68,7 @@ const items: MenuProps['items'] = [
       getItem('DiyComponents', 'diycomponent', <BsRadioactive />),
       getItem('Wafer', 'wafer', <BsRadioactive />),
       getItem('Your Life', 'yourlife', <BsRadioactive />),
+      getItem('Card Game', 'cardgame', <BsRadioactive />),
     ],
     'group',
   ),
