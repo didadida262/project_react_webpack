@@ -2,6 +2,8 @@ import cn from "classnames";
 import { useState } from "react";
 
 import { ButtonCommon, EButtonType } from "@/components/ButtonCommon";
+import btn_basetickets from "@/assets/lootbox/btn_basetickets.svg";
+import btn_skaletickets from "@/assets/lootbox/btn_skaletickets.svg";
 import lootbox_card from "@/assets/lootbox/lootbox_card.png";
 import lootbox_card_lumens from "@/assets/lootbox/lootbox_card_lumens.png";
 import lootbox_card_none from "@/assets/lootbox/lootbox_card_none.png";
@@ -18,6 +20,20 @@ export default function CardGame() {
       };
     })
   );
+  const [tickets, settickets] = useState([
+    {
+      name: "Base Tickets",
+      count: 18,
+      src: btn_basetickets,
+      chain: "BASE"
+    },
+    {
+      name: "Sui Tickets",
+      count: 10,
+      src: btn_basetickets,
+      chain: "sui"
+    }
+  ]);
   const hanclick = () => {
     // console.log('res>>>', res);
     const mockData = [
@@ -72,9 +88,7 @@ export default function CardGame() {
       };
     });
     setCardsList(resultData);
-    // setTimeout(() => {
     setFlipped(!flipped);
-    // }, 500);
   };
   return (
     <div
@@ -128,13 +142,30 @@ export default function CardGame() {
           </div>
         )}
       </div>
-      <ButtonCommon
-        className={`w-[80px] `}
-        type={EButtonType.SIMPLE}
-        onClick={() => hanclick()}
-      >
-        抽奖
-      </ButtonCommon>
+      <div className="btn-container  flex items-center">
+        {tickets.slice(0, 1).map((ticket: any, index: number) =>
+          <div
+            key={index}
+            className=" flex aspect-[3.45] w-[304px] items-center justify-around bg-cover bg-center bg-no-repeat px-[10px] hover:cursor-pointer"
+            style={{
+              backgroundImage:
+                ticket.chain === "sui"
+                  ? `url(../sui_ticket_bg.png)`
+                  : ticket.chain === "BASE"
+                    ? `url(../base_ticket_bg.png)`
+                    : `url(../skale_ticket_bg.png)`
+            }}
+            onClick={() => {
+              void hanclick();
+            }}
+          >
+            <img src={ticket.src} alt="" className=" " />
+            <span className=" text-[24px] font-semibold select-none">
+              {ticket.name} X {ticket.count}
+            </span>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
