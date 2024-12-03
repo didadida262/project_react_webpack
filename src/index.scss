@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .rotate-y-0 {
+    transform: rotateY(0deg);
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
 @layer {
   :root {
     --background: #ffffff;
@@ -114,6 +123,19 @@ h6 {
 }
 .test {
   filter: blur(5px);
+}
+
+@keyframes spin {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite; /* 旋转动画 */
 }
 
 .shooting-star {

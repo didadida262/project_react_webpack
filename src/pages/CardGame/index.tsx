@@ -104,12 +104,11 @@ export default function CardGame() {
           CardsList.length % 10 === 0 ? "justify-between" : "justify-start"
         )}
       >
-        {CardsList.map((item: any, index: number) =>
+        {CardsList.slice(0, 10).map((item: any, index: number) =>
           <div
             key={index}
             className={cn(
-              ` relative transition-transform duration-500`,
-              // 'hover:rotate-y-180',
+              `relative`,
               "hover:cursor-pointer",
               "hover:scale-110"
             )}
@@ -118,24 +117,26 @@ export default function CardGame() {
               src={lootbox_card}
               alt=""
               className={cn(
-                "aspect-[0.69] w-[122px] select-none duration-200  lg:w-[172px]"
+                "aspect-[0.69] w-[122px] select-none duration-1000 lg:w-[172px]",
+                `transition-transform ${flipped
+                  ? "rotate-y-180"
+                  : "rotate-y-0"}`
+                // `transition-transform ${flipped ? "spin" : ""}`
               )}
               style={{
-                transform: flipped ? " rotateY(180deg)" : "rotateY(0deg)",
-                transition: "transform 0.5s",
                 backfaceVisibility: "hidden"
               }}
             />
             <img
-              // src={lootbox_card_none}
               src={item.img}
               alt=""
               className={cn(
-                "absolute left-0 top-0 aspect-[0.69] w-[122px] select-none duration-200  lg:w-[172px]"
+                "absolute left-0 top-0 aspect-[0.69] w-[122px] select-none duration-1000  lg:w-[172px]",
+                `transition-transform ${flipped
+                  ? "rotate-y-0"
+                  : "rotate-y-180"}`
               )}
               style={{
-                transform: flipped ? " rotateY(0deg)" : "rotateY(180deg)",
-                transition: "transform 0.5s",
                 backfaceVisibility: "hidden"
               }}
             />
