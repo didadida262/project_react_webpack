@@ -1,5 +1,5 @@
 import cn from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { ButtonCommon, EButtonType } from "@/components/ButtonCommon";
 import btn_basetickets from "@/assets/lootbox/btn_basetickets.svg";
@@ -16,7 +16,7 @@ export default function CardGame() {
       return {
         type: "LUMENS", // type 属性
         amount: 0, // val 属性,
-        img: lootbox_card_none
+        img: ""
       };
     })
   );
