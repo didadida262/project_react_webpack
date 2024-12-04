@@ -9,31 +9,12 @@ import lootbox_card_lumens from "@/assets/lootbox/lootbox_card_lumens.png";
 import lootbox_card_none from "@/assets/lootbox/lootbox_card_none.png";
 import lootbox_card_usdt from "@/assets/lootbox/lootbox_card_usdt.png";
 
+import Timer from "./Timer";
+
 export default function CardGame() {
   const [flipped, setFlipped] = useState(false);
-  const [CardsList, setCardsList] = useState(
-    Array(10).fill(null).map((_, index) => {
-      return {
-        type: "LUMENS", // type 属性
-        amount: 0, // val 属性,
-        img: ""
-      };
-    })
-  );
-  const [tickets, settickets] = useState([
-    {
-      name: "Base Tickets",
-      count: 18,
-      src: btn_basetickets,
-      chain: "BASE"
-    },
-    {
-      name: "Sui Tickets",
-      count: 10,
-      src: btn_basetickets,
-      chain: "sui"
-    }
-  ]);
+  const [CardsList, setCardsList] = useState([]) as any;
+  const [tickets, settickets] = useState([]) as any;
   const hanclick = () => {
     // console.log('res>>>', res);
     const mockData = [
@@ -46,7 +27,7 @@ export default function CardGame() {
         amount: 6
       },
       {
-        type: "POINTS",
+        type: "USDT",
         amount: 36
       },
       {
@@ -54,15 +35,15 @@ export default function CardGame() {
         amount: 35
       },
       {
-        type: "LUMENS",
+        type: "USDT",
         amount: 6
       },
       {
-        type: "LUMENS",
+        type: "USDT",
         amount: 6
       },
       {
-        type: "POINTS",
+        type: "USDT",
         amount: 25
       },
       {
@@ -74,11 +55,11 @@ export default function CardGame() {
         amount: 22
       },
       {
-        type: "POINTS",
+        type: "USDT",
         amount: 40
       }
     ];
-    const resultData = mockData.map((item: any) => {
+    const resultData = mockData.slice(0, CardsList.length).map((item: any) => {
       return {
         ...item,
         img:
@@ -87,28 +68,56 @@ export default function CardGame() {
             : item.type === "USDT" ? lootbox_card_usdt : lootbox_card_none
       };
     });
+    console.log("resultData>>>", resultData);
     setCardsList(resultData);
     setFlipped(!flipped);
   };
+  useEffect(() => {
+    const mockticketsData = [
+      {
+        name: "Base Tickets",
+        count: 8,
+        src: btn_basetickets,
+        chain: "BASE"
+      },
+      {
+        name: "Sui Tickets",
+        count: 10,
+        src: btn_basetickets,
+        chain: "sui"
+      }
+    ];
+    const count = mockticketsData[0].count;
+    const mockCardsData = Array(count > 10 ? 10 : count)
+      .fill(null)
+      .map((_, index) => {
+        return {
+          type: "LUMENS", // type 属性
+          amount: 0, // val 属性,
+          img: ""
+        };
+      });
+    settickets(mockticketsData);
+    setCardsList(mockCardsData);
+  }, []);
   return (
     <div
-      className=" px-4 relative  bg-cover bg-center bg-no-repeat py-8 font-Oswald  max-h-full overflow-scroll"
+      className=" px-4 relative  bg-cover bg-center bg-no-repeat py-4 font-Oswald  max-h-full overflow-scroll"
       style={{
         backgroundImage: "url(./lootboxdetailSecond_bg.png)"
       }}
     >
       <div
         className={cn(
-          "flex  flex-wrap gap-x-6 gap-y-10",
-          "max-h-[567px] my-4",
+          "flex flex-wrap gap-x-6 gap-y-10 max-w-[1092px] mx-auto my-4",
           CardsList.length % 10 === 0 ? "justify-between" : "justify-start"
         )}
       >
-        {CardsList.slice(0, 10).map((item: any, index: number) =>
+        {CardsList.map((item: any, index: number) =>
           <div
             key={index}
             className={cn(
-              `relative`,
+              `relative transform duration-500`,
               "hover:cursor-pointer",
               "hover:scale-110"
             )}
@@ -127,9 +136,7 @@ export default function CardGame() {
                 backfaceVisibility: "hidden"
               }}
             />
-            <img
-              src={item.img}
-              alt=""
+            <div
               className={cn(
                 "absolute left-0 top-0 aspect-[0.69] w-[122px] select-none duration-1000  lg:w-[172px]",
                 `transition-transform ${flipped
@@ -139,15 +146,30 @@ export default function CardGame() {
               style={{
                 backfaceVisibility: "hidden"
               }}
-            />
+            >
+              <img src={item.img} alt="" />
+              {item.type &&
+                <div
+                  className={cn(
+                    "absolute left-0 bottom-[36px] markBorderR flex flex-col items-center w-full"
+                  )}
+                >
+                  <span className="text-[26px] font-semibold">
+                    {item.amount}
+                  </span>
+                  <span className="text-[17px] font-semibold">
+                    {item.type}
+                  </span>
+                </div>}
+            </div>
           </div>
         )}
       </div>
-      <div className="btn-container  flex items-center">
+      <div className="btn-container  flex items-center max-w-[1092px] mx-auto">
         {tickets.slice(0, 1).map((ticket: any, index: number) =>
           <div
             key={index}
-            className=" flex aspect-[3.45] w-[304px] items-center justify-around bg-cover bg-center bg-no-repeat px-[10px] hover:cursor-pointer"
+            className="flex aspect-[3.45] w-[304px] items-center bg-cover bg-center bg-no-repeat px-[10px] hover:cursor-pointer"
             style={{
               backgroundImage:
                 ticket.chain === "sui"
@@ -160,13 +182,14 @@ export default function CardGame() {
               void hanclick();
             }}
           >
-            <img src={ticket.src} alt="" className=" " />
+            <img src={ticket.src} alt="" className="mr-3" />
             <span className=" text-[24px] font-semibold select-none">
               {ticket.name} X {ticket.count}
             </span>
           </div>
         )}
       </div>
+      <Timer />
     </div>
   );
 }
