@@ -9,12 +9,15 @@ import lootbox_card_lumens from "@/assets/lootbox/lootbox_card_lumens.png";
 import lootbox_card_none from "@/assets/lootbox/lootbox_card_none.png";
 import lootbox_card_usdt from "@/assets/lootbox/lootbox_card_usdt.png";
 
+import MyTreasure from "./MyTreasure";
+import Tabs from "./Tabs";
 import Timer from "./Timer";
 
 export default function CardGame() {
   const [flipped, setFlipped] = useState(false);
   const [CardsList, setCardsList] = useState([]) as any;
   const [tickets, settickets] = useState([]) as any;
+  const [activeTab, setactiveTab] = useState("mytresure");
   const hanclick = () => {
     // console.log('res>>>', res);
     const mockData = [
@@ -75,16 +78,10 @@ export default function CardGame() {
   useEffect(() => {
     const mockticketsData = [
       {
-        name: "Base Tickets",
-        count: 8,
-        src: btn_basetickets,
-        chain: "BASE"
-      },
-      {
         name: "Sui Tickets",
         count: 10,
         src: btn_basetickets,
-        chain: "sui"
+        chain: "BASE"
       }
     ];
     const count = mockticketsData[0].count;
@@ -102,15 +99,16 @@ export default function CardGame() {
   }, []);
   return (
     <div
-      className=" px-4 relative  bg-cover bg-center bg-no-repeat py-4 font-Oswald  max-h-full overflow-scroll"
+      className="flex justify-around flex-col items-center px-4 relative  bg-cover bg-center bg-no-repeat py-4 font-Oswald  overflow-scroll w-full h-full"
       style={{
         backgroundImage: "url(./lootboxdetailSecond_bg.png)"
       }}
     >
       <div
         className={cn(
-          "flex flex-wrap gap-x-6 gap-y-10 max-w-[1092px] mx-auto my-4",
-          CardsList.length % 10 === 0 ? "justify-between" : "justify-start"
+          " flex flex-wrap gap-x-6 gap-y-10 max-w-[1092px] mx-auto my-4",
+          "justify-around"
+          // CardsList.length % 10 === 0 ? "justify-between" : "justify-start"
         )}
       >
         {CardsList.map((item: any, index: number) =>
@@ -151,7 +149,7 @@ export default function CardGame() {
               {item.type &&
                 <div
                   className={cn(
-                    "absolute left-0 bottom-[36px] markBorderR flex flex-col items-center w-full"
+                    "absolute left-0 bottom-[36px]  flex flex-col items-center w-full"
                   )}
                 >
                   <span className="text-[26px] font-semibold">
@@ -165,7 +163,7 @@ export default function CardGame() {
           </div>
         )}
       </div>
-      <div className="btn-container  flex items-center max-w-[1092px] mx-auto">
+      <div className="btn-container  flex items-center justify-center max-w-[1092px] mx-auto">
         {tickets.slice(0, 1).map((ticket: any, index: number) =>
           <div
             key={index}
@@ -189,7 +187,9 @@ export default function CardGame() {
           </div>
         )}
       </div>
-      <Timer />
+      {/* <Timer />
+      <Tabs activeTab={activeTab} setactiveTab={setactiveTab} />
+      <MyTreasure /> */}
     </div>
   );
 }

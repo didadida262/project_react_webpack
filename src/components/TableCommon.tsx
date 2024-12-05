@@ -1,10 +1,3 @@
-/*
- * @Description: 表格组件终极版本
- * @Author: didadida262
- * @Date: 2024-08-29 13:47:01
- * @LastEditors: didadida262
- * @LastEditTime: 2024-10-16 09:57:35
- */
 import { notification } from "antd";
 import cn from "classnames";
 import React, { useEffect, useRef, useState } from "react";
