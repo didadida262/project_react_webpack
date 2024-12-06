@@ -10,6 +10,7 @@ import lootbox_card_none from "@/assets/lootbox/lootbox_card_none.png";
 import lootbox_card_usdt from "@/assets/lootbox/lootbox_card_usdt.png";
 
 import MyTreasure from "./MyTreasure";
+import RewardsLogo from "./RewardsLogo";
 import Tabs from "./Tabs";
 import Timer from "./Timer";
 
@@ -190,6 +191,7 @@ export default function CardGame() {
       {/* <Timer />
       <Tabs activeTab={activeTab} setactiveTab={setactiveTab} />
       <MyTreasure /> */}
+      <RewardsLogo />
     </div>
   );
 }
