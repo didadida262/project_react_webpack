@@ -68,7 +68,6 @@ const items: MenuProps['items'] = [
       getItem('DiyComponents', 'diycomponent', <BsRadioactive />),
       getItem('Wafer', 'wafer', <BsRadioactive />),
       getItem('Your Life', 'yourlife', <BsRadioactive />),
-      getItem('Card Game', 'cardgame', <BsRadioactive />),
     ],
     'group',
   ),

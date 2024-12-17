@@ -5,6 +5,8 @@
  * @Description: 
  * 
  */
+import { isNumber } from "lodash";
+
 export const getTablePagination = (page = 1, itemsPerPage = 10): any => ({
   pageIndex: page - 1,
   pageSize: itemsPerPage
@@ -32,6 +34,13 @@ export const getRandomColor = () => {
  * @param {*} bytes 比特值大小
  * @return {*} MB单位值
  */
+
+// 千分号格式化数字
+export function transferNum(num: any) {
+  if (!isNumber(num)) return "-";
+  return num.toLocaleString();
+}
+
 export const formatBytes = (name, bytes) => {
   return name + ": " + (bytes / 1024 / 1024).toFixed(2) + " MB ";
 };

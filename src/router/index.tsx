@@ -3,7 +3,7 @@
  * @Author: didadida262
  * @Date: 2024-03-25 15:13:17
  * @LastEditors: didadida262
- * @LastEditTime: 2024-12-02 17:41:22
+ * @LastEditTime: 2024-12-17 15:35:30
  */
 
 import { Suspense, lazy } from "react";
@@ -14,7 +14,6 @@ import Earth from "@/pages/Earth";
 import WaferComponent from "@/pages/WaferComponent";
 
 import AuthRoute from "../components/AuthRoute";
-import CardGame from "../pages/CardGame";
 import ChatGpt from "../pages/ChatGpt";
 import DiyComponents from "../pages/DiyComponents";
 import HomeComponent from "../pages/Home";
@@ -59,10 +58,6 @@ const router = createBrowserRouter([
       {
         path: "wafer",
         element: <WaferComponent />
-      },
-      {
-        path: "cardgame",
-        element: <CardGame />
       },
 
       {
