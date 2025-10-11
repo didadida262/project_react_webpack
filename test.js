@@ -1,44 +1,28 @@
-/*
- * @Description: 
- * @Author: didadida262
- * @Date: 2024-07-31 10:32:27
- * @LastEditors: didadida262
- * @LastEditTime: 2024-09-10 00:07:51
- */
-const dataStoreColumns = [
-  {
-    title: "序号",
-    ellipsis: true,
-    width: 100
-  },
-  {
-    title: "数据集名称",
-    dataIndex: "name",
-    ellipsis: true,
-    width: 200
-  },
-  {
-    title: "区块链",
-    dataIndex: "chainType",
-    ellipsis: true,
-    width: 150
-  },
-  {
-    title: "数量",
-    dataIndex: "total",
-    ellipsis: true,
-    width: 100
-  },
-  {
-    title: "描述",
-    dataIndex: "desc",
-    ellipsis: true
-  }
-];
 
-const res = dataStoreColumns
-  .filter(item => item.dataIndex !== "desc")
-  .reduce((total, current) => {
-    return total + current.width;
-  }, 0);
-console.log("res>>", res);
+const returnAllChildArr = (arr) => {
+  const res = []
+  const used = new Array(arr.length).fill(false)
+  const walk = (curArr, len) => {
+    if (curArr.length === len) {
+      if (!res.includes(curArr.join(''))) {
+      console.log('curArr>>>2', curArr.join(''))
+
+        res.push(curArr.join(''))
+      }
+      return
+    }
+    for (let i = 0; i < len; i++) {
+      if (used[i]) continue
+      used[i] = true
+      curArr.push(arr[i])
+      walk(curArr, len)
+      curArr.pop()
+      used[i] = false
+    }
+  }
+
+  walk([], arr.length)
+  return res
+}
+
+console.log(returnAllChildArr('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'.split('')))
