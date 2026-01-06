@@ -1,28 +1,54 @@
+const arr = [1,2,3,4,5,6,7,8,9] 
+const k=2
+const result = [2,1,4,3,6,5,8,7,9]
 
-const returnAllChildArr = (arr) => {
-  const res = []
-  const used = new Array(arr.length).fill(false)
-  const walk = (curArr, len) => {
-    if (curArr.length === len) {
-      if (!res.includes(curArr.join(''))) {
-      console.log('curArr>>>2', curArr.join(''))
+const arrNode = arr.map((item) => {
+  const obj = {
+    val: item,
+    next: null
+  }
+  return obj
+})
 
-        res.push(curArr.join(''))
-      }
-      return
+for (let i = 0 ; i < arrNode.length -1; i++) {
+  const cur = arrNode[i]
+  cur.next = arrNode[i + 1]
+}
+arrNode[arrNode.length -1].next = null
+
+console.log('arrNode>>>', arrNode)
+
+
+const fn = (firstNode, k) => {
+  while(firstNode) {
+    let count = 0
+    const curArr = []
+    while (count < k) {
+      curArr.push(firstNode)
+      firstNode = firstNode.next
+      count++
     }
-    for (let i = 0; i < len; i++) {
-      if (used[i]) continue
-      used[i] = true
-      curArr.push(arr[i])
-      walk(curArr, len)
-      curArr.pop()
-      used[i] = false
+    for (let i =0; i < Math.ceil(curArr.length / 2); i++) {
+      const node1 = curArr[i]
+      const node2 = curArr[curArr.length - 1 - i]
+        reverse(node1, node2)
     }
+    firstNode = curArr[curArr.length - 1].next
   }
 
-  walk([], arr.length)
-  return res
 }
 
-console.log(returnAllChildArr('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb'.split('')))
+const reverse = (node1, node2) => {
+  const arr = []
+  while (node1) {
+    arr.shift(node1)
+    node1 = node1.next
+  }
+  for (let i =0; i < arr.length -1; i++) {
+    const cur = arr[i]
+    const curnext = arr[i+1]
+    cur.next = curnext
+  }
+}
+fn(arrNode[0], k)
+

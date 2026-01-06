@@ -28,8 +28,10 @@ const TestComponent = function () {
   
   const handleStateClick = () => {
     console.log('handleStateClick')
-    setCount(count + 1)
-    console.log('count>>>', count)
+      setCount(count + 1)
+      setCount((prev) => prev + 1)
+      console.log('count>>>', count)
+
   }
 
   return (

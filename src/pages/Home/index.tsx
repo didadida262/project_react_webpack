@@ -20,6 +20,46 @@ const HomeComponent = () => {
   console.log(useContext(TextContext));
   console.log('父组件渲染');
   let [name] = useState('hhvcg');
+  const [isCounting, setIsCounting] = useState(false);
+  const [count, setcount] = useState(5);
+
+
+  // 方案1 定时器
+  // const handleClickCount = () => {
+  //   console.log('点击倒计时');
+  //   setIsCounting(true);
+  //   const timer = setInterval(() => {
+  //     setcount((prev) => {
+  //       if (prev > 0) {
+  //         return prev - 1;
+  //       } else {
+  //         clearInterval(timer);
+  //         setIsCounting(false);
+  //         return 5;
+  //       }
+  //     });
+  //   }, 1000)
+    
+  // }
+  // 方案2 raf
+  const handleClickCount = () => {
+    setIsCounting(true)
+
+    let seconds = 5
+    const endTime = Date.now() + seconds * 1000
+    const minisCount = () => {
+      const now = Date.now()
+      const remainingTime = endTime - now
+      if (remainingTime > 0) {
+        setcount(Math.ceil(remainingTime / 1000))
+        requestAnimationFrame(minisCount)
+      } else {
+        setIsCounting(false)
+        setcount(5)
+      }
+    }
+    requestAnimationFrame(minisCount)
+  }
   useEffect(() => {
     console.log('父组件-effect');
     return () => {
@@ -46,6 +86,15 @@ const HomeComponent = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
       />
+      <ButtonCommon
+        type={EButtonType.PRIMARY}
+        disable={isCounting}
+        onClick={handleClickCount}
+        >
+        {isCounting? (
+        <span>倒计时{count} s</span>
+        ):(<span>点击倒计时</span>)}
+      </ButtonCommon>
     </div>
   );
 };
